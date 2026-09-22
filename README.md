@@ -14,6 +14,7 @@ Open http://localhost:8000. No Node packages or build service are required.
 
 - Biography, experience, and articles: `index.template.html`
 - Publications: `publications.json` (newest year first; original full citations preserved)
+- Career timeline: the `experience` section in `index.template.html`; button data attributes supply the detail panel. Bar positions are proportional to the 2008–September 2026 axis. Update the axis and proportions when extending its range.
 - Design: `style.css`
 - Search: `script.js`
 - Photo: `assets/profile.png`
