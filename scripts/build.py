@@ -3,12 +3,18 @@ import json
 import re
 from pathlib import Path
 from html import escape
-from itertools import groupby
 ROOT = Path(__file__).resolve().parent.parent
 papers = json.loads((ROOT / 'publications.json').read_text())
+latest_year = max(int(p['year']) for p in papers if p['year'].isdigit())
+recent_years = [str(latest_year - offset) for offset in range(3)]
+groups = {year: [] for year in [*recent_years, 'Older']}
+for paper in papers:
+    group = paper['year'] if paper['year'] in recent_years else 'Older'
+    groups[group].append(paper)
 blocks = []
-for year, entries in groupby(papers, key=lambda p: p['year']):
-    entries = list(entries)
+for year, entries in groups.items():
+    if not entries:
+        continue
     items = []
     for paper in entries:
         citation = paper['citation']
@@ -18,8 +24,10 @@ for year, entries in groupby(papers, key=lambda p: p['year']):
         rest = citation[len(title):].lstrip(' ,.')
         rest = re.sub(r'Sungchul\s+Kim', '<strong>Sungchul Kim</strong>', escape(rest))
         links = ''.join(f'<a class="paper-link" href="{escape(link["url"], quote=True)}">Read paper ↗</a>' for link in paper['links'])
-        items.append(f'<li class="paper"><h3>{escape(title)}</h3><p>{rest}</p>{links}</li>')
-    opened = ' open' if year == '2026' else ''
+        source_year = escape(paper['year'])
+        year_label = f'{source_year} · ' if year == 'Older' and paper['year'].isdigit() else ''
+        items.append(f'<li class="paper" data-year="{source_year}"><h3>{escape(title)}</h3><p>{year_label}{rest}</p>{links}</li>')
+    opened = ' open' if year == recent_years[0] else ''
     blocks.append(f'<details class="year-group" data-year="{escape(year)}"{opened}><summary>{escape(year)} <span class="count">{len(entries)} papers</span><span class="plus" aria-hidden="true">+</span></summary><ol class="papers">{"".join(items)}</ol></details>')
 template = (ROOT / 'index.template.html').read_text()
 (ROOT / 'index.html').write_text(template.replace('{{PUBLICATIONS}}', '\n'.join(blocks)))

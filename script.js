@@ -13,7 +13,7 @@ search.addEventListener('input', () => {
   groups.forEach((group, index) => {
     let found = 0;
     group.querySelectorAll('.paper').forEach(paper => {
-      const match = !query || `${group.dataset.year} ${paper.textContent}`.toLocaleLowerCase().includes(query);
+      const match = !query || `${group.dataset.year} ${paper.dataset.year || ''} ${paper.textContent}`.toLocaleLowerCase().includes(query);
       paper.hidden = !match;
       if (match) found++;
     });
