@@ -1,0 +1,562 @@
+[
+  {
+    "year": "2026",
+    "citation": "Rethinking Failure Attribution in Multi-Agent Systems: A Multi-Perspective Benchmark and Evaluation, Yeonjun In, Mehrab Tanjim, Jayakumar Subramanian, Sungchul Kim , Uttaran Bhattacharya, Wonjoong Kim, Sangwu Park, Somdeb Sarkhel, Chanyoung Park, ICML'26 FAGEN (poster)",
+    "links": []
+  },
+  {
+    "year": "2026",
+    "citation": "Charts Are Not Images: On the Challenges of Scientific Chart Editing, Li Li, Ryan A. Rossi, Sungchul Kim , Sunav Choudhary, Franck Dernoncourt, Puneet Mathur, Zhengzhong Tu, Yue Zhao, ICLR'26 (poster)",
+    "links": []
+  },
+  {
+    "year": "2026",
+    "citation": "Reasoning-Based Personalized Generation for Users with Sparse Data, Bo Ni, Branislav Kveton, Samyadeep Basu, Subhojyoti Mukherjee, Leyao Wang, Franck Dernoncourt, Sungchul Kim , Seunghyun Yoon, Zichao Wang, Ruiyi Zhang, Puneet Mathur, Jihyung Kil, Jiuxiang Gu, Nedim Lipka, Yu Wang, Ryan A. Rossi, Tyler Derr, ICLR'26",
+    "links": []
+  },
+  {
+    "year": "2026",
+    "citation": "Multi-Agent Collaborative Filtering: Orchestrating Users and Items for Agentic Recommendations, Yu Xia, Sungchul Kim , Tong Yu, Ryan A. Rossi, Julian McAuley, WWW'26",
+    "links": []
+  },
+  {
+    "year": "2026",
+    "citation": "A Survey on LLM-based Conversational User Simulation, Bo Ni, Yu Wang, Leyao Wang, Branislav Kveton, Franck Dernoncourt, Yu Xia, Hongjie Chen, Reuben Luera, Samyadeep Basu, Subhojyoti Mukherjee, Puneet Mathur, Nesreen Ahmed, Junda Wu, Li Li, Huixin Zhang, Ruiyi Zhang, Tong Yu, Sungchul Kim , Jiuxiang Gu, Zhengzhong Tu, Alexa Siu, Zichao Wang, David Yoon, Nedim Lipka, Namyong Park, Zihao Lin, Trung Bui, Yue Zhao, Tyler Derr, Ryan A. Rossi, EACL'26",
+    "links": []
+  },
+  {
+    "year": "2026",
+    "citation": "VipAct: Visual-Perception Enhancement via Specialized VLM Agent Collaboration and Tool-use, Zhehao Zhang, Ryan A. Rossi, Tong Yu, Franck Dernoncourt, Ruiyi Zhang, Jiuxiang Gu, Sungchul Kim , Xiang Chen, Zichao Wang, Nedim Lipka, AAAI'26",
+    "links": []
+  },
+  {
+    "year": "2025",
+    "citation": "SAND: Boosting LLM Agents with Self-Taught Action Deliberation, Yu Xia, Yiran Jenny Shen, Junda Wu, Tong Yu, Sungchul Kim, Ryan A. Rossi, Lina Yao, Julian McAuley, EMNLP’25",
+    "links": []
+  },
+  {
+    "year": "2025",
+    "citation": "Disambiguation in Conversational Question Answering in the Era of LLMs and Agents: A Survey, Mehrab Tanjim, Yeonjun In, Xiang Chen, Victor Bursztyn, Ryan A. Rossi, Sungchul Kim, Guang-Jie Ren, Vaishnavi Muppala, Shun Jiang, Yongsung Kim, Chanyoung Park, EMNLP’25",
+    "links": []
+  },
+  {
+    "year": "2025",
+    "citation": "Mitigating Visual Knowledge Forgetting in MLLM Instruction-tuning via Modality-decoupled Gradient Descent, Junda Wu, Yuxin Xiong, Xintong Li, Yu Xia, Yu Wang, Tong Yu, Sungchul Kim, Ryan A. Rossi, Lina Yao, Jingbo Shang, Julian McAuley, EMNLP’25 Findings",
+    "links": []
+  },
+  {
+    "year": "2025",
+    "citation": "Is Safety Standard Same for Everyone? User-Specific Safety Evaluation of Large Language Models, Yeonjun In, Wonjoong Kim, Kanghoon Yoon, Sungchul Kim, Mehrab Tanjim, Sangwu Park, Kibum Kim, Chanyoung Park, EMNLP’25 Findings",
+    "links": []
+  },
+  {
+    "year": "2025",
+    "citation": "LaMP-Cap: Personalized Figure Caption Generation With Multimodal Figure Profiles, Ho Yin Sam Ng, Ting-Yao Hsu, Aashish Anantha Ramakrishnan, Branislav Kveton, Nedim Lipka, Franck Dernoncourt, Dongwon Lee, Tong Yu, Sungchul Kim, Ryan A. Rossi, Ting-Hao Kenneth Huang, EMNLP’25 Findings",
+    "links": []
+  },
+  {
+    "year": "2025",
+    "citation": "Augment before You Try: Knowledge-Enhanced Table Question Answering via Table Expansion, Yujian Liu, Jiabao Ji, Tong Yu, Ryan A. Rossi, Sungchul Kim, Handong Zhao, Ritwik Sinha, Yang Zhang, Shiyu Chang, EMNLP’25 Findings",
+    "links": []
+  },
+  {
+    "year": "2025",
+    "citation": "Traceable and Explainable Multimodal Large Language Models: An Information-Theoretic View, Zihan Huang, Junda Wu, Rohan Surana, Raghav Jain, Tong Yu, Raghavendra Addanki, David Arbour, Sungchul Kim , Julian McAuley, COLM'25",
+    "links": []
+  },
+  {
+    "year": "2025",
+    "citation": "Doc-React: Multi-page Heterogeneous Document Question-answering, Junda Wu, Yu Xia, Tong Yu, Xiang Chen, Sai Sree Harsha, Akash V Maharaj, Ruiyi Zhang, Victor Bursztyn, Sungchul Kim , Ryan A. Rossi, Julian McAuley, Yunyao Li, Ritwik Sinha , ACL 2025",
+    "links": []
+  },
+  {
+    "year": "2025",
+    "citation": "From Selection to Generation: A Survey of LLM-based Active Learning, Yu Xia, Subhojyoti Mukherjee, Zhouhang Xie, Junda Wu, Xintong Li, Ryan Aponte, Hanjia Lyu, Joe Barrow, Hongjie Chen, Franck Dernoncourt, Branislav Kveton, Tong Yu, Ruiyi Zhang, Jiuxiang Gu, Nesreen K. Ahmed, Yu Wang, Xiang Chen, Hanieh Deilamsalehy, Sungchul Kim , Zhengmian Hu, Yue Zhao, Nedim Lipka, Seunghyun Yoon, Ting-Hao Kenneth Huang, Zichao Wang, Puneet Mathur, Soumyabrata Pal, Koyel Mukherjee, Zhehao Zhang, Namyong Park, Thien Huu Nguyen, Jiebo Luo, Ryan A. Rossi, Julian McAuley, ACL 2025",
+    "links": []
+  },
+  {
+    "year": "2025",
+    "citation": "Click, Type, Repeat: A Comprehensive Survey on GUI Agents, Dang Nguyen, Jian Chen, Yu Wang, Gang Wu, Namyong Park, Zhengmian Hu, Hanjia Lyu, Junda Wu, Ryan Aponte, Yu Xia, Xintong Li, Jing Shi, Hongjie Chen, Viet Dac Lai, Zhouhang Xie, Sungchul Kim , Ruiyi Zhang, Tong Yu, Mehrab Tanjim, Nesreen K. Ahmed, Puneet Mathur, Seunghyun Yoon, Lina Yao, Branislav Kveton, Jihyung Kil, Thien Huu Nguyen, Trung Bui, Tianyi Zhou, Ryan A. Rossi, Franck Dernoncourt , ACL 2025",
+    "links": []
+  },
+  {
+    "year": "2025",
+    "citation": "Knowledge-Aware Query Expansion with Large Language Models for Textual and Relational Retrieval, Yu Xia, Junda Wu, Sungchul Kim , Tong Yu, Ryan A. Rossi, Haoliang Wang, Julian McAuley, NAACL'25",
+    "links": []
+  },
+  {
+    "year": "2025",
+    "citation": "Diversify-verify-adapt: Efficient and Robust Retrieval-Augmented Ambiguous Question Answering, Yeonjun In, Sungchul Kim , Ryan A. Rossi, Mehrab Tanjim, Tong Yu, Ritwik Sinha, Chanyoung Park, NAACL'25",
+    "links": []
+  },
+  {
+    "year": "2025",
+    "citation": "Self-Debiasing Large Language Models: Zero-Shot Recognition and Reduction of Stereotypes, Isabel O. Gallegos, Ryan Aponte, Ryan A. Rossi, Joe Barrow, Mehrab Tanjim, Tong Yu, Hanieh Deilamsalehy, Ruiyi Zhang, Sungchul Kim , Franck Dernoncourt, Nedim Lipka, Deonna Owens, Jiuxiang Gu, NAACL'25",
+    "links": []
+  },
+  {
+    "year": "2025",
+    "citation": "Interactive Visualization Recommendation with Hier-SUCB, Songwen Hu, Ryan A. Rossi, Tong Yu, Junda Wu, Handong Zhao, Sungchul Kim , Shuai Li, WWW’25",
+    "links": []
+  },
+  {
+    "year": "2025",
+    "citation": "Personalizing Data Delivery: Investigating User Characteristics and Enhancing LLM Predictions, Reuben Luera, Ryan Rossi, Franck Dernoncourt, Alexa Siu, Sungchul Kim , Tong Yu, Ruiyi Zhang, Xiang Chen, Nedim Lipka, Zhehao Zhang, Seon Gyeom Kim and Tak Yeon Lee, WWW’25 Short Paper",
+    "links": []
+  },
+  {
+    "year": "2025",
+    "citation": "Evaluation-Free Time-Series Forecasting Model Selection via Meta-Learning, Mustafa Abdallah, Ryan Rossi, Kanak Mahadik, Sungchul Kim , Handong Zhao, Saurabh Bagchi, TKDD",
+    "links": []
+  },
+  {
+    "year": "2025",
+    "citation": "Probabilistic Hypergraph Recurrent Neural Networks for Time-series Forecasting, Hongjie Chen, Ryan A. Rossi, Sungchl Kim , Kanak Mahadik, Hoda Eldardiry, KDD’25",
+    "links": []
+  },
+  {
+    "year": "2025",
+    "citation": "A Quantitative Metric Selection Approach for Time-series Forecasting Foundation Models, Hongjia Chen, Aksha Mehra, Josh Kimball, and Sungchul Kim, ICASSP'25",
+    "links": []
+  },
+  {
+    "year": "2025",
+    "citation": "Multi-LLM Collaborative Caption Generation in Scientific Documents, Jaeyoung Kim, Jongho Lee, Hong-Jun Choi, Ting-Yao Hsu, Chieh-Yang Huang, Sungchul Kim , Ryan A. Rossi, Tong Yu, C. Lee Giles, Ting-Hao Kenneth Huang, Sungchul Choi , AAAI 2025 Workshop AI4Research",
+    "links": []
+  },
+  {
+    "year": "2025",
+    "citation": "Understanding How Paper Writers Use AI-Generated Captions in Figure Caption Writing, Ho Yin Sam Ng, Ting-Yao Hsu, Jiyoo Min, Sungchul Kim , Ryan A. Rossi, Tong Yu, Hyunggu Jung, Ting-Hao Kenneth Huang, AAAI 2025 Workshop AI4Research",
+    "links": []
+  },
+  {
+    "year": "2024",
+    "citation": "Are Large Language Models Capable of Causal Reasoning for Sensing Data Analysis?, Zhizhang Hu, Yue Zhang, Ryan Rossi, Tong Yu, Sungchul Kim , Shijia Pan, EdgeFM Workshop @ MobiSys 2024",
+    "links": []
+  },
+  {
+    "year": "2024",
+    "citation": "Hallucination Diversity-Aware Active Learning for Text Summarization, Yu Xia, Xu Liu, Tong Yu, Sungchul Kim , Ryan A. Rossi, Anup Rao, Tung Mai, Shuai Li, NAACL 2024",
+    "links": []
+  },
+  {
+    "year": "2024",
+    "citation": "DeCoT: Debiasing Chain-of-Thought for Knowledge-Intensive Tasks in Large Language Models via Causal Intervention, Junda Wu, Tong Yu, Xiang Chen, Haoliang Wang, Ryan Rossi, Sungchul Kim , Anup Rao, Julian McAuley, NAACL 2024",
+    "links": []
+  },
+  {
+    "year": "2024",
+    "citation": "Editing Partially Observable Networks via Graph Diffusion Models, Puja Trivedi, Ryan A. Rossi, David Arbour, Tong Yu, Frank Dernoncourt, Sungchul Kim , Nedim Lipka, Namyong Park, Nesreen K. Ahmed, Danai Koutra, ICML 2024",
+    "links": []
+  },
+  {
+    "year": "2024",
+    "citation": "Bias and Fairness in Large Language Models: A Survey, Isabel O. Gallegos, Ryan A. Rossi, Joe Barrow, Md Mehrab Tanjim, Sungchul Kim , Franck Dernoncourt, Tong Yu, Ruiyi Zhang, Nesreen K. Ahmed, Computational Linguistics 2024",
+    "links": []
+  },
+  {
+    "year": "2024",
+    "citation": "SciCapenter: Supporting Caption Composition for Scientific Figures with Machine-Generated Captions and Ratings, Ting-Yao Hsu, Chieh-Yang Huang, Shih-Hong Huang, Ryan Rossi, Sungchul Kim , Tong Yu, Professor C Lee Giles, Dr. Ting-Hao Kenneth Huang, CHI 2024 Late-Breaking Work",
+    "links": []
+  },
+  {
+    "year": "2024",
+    "citation": "Fairness-Aware Graph Neural Networks: A Survey April Chen, Ryan A. Rossi, Namyong Park, Puja Trivedi, Yu Wang, Tong Yu, Sungchul Kim, Franck Dernoncourt, Nesreen K. Ahmed, TKDD",
+    "links": []
+  },
+  {
+    "year": "2024",
+    "citation": "Evolving Super Graph Neural Networks for Large-scale Time-Series Forecasting, Hongjia Chen, Ryan Rossi, Kanak Mahadik, Sungchul Kim , Hoda Eldardiry, PAKDD'24",
+    "links": []
+  },
+  {
+    "year": "2024",
+    "citation": "Which LLM to Play? Convergence-Aware Online Model Selection with Time-Increasing Bandits, Yu Xia, Fang Kong, Tong Yu, Liya Guo, Ryan Rossi, Sungchul Kim , Shuai Li, TheWebConference'24",
+    "links": []
+  },
+  {
+    "year": "2023",
+    "citation": "Content-aware Progressive Image Compression and Syncing, Junda Wu, Haoliang Wang, Tong Yu, Gang Wu, Stefano Petrangeli, Handong Zhao, Sungchul Kim , Viswanathan Swaminathan, IEEE ISM 2023",
+    "links": []
+  },
+  {
+    "year": "2023",
+    "citation": "GPT-4 as an Effective Zero-Shot Evaluator for Scientific Figure Captions, Ting-Yao Hsu, Chieh-Yang Huang, Ryan Rossi, Sungchul Kim , C. Giles, Ting-Hao Huang, EMNLP'23-Findings",
+    "links": []
+  },
+  {
+    "year": "2023",
+    "citation": "Hypergraph Neural Networks for Time-series Forecasting, Hongjie Chen, Ryan Rossi, Kanak Mahadik, Sungchul Kim , and Hoda Eldardiry, BigData 2023",
+    "links": []
+  },
+  {
+    "year": "2023",
+    "citation": "Interpretable Unsupervised Log Anomaly Detection, Jaeho Bang, Sungchul Kim , Ryan Rossi, Tong Yu, and Handong Zhao, BigData 2023 (Extended Abstract papers)",
+    "links": []
+  },
+  {
+    "year": "2023",
+    "citation": "Summaries as Captions: Generating Figure Captions for Scientific Documents with Automated Text Summarization. Chieh-Yang Huang, Ting-Yao Hsu, Ryan Rossi, Ani Nenkova, Sungchul Kim , Gromit Yeuk-Yin Chan, Eunyee Koh, C Lee Giles and Ting-Hao Huang, ILNG 2023 [Awarded Best Paper]",
+    "links": []
+  },
+  {
+    "year": "2023",
+    "citation": "User-Regulation Deconfounded Conversational Recommender System with Bandit Feedback, Yu Xia, Junda Wu, Tong Yu, Sungchul Kim , Ryan A. Rossi, and Shuai Li, KDD 2023",
+    "links": []
+  },
+  {
+    "year": "2023",
+    "citation": "Federated Domain Adaptation for Named Entity Recognition via Distilling with Heterogeneous Tag Sets, Rui Wang, Tong Yu, Junda Wu, Handong Zhao, Sungchul Kim , Ruiyi Zhang, Subrata Mitra, and Ricardo Henao, ACL 2023",
+    "links": []
+  },
+  {
+    "year": "2023",
+    "citation": "Direct Embedding of Temporal Network Edges via Time-Decayed Line Graphs, Sudhanshu Chanpuriya, Ryan A. Rossi, Sungchul Kim , Tong Yu, Jane Hoffswell, Nedim Lipka, Shunan Guo, and Cameron Musco, International Conference on Learning Representations (ICLR) 2023 ( paper )",
+    "links": [
+      {
+        "label": "paper",
+        "url": "https://arxiv.org/abs/2210.00032"
+      }
+    ]
+  },
+  {
+    "year": "2022",
+    "citation": "AutoForecast: Automatic Time-Series Forecasting Model Selection, Mustafa Abdallah, Ryan Rossi, Kanak Mahadik, Sungchul Kim , Handong Zhao and Saurabh Bagchi, CIKM 2022 short paper",
+    "links": []
+  },
+  {
+    "year": "2022",
+    "citation": "Implicit Session Contexts for Next-Item Recommendations, Sejoon Oh, Ankur Bharadwaj, Jongseok Han, Sungchul Kim , Ryan Rossi and Srijan Kumar, CIKM 2022 short paper",
+    "links": []
+  },
+  {
+    "year": "2022",
+    "citation": "AutoMARS: Searching to Compress Multi-Modality Recommendation Systems, Duc Hoang, Haotao Wang, Handong Zhao, Ryan Rossi, Sungchul Kim , Kanak Mahadik and Zhangyang Wang, CIKM 2022 short paper",
+    "links": []
+  },
+  {
+    "year": "2022",
+    "citation": "Bundle MCR: Towards Conversational Bundle Recommendation, Zhankui He, Handong Zhao, Tong Y, Sungchul Kim , Fan Du, Julian McAuley, RecSys 2022",
+    "links": []
+  },
+  {
+    "year": "2022",
+    "citation": "Graph Deep Factors for Probabilistic Time-series Forecasting, Hongjie Chen, Ryan A. Rossi, Kanak Mahadik, Sungchul Kim, Hoda Eldardiry, TKDD",
+    "links": []
+  },
+  {
+    "year": "2022",
+    "citation": "External Knowledge Infusion for Tabular Pre-training Models with Dual-adapters, Can Qin, Sungchul Kim , Handong Zhao, Tong Yu, Ryan Rossi, Yun Fu, KDD 2022",
+    "links": []
+  },
+  {
+    "year": "2022",
+    "citation": "Few-Shot Class-Incremental Learning for Named Entity Recognition, Rui Wang, Tong Yu, Handong Zhao, Sungchul Kim , Subrata Mitra, Ruiyi Zhang, Ricardo Henao, ACL 2022",
+    "links": []
+  },
+  {
+    "year": "2022",
+    "citation": "Personalized Visualization Recommendation, Xin Qian, Ryan A. Rossi, Fan Du, Sungchul Kim , Eunyee Koh, Sana Malik, Tak Yeon Lee, Nesreen K. Ahmed, ACM Transactions on the Web (TWEB)",
+    "links": []
+  },
+  {
+    "year": "2022",
+    "citation": "On Generalizing Static Node Embedding to Dynamic Settings, Di Jin, Sungchul Kim , Ryan A. Rossi, Danai Koutra, WSDM 2022",
+    "links": []
+  },
+  {
+    "year": "2022",
+    "citation": "CGC: Contrastive Graph Clustering for Community Detection and Tracking, Namyong Park, Ryan Rossi , Eunyee Koh, Iftikhar Ahamath Burhanuddin, Sungchul Kim , Fan Du, Nesreen Ahmed and Christos Faloutsos, The Web Conference (WWW) 2022",
+    "links": []
+  },
+  {
+    "year": "2022",
+    "citation": "VisGNN: Personalized Visualization Recommendation via Graph Neural Networks, Fayokemi Ojo, Ryan Rossi , Jane Hoffswell, Shunan Guo, Fan Du, Sungchul Kim , Chang Xiao and Eunyee Koh, The Web Conference (WWW) 2022",
+    "links": []
+  },
+  {
+    "year": "2021",
+    "citation": "Influence-guided Data Augmentation for Neural Tensor Completion, Sejoon Oh, Sungchul Kim , Ryan Rossi, Srijan Kumar, CIKM'21",
+    "links": []
+  },
+  {
+    "year": "2021",
+    "citation": "From Closing Triangles to Higher-Order Motif Closures for Better Unsupervised Online Link Prediction, Ryan Rossi, Anup Rao, Sungchul Kim , Eunyee Koh, Nesreen K. Ahmed, Gang Wu, CIKM'21",
+    "links": []
+  },
+  {
+    "year": "2021",
+    "citation": "EXACTA: Explainable Column Annotation, Yikun Xian, Handong Zhao, Tak Yeon Lee, Sungchul Kim , Ryan A. Rossi , Zuohui Fu, Gerard de Melo, and S. Muthukrishnan, KDD 2021",
+    "links": []
+  },
+  {
+    "year": "2021",
+    "citation": "Learning to Recommend Visualizations from Data, Xin Qian, Ryan A. Rossi, Fan Du, Sungchul Kim , Eunyee Koh , Sana Malik, Tak Yeon Lee, and Joel Chan, KDD 2021",
+    "links": []
+  },
+  {
+    "year": "2021",
+    "citation": "Graph Deep Factor Model for Cloud Utilization Forecasting, Hongjie Chen, Ryan A Rossi, Kanak Mahadik, Sungchul Kim (Adobe), and Hoda Eldardiry, KDD 2021",
+    "links": []
+  },
+  {
+    "year": "2021",
+    "citation": "EDGE: Enriching Knowledge Graph Embeddings with External Text, Saed Rezayi, Handong Zhao, Sungchul Kim , Ryan A. Rossi, Nedim Lipka, and Sheng Li, NAACL 2021",
+    "links": []
+  },
+  {
+    "year": "2021",
+    "citation": "Learning Contextualized Knowledge Structures for Commonsense Reasoning, Jun Yan, Mrigank Raman, Aaron Chan, Tianyu Zhang, Ryan Rossi, Handong Zhao, Sungchul Kim , Nedim Lipka and Xiang Ren , ACL-IJCNLP 2021",
+    "links": []
+  },
+  {
+    "year": "2021",
+    "citation": "Generating Accurate Caption Units For Figure Captioning, Xin Qian, Eunyee Koh, Fan Du, Sungchul Kim , Joel Chan, Ryan Rossi, Sana Malik and Tak Yeon Lee, Proceedings of The Web Conference (WWW) 2021",
+    "links": []
+  },
+  {
+    "year": "2021",
+    "citation": "Learning to Deceive Knowledge Graph Augmented Models via Targeted Perturbation, Mrigank Raman , Hansen Wang , PeiFeng Wang , Siddhant Agarwal , Sungchul Kim , Ryan Rossi , Handong Zhao , Nedim Lipka , Xiang Ren , ICLR'21",
+    "links": []
+  },
+  {
+    "year": "2020",
+    "citation": "Learning Contextualized knowledge Structures for Commonsense Reasoning, Jun Yan , Mrigank Raman, Tianyu Zhang, Ryan Rossi, Handong Zhao, Sungchul Kim , Nedim Lipka, Xiang Ren, arXiv:2010.12873 (short version in KR2ML@NeurIPS 2020 ) [ paper ]",
+    "links": [
+      {
+        "label": "paper",
+        "url": "https://arxiv.org/abs/2010.12873"
+      }
+    ]
+  },
+  {
+    "year": "2020",
+    "citation": "On Proximity and Structural Role-based Embeddings in Networks: Misconceptions, Techniques, and Applications, Ryan A. Rossi, Di Jin, Sungchul Kim , Nesreen K. Ahmed, Danai Koutra, John Boaz Lee, Transactions on Knowledge Discovery from Data (TKDD), Pages 19, 2020.",
+    "links": []
+  },
+  {
+    "year": "2020",
+    "citation": "Heterogeneous Graphlets , Ryan A. Rossi, Nesreen K. Ahmed , Aldo Carranza, David Arbour , Anup Rao , Sungchul Kim , Eunyee Koh , Transactions on Knowledge Discovery from Data (TKDD), Pages 43, 2020.",
+    "links": []
+  },
+  {
+    "year": "2020",
+    "citation": "Interactive Event Sequence Prediction for Marketing Analysts, Fan Du, Shunan Guo, Sana Malik, Eunyee Koh, Sungchul Kim , Zhicheng Liu, CHI Extended Abstracts on Human Factors in Computing Systems, 2020",
+    "links": []
+  },
+  {
+    "year": "2020",
+    "citation": "A Formative Study on Designing Accurate and Natural Figure Captioning Systems, Xin Qian, Eunyee Koh, Fan Du, Sungchul Kim , Joel Chan, CHI Extended Abstracts on Human Factors in Computing Systems, 2020",
+    "links": []
+  },
+  {
+    "year": "2020",
+    "citation": "Fast Hierarchical Graph Clustering in Linear-Time, Ryan A. Rossi, Nesreen K. Ahmed, Eunyee Koh, and Sungchul Kim, Proceedings of The Web Conference (WWW) 2020",
+    "links": []
+  },
+  {
+    "year": "2020",
+    "citation": "From Closing Triangles to Closing Higher-Order Motifs, Ryan A. Rossi, Anup Rao, Sungchul Kim , Eunyee Koh, and Nesreen K. Ahmed Proceedings of The Web Conference (WWW) 2020",
+    "links": []
+  },
+  {
+    "year": "2020",
+    "citation": "A Structural Graph Representation Learning Framework, Ryan Rossi, Nesreen Ahmed, Eunyee Koh, Sungchul Kim , Anup Rao and Yasin Abbasi-Yadkori, WSDM (acceptance rate: 15%), 2020",
+    "links": []
+  },
+  {
+    "year": "2020",
+    "citation": "Figure Captioning with Reasoning and Sequence-Level Training, Charles Chen, Ruiyi Zhang, Eunyee Koh, Sungchul Kim , Scott Cohen, Ryan Rossi, Winter Conference on Applications of Computer Vision (WACV) , 2020.",
+    "links": []
+  },
+  {
+    "year": "2019",
+    "citation": "Attention Models in Graphs: A Survey, John Boaz Lee, Ryan A. Rossi, Sungchul Kim , Nesreen K. Ahmed, Eunyee Koh, Transactions on Knowledge Discovery from Data (TKDD), Pages 19, 2019.",
+    "links": []
+  },
+  {
+    "year": "2019",
+    "citation": "Graph Convolutional Networks with Motif-based Attention, John Boaz Lee, Ryan Rossi, Xiangnan Kong, Sungchul Kim , Eunyee Koh, Anup Rao, CIKM, 2019",
+    "links": []
+  },
+  {
+    "year": "2019",
+    "citation": "Heterogeneous Graphlets, Ryan A. Rossi, Nesreen K. Ahmed, Aldo Carranza, David Arbour, Anup Rao, Sungchul Kim , Eunyee Koh, MLG KDD, Pages 8, 2019.",
+    "links": []
+  },
+  {
+    "year": "2019",
+    "citation": "Towards Robust and Discriminative Sequential Data Learning: When and How to Perform Adversarial Training?, Xiaowei Jia, Sheng Li, Handong Zhao, Sungchul Kim and Vipin Kumar, KDD, 2019",
+    "links": []
+  },
+  {
+    "year": "2019",
+    "citation": "Latent Network Summarization, Di Jin, Ryan Rossi, Danai Koutra, Eunyee Koh, Sungchul Kim and Anup Rao, KDD, 2019",
+    "links": []
+  },
+  {
+    "year": "2019",
+    "citation": "Visualizing Uncertainty and alternatives in Event Sequence Predictions, Shunan Guo, Fan Du, Sana Malik, Eunyee Koh, Sungchul Kim , Zhicheng Liu, Donghyun Kim, Hongyuan Zha, and Nan Cao, CHI, 2019",
+    "links": []
+  },
+  {
+    "year": "2019",
+    "citation": "Domain Switch-Aware Holistic Recurrent Neural Network for Modeling Multi-Domain User Behavior, Donghyun Kim, Sungchul Kim , Handong Zhao, Sheng Li, Ryan Rossi, and Eunyee Koh, WSDM (acceptance rate: 16%), 2019",
+    "links": []
+  },
+  {
+    "year": "2018",
+    "citation": "Conversion Prediction from Clickstream: Modeling Market Prediction and Customer Predictability, Jinyoung Yeo, Seung-won Hwang, Sungchul Kim , Eunyee Koh, Nedim Lipka, Transactions on Knowledge and Data Engineering (TKDE), 2018",
+    "links": []
+  },
+  {
+    "year": "2018",
+    "citation": "Dynamic Network Embeddings: From Random Walks to Temporal Random Walks, Giang Nguyen, John Boaz Lee, Ryan Rossi, Nesreen Ahmed, Eunyee Koh, and Sungchul Kim , IEEE BigData, 2018",
+    "links": []
+  },
+  {
+    "year": "2018",
+    "citation": "Predictive Analysis by Leveraging Temporal User Behavior, Charles Chen, Sungchul Kim , Hung Bui, Ryan Rossi, Branislav Kveton, Eunyee Koh and Razvan Bunescu, CIKM (industrial track, acceptance rate: 26%), 2018",
+    "links": []
+  },
+  {
+    "year": "2018",
+    "citation": "Perceptual Similarity Ranking of Temporal Heatmaps Using Convolutional Neural Networks, Sana Malik, Sungchul Kim and Eunyee Koh, EE-USAD, 2018",
+    "links": []
+  },
+  {
+    "year": "2018",
+    "citation": "Continuous-Time Dynamic Network Embeddings, Giang Hoang Nguyen, John Boaz Lee, Ryan A. Rossi, Nesreen K. Ahmed, Eunyee Koh, Sungchul Kim , WWW BigNet, 2018",
+    "links": []
+  },
+  {
+    "year": "Older",
+    "citation": "WimNet: Vision Search for Web Logs, Sungchul Kim , Sana Malik, Nedim Lipka, and Eunyee Koh, WWW (poster), 2017",
+    "links": []
+  },
+  {
+    "year": "Older",
+    "citation": "Probabilistic Visitor Stitching on Cross-device Web Logs, Sungchul Kim , Nikhil Kini, Jay Pujara, Lise Getoor, Eunyee Koh, WWW (acceptance rate: 17%), 2017",
+    "links": []
+  },
+  {
+    "year": "Older",
+    "citation": "Predicting Online Purchase Conversion for Retargeting, Jinyoung Yeo, Sungchul Kim , Eunyee Koh, Seung-won Hwnag, and Nedim Lipka, WSDM, 2017",
+    "links": []
+  },
+  {
+    "year": "Older",
+    "citation": "Browsing2purchase: Online Customer Model for Sales Forecasting in an E-Commerce Site, Jinyoung Yeo, Sungchul Kim , Eunyee Koh, Seung-Won Hwang and Nedim Lipka, WWW (poster), 2016",
+    "links": []
+  },
+  {
+    "year": "Older",
+    "citation": "Purchase Intention Mining by Leveraging Item-Item Relationship, Sungchul Kim , Jinyoung Yeo, Eunyee Koh and Nedim Lipka, WWW (poster), 2016",
+    "links": []
+  },
+  {
+    "year": "Older",
+    "citation": "Tumor Stratiﬁcation with Four Somatic Mutation Proﬁles, Sungchul Kim , Lee Sael, Hwanjo Yu, ISMB/ECCB, 2015",
+    "links": []
+  },
+  {
+    "year": "Older",
+    "citation": "Spoiler Detection in TV Program Tweets, Sungho Jeon, Sungchul Kim , Hwanjo Yu, Information Sciences (SCI), 2015",
+    "links": []
+  },
+  {
+    "year": "Older",
+    "citation": "A Mutation Profile for Top-k Patient Search Exploiting Gene-Ontology and Orthogonal Non-negative Matrix Factorization, Sungchul Kim , Lee Sael, Hwanjo Yu, Bioinformatics (SCI), 2015",
+    "links": []
+  },
+  {
+    "year": "Older",
+    "citation": "Identifying cancer subtypes based on somatic mutation profile, Sungchul Kim , Lee Sael, Hwanjo Yu, DTMBIO, 2014",
+    "links": []
+  },
+  {
+    "year": "Older",
+    "citation": "When to recommend: A new issue on TV show recommendation, Jinoh Oh, Sungchul Kim , Jinha Kim, Hwanjo Yu, Information Sciences (SCI), 2014.10",
+    "links": []
+  },
+  {
+    "year": "Older",
+    "citation": "Processing time-dependent shortest path queries without pre-computed speed information on road networks, Jinha Kim, Wook-Shin Han, Jinoh Oh, Sungchul Kim , Hwanjo Yu, Information Sciences (SCI), 2014.10",
+    "links": []
+  },
+  {
+    "year": "Older",
+    "citation": "Advertiser-Centric Approach to Understand User Click Behavior in Sponsored Search, Sungchul Kim , Hwanjo Yu, Tao Qi, Tie-Yan Liu, Information Science (SCI), 2014",
+    "links": []
+  },
+  {
+    "year": "Older",
+    "citation": "LMDS-based Approach for Efficient Top-k Local Ligand-Binding Site Search, Sungchul Kim , Lee Sael, Hwanjo Yu, International Journal of Data Mining and Bioinformatics (SCI-E), 2014",
+    "links": []
+  },
+  {
+    "year": "Older",
+    "citation": "Efficient Protein Structure Search using Indexing Methods, Sungchul Kim , Lee Sael, Hwanjo Yu, BMC Medical Informatics and Decision Making (SCI-E), 2013",
+    "links": []
+  },
+  {
+    "year": "Older",
+    "citation": "Efficient Local ligand-binding site search using Landmark MDS, Sungchul Kim , Lee Sael, Hwanjo Yu, DTMBIO, 2013",
+    "links": []
+  },
+  {
+    "year": "Older",
+    "citation": "Don’t be Spoiled by Your Friends: Spoiler Detection in TV Program Tweets, Sungho Jeon, Sungchul Kim , Hwanjo Yu, ICWSM, 2013",
+    "links": []
+  },
+  {
+    "year": "Older",
+    "citation": "Indexing Methods for Efficient Protein 3D Surface Search, Sungchul Kim , Lee Sael, Hwanjo Yu, DTMBIO, 2012",
+    "links": []
+  },
+  {
+    "year": "Older",
+    "citation": "Finding Core Topics: Topic Extraction with Clustering on Tweet, Sungchul Kim , Sungho Jeon, Jinha Kim, Young-Ho Park, Hwanjo Yu, SNSDB, 2012",
+    "links": []
+  },
+  {
+    "year": "Older",
+    "citation": "Multilingual Named Entity Recognition using Parallel Data and Metadata from Wikipedia, Sungchul Kim , Kristina Toutanova, and Hwanjo Yu, ACL, 2012",
+    "links": []
+  },
+  {
+    "year": "Older",
+    "citation": "Advertiser-Centric Approach to Understand User Click Behavior in Sponsored Search, Sungchul Kim , Hwanjo Yu, Tao Qi, Tie-Yan Liu, CIKM, 2011",
+    "links": []
+  },
+  {
+    "year": "Older",
+    "citation": "Passive Sampling for Regression, Hwanjo Yu and Sungchul Kim , ICDM, 2010",
+    "links": []
+  },
+  {
+    "year": "Older",
+    "citation": "RankSVR: Can Preference Data Help Regression?, Hwanjo Yu, Sungchul Kim , and Seung-Hoon Na, CIKM, 2010",
+    "links": []
+  },
+  {
+    "year": "Older",
+    "citation": "Enabling Multi-Level Relevance Feedback on PubMed by Integrating Rank Learning into DBMS, Hwanjo yu, Taehoon Kim, Jinoh Oh, Ilhwan Ko, Sungchul Kim , WookShin Han, BMC Bioinformatics (SCI), 2010",
+    "links": []
+  },
+  {
+    "year": "Older",
+    "citation": "SVM tutorial - Classificaion, regression and Ranking, Hwanjo Yu, Sungchul Kim, Handbook of Natural Computing Springer, 2010",
+    "links": []
+  },
+  {
+    "year": "Older",
+    "citation": "VRIFA: A Nonlinear SVM Visualization Tool using Nomogram and Localized Radial Basis Function (LRBF) Kernels, Ngo Anh Vien, Nguyen Hoang Viet, TaeChoong Chung, Hwanjo Yu, Sungchul Kim , Baek Hwan Cho, CIKM, 2009",
+    "links": []
+  },
+  {
+    "year": "Older",
+    "citation": "RefMed: Relevance Feedback Retrieval System fo PubMed, Hwanjo Yu, Taehoon Kim, Jinoh Oh, Ilhwan Kim), Sungchul Kim , CIKM, 2009",
+    "links": []
+  }
+]
