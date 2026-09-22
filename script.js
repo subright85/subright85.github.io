@@ -28,23 +28,6 @@ search.addEventListener('input', () => {
   empty.hidden = matches !== 0;
 });
 
-// Timeline chapters are ordinary buttons, usable by mouse, touch, or keyboard.
-const journeyRows = [...document.querySelectorAll('.journey-row')];
-const journeyDetail = document.querySelector('#journey-detail');
-journeyRows.forEach(row => {
-  row.addEventListener('click', () => {
-    journeyRows.forEach(chapter => {
-      const selected = chapter === row;
-      chapter.classList.toggle('selected', selected);
-      chapter.setAttribute('aria-pressed', String(selected));
-    });
-    journeyDetail.querySelector('h3').textContent = row.dataset.org;
-    journeyDetail.querySelector('.detail-date').textContent = row.dataset.dates;
-    journeyDetail.querySelector('.detail-role').textContent = row.dataset.role;
-    journeyDetail.querySelector('.detail-note').textContent = row.dataset.note;
-  });
-});
-
 // Track the section nearest the sticky header at every viewport shape.
 const sections = [...document.querySelectorAll('main > section')];
 const navLinks = [...document.querySelectorAll('nav a')];
