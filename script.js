@@ -45,16 +45,21 @@ journeyRows.forEach(row => {
   });
 });
 
-// Keep the navigation in step with the visible section.
-if ('IntersectionObserver' in window) {
-  const sectionObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      document.querySelectorAll('nav a').forEach(link => {
-        if (link.hash === `#${entry.target.id}`) link.setAttribute('aria-current', 'location');
-        else link.removeAttribute('aria-current');
-      });
-    });
-  }, { rootMargin: '-10% 0px -65% 0px' });
-  document.querySelectorAll('main > section').forEach(section => sectionObserver.observe(section));
+// Track the section nearest the sticky header at every viewport shape.
+const sections = [...document.querySelectorAll('main > section')];
+const navLinks = [...document.querySelectorAll('nav a')];
+let navigationFrame = null;
+function updateNavigation() {
+  const current = sections.filter(section => section.getBoundingClientRect().top <= 150).at(-1) || sections[0];
+  navLinks.forEach(link => {
+    if (link.hash === `#${current.id}`) link.setAttribute('aria-current', 'location');
+    else link.removeAttribute('aria-current');
+  });
+  navigationFrame = null;
 }
+function scheduleNavigation() {
+  if (navigationFrame === null) navigationFrame = requestAnimationFrame(updateNavigation);
+}
+window.addEventListener('scroll', scheduleNavigation, { passive: true });
+window.addEventListener('resize', scheduleNavigation);
+updateNavigation();
