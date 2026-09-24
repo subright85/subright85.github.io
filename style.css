@@ -139,3 +139,26 @@ h2, .experience-heading h2 { font: 600 21px/1.3 -apple-system, BlinkMacSystemFon
 nav a:nth-child(3), nav a:nth-child(4) { display: block; }
 @media (max-width: 800px) { .nav-wrap { flex-wrap: wrap; gap: 12px; } .site-identity { width: 100%; } nav { width: 100%; gap: 22px; } html { scroll-padding-top: 150px; } }
 @media (max-width: 600px) { .story-list a { grid-template-columns: 80px minmax(0, 1fr); gap: 12px; } .story-list .story-image { width: 80px; grid-row: span 2; } .story-list span { grid-column: 2; margin: 0; } .feature .story-image { height: 140px; } }
+
+/* Shared compact identity bar and section tabs. */
+.header { background: rgba(255, 252, 254, .96); border-bottom: 1px solid #e8d6e2; box-shadow: 0 3px 16px #30263005; }
+.nav-wrap { gap: 24px; padding-top: 16px; padding-bottom: 16px; }
+.site-identity { padding-left: 13px; border-left: 3px solid var(--accent); flex-shrink: 0; }
+.site-identity h1 { font-size: 22px; letter-spacing: -.55px; margin-bottom: 3px; }
+.header nav { display: flex; gap: 3px; padding: 4px; border: 1px solid #eadbe5; border-radius: 10px; background: #f6edf3; font-size: 12px; }
+.header nav a { display: flex; align-items: center; justify-content: center; padding: 7px 12px; border-radius: 6px; color: #695c66; font-weight: 500; white-space: nowrap; line-height: 1.5; transition: color .15s, background .15s; }
+.header nav a:hover { background: #eddae6; color: #83105b; }
+.header nav a[aria-current] { background: var(--accent); color: #fff; box-shadow: 0 1px 3px #75094c20; }
+.header nav a:focus-visible { outline-offset: 2px; }
+@media (max-width: 900px) {
+  .nav-wrap { flex-wrap: wrap; gap: 13px; }
+  .site-identity { width: 100%; }
+  .header nav { width: 100%; }
+  .header nav a { flex: 1; padding: 7px 6px; }
+  html { scroll-padding-top: 155px; }
+}
+@media (max-width: 420px) {
+  .nav-wrap { padding: 14px 18px; }
+  .header nav { gap: 1px; font-size: 11px; padding: 3px; }
+  .header nav a { padding: 8px 4px; }
+}

@@ -33,7 +33,9 @@ const sections = [...document.querySelectorAll('main > section')];
 const navLinks = [...document.querySelectorAll('nav a')];
 let navigationFrame = null;
 function updateNavigation() {
-  const current = sections.filter(section => section.getBoundingClientRect().top <= 150).at(-1) || sections[0];
+  const headerEdge = document.querySelector('.header').getBoundingClientRect().bottom + 24;
+  const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+  const current = atBottom ? sections.at(-1) : sections.filter(section => section.getBoundingClientRect().top <= headerEdge).at(-1) || sections[0];
   navLinks.forEach(link => {
     if (link.hash === `#${current.id}`) link.setAttribute('aria-current', 'location');
     else link.removeAttribute('aria-current');
