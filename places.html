@@ -4,8 +4,8 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Places · Sungchul Kim</title>
 <meta name="description" content="Places in Sungchul Kim's life and research.">
-<link rel="icon" href="assets/favicon.svg?v=3"><link rel="stylesheet" href="style.css?v=9"><link rel="stylesheet" href="places.css?v=2">
-<script src="assets/vendor/d3.v7.min.js" defer></script><script src="assets/vendor/topojson-client.min.js" defer></script><script src="residence.js?v=1" defer></script><script src="places.js?v=2" defer></script>
+<link rel="icon" href="assets/favicon.svg?v=3"><link rel="stylesheet" href="style.css?v=9"><link rel="stylesheet" href="places.css?v=3">
+<script src="assets/vendor/d3.v7.min.js" defer></script><script src="assets/vendor/topojson-client.min.js" defer></script><script src="journey.js?v=1" defer></script><script src="residence.js?v=2" defer></script><script src="places.js?v=3" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -22,6 +22,7 @@
 <section class="globe-panel" aria-label="Interactive globe">
 <svg id="globe" viewBox="0 0 640 600" tabindex="0" role="group" aria-label="Earth. Drag or use arrow keys to rotate; use plus and minus to zoom."><title>Places on Earth</title></svg>
 <div class="globe-controls"><span>Drag to rotate · Scroll to zoom</span><button id="zoom-out" type="button" aria-label="Zoom out">−</button><button id="zoom-in" type="button" aria-label="Zoom in">+</button><button id="reset-globe" type="button">Reset</button></div>
+<div class="journey-controls"><label for="journey-move">Moves</label><button id="previous-move" type="button" aria-label="Previous move">←</button><select id="journey-move"><option value="">All moves</option></select><button id="next-move" type="button" aria-label="Next move">→</button></div>
 <p id="globe-status" role="status" aria-live="polite"></p>
 </section>
 <aside class="places-sidebar">

@@ -1,0 +1,134 @@
+{
+  "format_version": 1,
+  "instructions": "Edit locations and stops below. Stops are in travel order, including return visits. Dates are YYYY-MM; departed includes that month. Use null for unknown dates or coordinates. current:true marks your current stay. See JOURNEY.md.",
+  "early_life": "Incheon · birth–age 19 → Pohang · age 19–Aug 2015",
+  "locations": {
+    "incheon": {
+      "city": "Incheon",
+      "country": "South Korea",
+      "coordinates": [
+        126.7052,
+        37.4563
+      ]
+    },
+    "pohang": {
+      "city": "Pohang",
+      "country": "South Korea",
+      "coordinates": [
+        129.3435,
+        36.019
+      ]
+    },
+    "beijing": {
+      "city": "Beijing",
+      "country": "China",
+      "coordinates": [
+        116.4074,
+        39.9042
+      ]
+    },
+    "seattle": {
+      "city": "Seattle / Redmond",
+      "country": "USA",
+      "coordinates": [
+        -122.3321,
+        47.6062
+      ]
+    },
+    "san-jose": {
+      "city": "San Jose",
+      "country": "USA",
+      "coordinates": [
+        -121.8863,
+        37.3382
+      ]
+    },
+    "korea-return": {
+      "city": "Korea (city to add)",
+      "country": "South Korea",
+      "coordinates": null
+    }
+  },
+  "stops": [
+    {
+      "id": "incheon-childhood",
+      "location": "incheon",
+      "arrived": null,
+      "departed": null,
+      "age_note": "Birth–age 19",
+      "note": "Grew up in Incheon",
+      "current": false,
+      "approximate": false
+    },
+    {
+      "id": "pohang-study",
+      "location": "pohang",
+      "arrived": null,
+      "departed": "2010-08",
+      "age_note": "From age 19",
+      "note": "POSTECH, before internships abroad",
+      "current": false,
+      "approximate": false
+    },
+    {
+      "id": "beijing-intern",
+      "location": "beijing",
+      "arrived": "2010-09",
+      "departed": "2011-05",
+      "age_note": null,
+      "note": "Microsoft Research Asia internship",
+      "current": false,
+      "approximate": false
+    },
+    {
+      "id": "seattle-intern",
+      "location": "seattle",
+      "arrived": "2011-06",
+      "departed": "2011-08",
+      "age_note": null,
+      "note": "Microsoft Research internship in Redmond",
+      "current": false,
+      "approximate": false
+    },
+    {
+      "id": "pohang-return",
+      "location": "pohang",
+      "arrived": "2011-09",
+      "departed": "2015-07",
+      "age_note": null,
+      "note": "Returned to POSTECH; moved to San Jose in Aug 2015",
+      "current": false,
+      "approximate": false
+    },
+    {
+      "id": "san-jose-intern",
+      "location": "san-jose",
+      "arrived": "2015-08",
+      "departed": "2015-12",
+      "age_note": null,
+      "note": "Adobe Research internship",
+      "current": false,
+      "approximate": false
+    },
+    {
+      "id": "korea-return",
+      "location": "korea-return",
+      "arrived": "2016-01",
+      "departed": "2016-06",
+      "age_note": null,
+      "note": "Returned to Korea; Bagelcode Feb–May 2016. City and move dates to confirm.",
+      "current": false,
+      "approximate": true
+    },
+    {
+      "id": "san-jose-home",
+      "location": "san-jose",
+      "arrived": "2016-07",
+      "departed": null,
+      "age_note": null,
+      "note": "Adobe Research · current home",
+      "current": true,
+      "approximate": false
+    }
+  ]
+}

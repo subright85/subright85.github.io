@@ -30,6 +30,14 @@
 .place-marker { fill: var(--accent); stroke: white; stroke-width: 2; cursor: pointer; }
 .place-marker.conference { fill: white; stroke: #817787; stroke-width: 2; }
 .place-marker.selected { stroke: #302630; stroke-width: 3; }
+.journey-route { fill: none; stroke: var(--accent); stroke-width: 1.4; opacity: .35; pointer-events: none; }
+.journey-route.active { stroke-width: 2.7; opacity: .95; }
+.journey-arrow { fill: var(--accent); opacity: .45; pointer-events: none; }
+.journey-arrow.active { opacity: 1; }
+.journey-controls { display: flex; align-items: center; gap: 8px; margin-top: 12px; }
+.journey-controls label { font-size: 12px; }
+.journey-controls select { flex: 1; min-width: 0; width: 0; font: inherit; font-size: 11px; padding: 8px; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 3px; }
+.journey-controls button { min-width: 32px; min-height: 34px; border: 1px solid var(--line); background: transparent; border-radius: 3px; color: var(--ink); cursor: pointer; }
 .globe-controls { display: flex; gap: 7px; align-items: center; }
 .globe-controls span { margin-right: auto; font-size: 11px; color: var(--muted); }
 .globe-controls button { border: 1px solid var(--line); border-radius: 3px; background: transparent; color: var(--ink); cursor: pointer; min-height: 34px; min-width: 34px; padding: 3px 9px; font-size: 12px; }
