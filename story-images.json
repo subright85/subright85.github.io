@@ -1,0 +1,44 @@
+[
+  {
+    "slug": "brand-concierge",
+    "article": "https://business.adobe.com/blog/redefining-customer-experience-with-adobe-brand-concierge",
+    "image_source": "https://business.adobe.com/blog/media_1468bd6e21f0fa015b46c489dd7846177a42227b7.png?width=2000&format=webply&optimize=medium",
+    "image": "assets/stories/brand-concierge.webp"
+  },
+  {
+    "slug": "perfect-context",
+    "article": "https://research.adobe.com/news/the-research-behind-project-perfect-context",
+    "image_source": "https://research.adobe.com/wp-content/uploads/2025/04/AdobeResearch_ProjectPerfectContext_news.jpg",
+    "image": "assets/stories/perfect-context.jpg"
+  },
+  {
+    "slug": "adobe-ai-agents",
+    "article": "https://www.zdnet.com/article/adobes-latest-projects-are-packed-with-ai-agents-heres-a-sneak-peek",
+    "image_source": "https://www.zdnet.com/wp-content/uploads/sites/3/img-2443.jpg",
+    "image": "assets/stories/adobe-ai-agents.jpg"
+  },
+  {
+    "slug": "custom-ai-assistant",
+    "article": "https://research.adobe.com/news/adobes-new-custom-ai-assistant-lets-user-explore-data-just-by-asking-in-their-own-words",
+    "image_source": "https://research.adobe.com/wp-content/uploads/2023/08/CJA_AI-Assistant_news.jpg",
+    "image": "assets/stories/custom-ai-assistant.jpg"
+  },
+  {
+    "slug": "sensei-genai",
+    "article": "https://news.adobe.com/news/news-details/2023/Adobe-Adds-Powerful-New-Sensei-GenAI-Services-Across-Experience-Cloud-To-Accelerate-Profitable-Growth-for-Enterprises-default.aspx/default.aspx",
+    "image_source": "https://news.adobe.com/media_1c82548aa127fcde4032bb951cafa40918b26b5e2.jpg?width=1200&format=pjpg&optimize=medium",
+    "image": "assets/stories/sensei-genai.jpg"
+  },
+  {
+    "slug": "identity-graph",
+    "article": "https://medium.com/adobetech/adobe-experience-platform-identity-graph-is-the-foundation-for-the-unified-profile-e8435d26dce7",
+    "image_source": "https://miro.medium.com/v2/resize:fit:700/0*1JRO4xrri2476U88",
+    "image": "assets/stories/identity-graph.png"
+  },
+  {
+    "slug": "adobe-ai",
+    "article": "https://www.forbes.com/sites/tomtaulli/2019/03/27/adobe-how-its-unleashing-ai",
+    "image_source": "https://imageio.forbes.com/blogs-images/tomtaulli/files/2019/03/AI-1200x626.png?format=png&height=900&width=1600&fit=bounds",
+    "image": "assets/stories/adobe-ai.png"
+  }
+]

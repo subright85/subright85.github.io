@@ -1,0 +1,114 @@
+[
+  {
+    "id": "incheon",
+    "city": "Incheon",
+    "country": "South Korea",
+    "coordinates": [
+      126.7052,
+      37.4563
+    ],
+    "status": "visited",
+    "note": "Born here"
+  },
+  {
+    "id": "san-jose",
+    "city": "San Jose",
+    "country": "USA",
+    "coordinates": [
+      -121.8863,
+      37.3382
+    ],
+    "status": "visited",
+    "note": "Current home"
+  },
+  {
+    "id": "hyderabad",
+    "city": "Hyderabad",
+    "country": "India",
+    "coordinates": [
+      78.4867,
+      17.385
+    ],
+    "status": "conference",
+    "note": "ICASSP 2025",
+    "author_role": "last",
+    "paper": "A Quantitative Metric Selection Approach for Time-series Forecasting Foundation Models",
+    "venue_source": "https://signalprocessingsociety.org/events/icassp-2025-2025-ieee-international-conference-acoustics-speech-and-signal-processing",
+    "paper_source": "https://doi.org/10.1109/ICASSP49660.2025.10887984"
+  },
+  {
+    "id": "seattle",
+    "city": "Seattle",
+    "country": "USA",
+    "coordinates": [
+      -122.3321,
+      47.6062
+    ],
+    "status": "conference",
+    "note": "IEEE Big Data 2018",
+    "author_role": "last",
+    "paper": "Dynamic Network Embeddings: From Random Walks to Temporal Random Walks",
+    "venue_source": "https://bigdataieee.org/BigData2018/files/BigData2018_Program.pdf",
+    "paper_source": "https://johnboaz.github.io/files/BigData2018.pdf"
+  },
+  {
+    "id": "perth",
+    "city": "Perth",
+    "country": "Australia",
+    "coordinates": [
+      115.8605,
+      -31.9505
+    ],
+    "status": "conference",
+    "note": "WWW 2017",
+    "author_role": "first",
+    "paper": "Probabilistic Visitor Stitching on Cross-device Web Logs",
+    "venue_source": "https://www.w3.org/events/conferences/2017/www2017/",
+    "paper_source": null
+  },
+  {
+    "id": "montreal",
+    "city": "Montréal",
+    "country": "Canada",
+    "coordinates": [
+      -73.5673,
+      45.5017
+    ],
+    "status": "conference",
+    "note": "WWW 2016",
+    "author_role": "first",
+    "paper": "Purchase Intention Mining by Leveraging Item-Item Relationship",
+    "venue_source": "https://www2016.uqam.ca/",
+    "paper_source": "https://www2016.uqam.ca/fichier/document/programBook/www2016_Program_Book.pdf"
+  },
+  {
+    "id": "dublin",
+    "city": "Dublin",
+    "country": "Ireland",
+    "coordinates": [
+      -6.2603,
+      53.3498
+    ],
+    "status": "conference",
+    "note": "ISMB/ECCB 2015",
+    "author_role": "first",
+    "paper": "Tumor Stratification with Four Somatic Mutation Profiles",
+    "venue_source": "https://academic.oup.com/bioinformatics/article/31/12/i1/216831",
+    "paper_source": null
+  },
+  {
+    "id": "jeju",
+    "city": "Jeju",
+    "country": "South Korea",
+    "coordinates": [
+      126.5312,
+      33.4996
+    ],
+    "status": "conference",
+    "note": "ACL 2012",
+    "author_role": "first",
+    "paper": "Multilingual Named Entity Recognition using Parallel Data and Metadata from Wikipedia",
+    "venue_source": "https://2012.aclweb.org/",
+    "paper_source": "https://aclanthology.org/P12-1073/"
+  }
+]

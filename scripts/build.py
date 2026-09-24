@@ -27,9 +27,15 @@ for year, entries in groups.items():
         links = ''.join(f'<a class="paper-link" href="{escape(link["url"], quote=True)}">Read paper ↗</a>' for link in paper['links'])
         source_year = escape(paper['year'])
         year_label = f'{source_year} · ' if year == 'Older' and paper['year'].isdigit() else ''
-        items.append(f'<li class="paper" data-year="{source_year}"><h3>{escape(title)}</h3><p>{year_label}{rest}</p>{links}</li>')
+        thumbnail = ''
+        if paper.get('image'):
+            thumbnail = f'<a class="paper-thumbnail" href="{escape(paper["links"][0]["url"], quote=True)}" aria-label="Read {escape(title, quote=True)}"><img src="{escape(paper["image"], quote=True)}" alt="{escape(paper["image_alt"], quote=True)}" width="1536" height="1024" loading="lazy"></a>'
+        items.append(f'<li class="paper{" paper-illustrated" if thumbnail else ""}" data-year="{source_year}">{thumbnail}<div class="paper-copy"><h3>{escape(title)}</h3><p>{year_label}{rest}</p>{links}</div></li>')
     opened = ' open' if year == recent_years[0] else ''
     blocks.append(f'<details class="year-group" data-year="{escape(year)}"{opened}><summary>{escape(year)} <span class="count">{len(entries)} papers</span><span class="plus" aria-hidden="true">+</span></summary><ol class="papers">{"".join(items)}</ol></details>')
 template = (ROOT / 'index.template.html').read_text()
-(ROOT / 'index.html').write_text(template.replace('{{PUBLICATIONS}}', '\n'.join(blocks)).replace('{{CAREER_TIMELINE}}', render_career()))
+photos = json.loads((ROOT / 'photos.json').read_text())
+slides = ''.join(f'<div class="photo-slide" role="group" aria-roledescription="slide" aria-label="{i+1} of {len(photos)}"{" hidden" if i else ""}><img class="profile-photo" src="{escape(p["src"], quote=True)}" alt="{escape(p["alt"], quote=True)}" style="object-position:{escape(p.get("position", "center"), quote=True)}" width="{p["width"]}" height="{p["height"]}"{ " loading=\"lazy\"" if i else ""}></div>' for i, p in enumerate(photos))
+template = template.replace('{{PHOTO_SLIDES}}', slides)
+(ROOT / 'index.html').write_text(template.replace('{{PUBLICATIONS}}', '\n'.join(blocks)).replace('{{CAREER_TIMELINE}}', render_career() + render_career(compact=True)))
 print(f'Built index.html with {len(papers)} publications.')

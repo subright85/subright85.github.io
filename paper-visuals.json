@@ -1,0 +1,56 @@
+[
+  {
+    "slug": "mp-bench",
+    "source": "https://arxiv.org/html/2603.25001v1",
+    "concept": "One failed multi-agent execution trace, with three analyst viewpoints identifying different plausible failure steps. Multiple attributions can be reasonable.",
+    "prompt": "Use case: scientific-educational. Asset: a plain representative thumbnail for a research paper, landscape 3:2. White background. Clean, ordinary scientific explanatory drawing, thin black and grey lines with just one muted blue accent where it conveys meaning. No visual branding or homepage palette. Minimal flat forms, no shadows, no paper textures, no fancy borders, no decorative art, no robots, no glow, no 3D, no magenta. Large simple elements readable at thumbnail size. Original conceptual illustration, not a reproduced result or chart of experimental measurements. No paper title or watermark.  Show one horizontal sequence of four small agent action cards linked by thin arrows, ending in a failed outcome marked X. Below, three distinct magnifying lenses each inspect a different step of that SAME trace. Blue rings around two candidate failure steps. The important idea is several plausible explanations of one failure, not three separate failures. No wording.",
+    "image": "assets/papers/mp-bench.png",
+    "generation_mode": "Built-in image generation",
+    "kind": "Original conceptual illustration; not a figure or measured result from the paper."
+  },
+  {
+    "slug": "figedit",
+    "source": "https://arxiv.org/html/2512.00752v1",
+    "concept": "Editing a chart requires preserving its data and graphical structure; visual similarity alone does not establish semantic correctness.",
+    "prompt": "Use case: scientific-educational. Asset: a plain representative thumbnail for a research paper, landscape 3:2. White background. Clean, ordinary scientific explanatory drawing, thin black and grey lines with just one muted blue accent where it conveys meaning. No visual branding or homepage palette. Minimal flat forms, no shadows, no paper textures, no fancy borders, no decorative art, no robots, no glow, no 3D, no magenta. Large simple elements readable at thumbnail size. Original conceptual illustration, not a reproduced result or chart of experimental measurements. No paper title or watermark.  Show an orderly small data table beneath two simple bar-chart panels. The left and right chart represent the same three data values and equal bar heights; on the right only one bar has changed from grey to blue, showing a controlled style edit. A fine connecting line links each corresponding table column to its bar, emphasizing structured data beneath visual marks. A small pencil sits between charts. Minimal diagrammatic schematic, not benchmark results. No numbers or wording.",
+    "image": "assets/papers/figedit.png",
+    "generation_mode": "Built-in image generation",
+    "kind": "Original conceptual illustration; not a figure or measured result from the paper."
+  },
+  {
+    "slug": "grasper",
+    "source": "https://arxiv.org/html/2602.21219v1",
+    "concept": "GraSPeR predicts missing user-item links, synthesizes aligned reviews, then generates personalized text from real and augmented history.",
+    "prompt": "Use case: scientific-educational. Asset: a plain representative thumbnail for a research paper, landscape 3:2. White background. Clean, ordinary scientific explanatory drawing, thin black and grey lines with just one muted blue accent where it conveys meaning. No visual branding or homepage palette. Minimal flat forms, no shadows, no paper textures, no fancy borders, no decorative art, no robots, no glow, no 3D, no magenta. Large simple elements readable at thumbnail size. Original conceptual illustration, not a reproduced result or chart of experimental measurements. No paper title or watermark.  Show a sparse user-item bipartite network on the left: circular user nodes, square item nodes, a few solid charcoal observed links and several dashed blue predicted links. A small stack of review slips in the middle, real slips outlined solid and synthetic slips outlined dashed. A thin arrow flows to a single personalized text page on the right with a distinctive blue underline. Exactly three visual stages. Preserve the distinction between observed and inferred information. No wording.",
+    "image": "assets/papers/grasper.png",
+    "generation_mode": "Built-in image generation",
+    "kind": "Original conceptual illustration; not a figure or measured result from the paper."
+  },
+  {
+    "slug": "macf",
+    "source": "https://arxiv.org/html/2511.18413v2",
+    "concept": "MACF orchestrates similar-user and relevant-item agents through adaptive discussion and recruitment for personalized recommendations.",
+    "prompt": "Use case: scientific-educational. Asset: a plain representative thumbnail for a research paper, landscape 3:2. White background. Clean, ordinary scientific explanatory drawing, thin black and grey lines with just one muted blue accent where it conveys meaning. No visual branding or homepage palette. Minimal flat forms, no shadows, no paper textures, no fancy borders, no decorative art, no robots, no glow, no 3D, no magenta. Large simple elements readable at thumbnail size. Original conceptual illustration, not a reproduced result or chart of experimental measurements. No paper title or watermark.  Show a central modest blue orchestrator node connected to three circular user-agent profiles on the left and three square item-agent cards on the right. Small speech marks and restrained bidirectional arrows show discussion between the users, items, and orchestrator. Below the orchestrator is a short ranked stack of three item cards as the recommendation output. Make circular users clearly different from rectangular items. Human preference collaboration, no robots. No words, no numbers.",
+    "image": "assets/papers/macf.png",
+    "generation_mode": "Built-in image generation",
+    "kind": "Original conceptual illustration; not a figure or measured result from the paper."
+  },
+  {
+    "slug": "user-simulation",
+    "source": "https://aclanthology.org/2026.eacl-long.200/",
+    "concept": "This survey organizes conversational user simulation by who is simulated, what is simulated, and how, with techniques and evaluation.",
+    "prompt": "Use case: scientific-educational. Asset: a plain representative thumbnail for a research paper, landscape 3:2. White background. Clean, ordinary scientific explanatory drawing, thin black and grey lines with just one muted blue accent where it conveys meaning. No visual branding or homepage palette. Minimal flat forms, no shadows, no paper textures, no fancy borders, no decorative art, no robots, no glow, no 3D, no magenta. Large simple elements readable at thumbnail size. Original conceptual illustration, not a reproduced result or chart of experimental measurements. No paper title or watermark.  Create a visual taxonomy of simulated conversations. Central pair of overlapping speech bubbles branching to three distinct small groups: left a single profile and a group of profile silhouettes (who); upper right two alternating dialogue bubbles alongside a small task checklist (what); lower right a prompt card and a small training stack (how). Three neat branches, generous whitespace. Use only three short labels exactly: 'WHO', 'WHAT', 'HOW'. It should read as an organized survey map, not an invented algorithm or performance result.",
+    "image": "assets/papers/user-simulation.png",
+    "generation_mode": "Built-in image generation",
+    "kind": "Original conceptual illustration; not a figure or measured result from the paper."
+  },
+  {
+    "slug": "vipact",
+    "source": "https://ojs.aaai.org/index.php/AAAI/article/view/40976",
+    "concept": "VipAct coordinates specialized VLM agents and vision tools to gather fine-grained visual evidence and reason about an image.",
+    "prompt": "Use case: scientific-educational. Asset: a plain representative thumbnail for a research paper, landscape 3:2. White background. Clean, ordinary scientific explanatory drawing, thin black and grey lines with just one muted blue accent where it conveys meaning. No visual branding or homepage palette. Minimal flat forms, no shadows, no paper textures, no fancy borders, no decorative art, no robots, no glow, no 3D, no magenta. Large simple elements readable at thumbnail size. Original conceptual illustration, not a reproduced result or chart of experimental measurements. No paper title or watermark.  One input image card depicting a few simple objects on a desk, with a small highlighted detail. In the center, a coordinator connects to three analysis tiles: magnified crop, object boundary outline, and depth layers. The three tiles feed into one compact evidence sheet on the right. Blue marks show the same object consistently across all analysis tiles. Emphasize precise visual perception through specialized tools and coordinated evidence. No robots, no words, no numeric metrics.",
+    "image": "assets/papers/vipact.png",
+    "generation_mode": "Built-in image generation",
+    "kind": "Original conceptual illustration; not a figure or measured result from the paper."
+  }
+]

@@ -2,32 +2,68 @@
   {
     "year": "2026",
     "citation": "Rethinking Failure Attribution in Multi-Agent Systems: A Multi-Perspective Benchmark and Evaluation, Yeonjun In, Mehrab Tanjim, Jayakumar Subramanian, Sungchul Kim , Uttaran Bhattacharya, Wonjoong Kim, Sangwu Park, Somdeb Sarkhel, Chanyoung Park, ICML'26 FAGEN (poster)",
-    "links": []
+    "links": [
+      {
+        "url": "https://arxiv.org/html/2603.25001v1"
+      }
+    ],
+    "image": "assets/papers/mp-bench.png",
+    "image_alt": "One failed multi-agent execution trace, with three analyst viewpoints identifying different plausible failure steps. Multiple attributions can be reasonable."
   },
   {
     "year": "2026",
     "citation": "Charts Are Not Images: On the Challenges of Scientific Chart Editing, Li Li, Ryan A. Rossi, Sungchul Kim , Sunav Choudhary, Franck Dernoncourt, Puneet Mathur, Zhengzhong Tu, Yue Zhao, ICLR'26 (poster)",
-    "links": []
+    "links": [
+      {
+        "url": "https://arxiv.org/html/2512.00752v1"
+      }
+    ],
+    "image": "assets/papers/figedit.png",
+    "image_alt": "Editing a chart requires preserving its data and graphical structure; visual similarity alone does not establish semantic correctness."
   },
   {
     "year": "2026",
     "citation": "Reasoning-Based Personalized Generation for Users with Sparse Data, Bo Ni, Branislav Kveton, Samyadeep Basu, Subhojyoti Mukherjee, Leyao Wang, Franck Dernoncourt, Sungchul Kim , Seunghyun Yoon, Zichao Wang, Ruiyi Zhang, Puneet Mathur, Jihyung Kil, Jiuxiang Gu, Nedim Lipka, Yu Wang, Ryan A. Rossi, Tyler Derr, ICLR'26",
-    "links": []
+    "links": [
+      {
+        "url": "https://arxiv.org/html/2602.21219v1"
+      }
+    ],
+    "image": "assets/papers/grasper.png",
+    "image_alt": "GraSPeR predicts missing user-item links, synthesizes aligned reviews, then generates personalized text from real and augmented history."
   },
   {
     "year": "2026",
     "citation": "Multi-Agent Collaborative Filtering: Orchestrating Users and Items for Agentic Recommendations, Yu Xia, Sungchul Kim , Tong Yu, Ryan A. Rossi, Julian McAuley, WWW'26",
-    "links": []
+    "links": [
+      {
+        "url": "https://arxiv.org/html/2511.18413v2"
+      }
+    ],
+    "image": "assets/papers/macf.png",
+    "image_alt": "MACF orchestrates similar-user and relevant-item agents through adaptive discussion and recruitment for personalized recommendations."
   },
   {
     "year": "2026",
     "citation": "A Survey on LLM-based Conversational User Simulation, Bo Ni, Yu Wang, Leyao Wang, Branislav Kveton, Franck Dernoncourt, Yu Xia, Hongjie Chen, Reuben Luera, Samyadeep Basu, Subhojyoti Mukherjee, Puneet Mathur, Nesreen Ahmed, Junda Wu, Li Li, Huixin Zhang, Ruiyi Zhang, Tong Yu, Sungchul Kim , Jiuxiang Gu, Zhengzhong Tu, Alexa Siu, Zichao Wang, David Yoon, Nedim Lipka, Namyong Park, Zihao Lin, Trung Bui, Yue Zhao, Tyler Derr, Ryan A. Rossi, EACL'26",
-    "links": []
+    "links": [
+      {
+        "url": "https://aclanthology.org/2026.eacl-long.200/"
+      }
+    ],
+    "image": "assets/papers/user-simulation.png",
+    "image_alt": "This survey organizes conversational user simulation by who is simulated, what is simulated, and how, with techniques and evaluation."
   },
   {
     "year": "2026",
     "citation": "VipAct: Visual-Perception Enhancement via Specialized VLM Agent Collaboration and Tool-use, Zhehao Zhang, Ryan A. Rossi, Tong Yu, Franck Dernoncourt, Ruiyi Zhang, Jiuxiang Gu, Sungchul Kim , Xiang Chen, Zichao Wang, Nedim Lipka, AAAI'26",
-    "links": []
+    "links": [
+      {
+        "url": "https://ojs.aaai.org/index.php/AAAI/article/view/40976"
+      }
+    ],
+    "image": "assets/papers/vipact.png",
+    "image_alt": "VipAct coordinates specialized VLM agents and vision tools to gather fine-grained visual evidence and reason about an image."
   },
   {
     "year": "2025",

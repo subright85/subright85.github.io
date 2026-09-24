@@ -40,9 +40,9 @@ nav a[aria-current="location"] { color: var(--accent); box-shadow: 0 1px 0 var(-
 .experience-section { padding-top: 26px; padding-bottom: 23px; }
 .experience-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; margin-bottom: 20px; }
 .experience-heading h2 { font-size: 25px; letter-spacing: -.5px; }
-.career-scroll { overflow-x: auto; scrollbar-width: thin; scrollbar-color: #d8abc8 transparent; padding: 3px 1px 8px; }
+.career-scroll { padding: 3px 0 8px; }
 .career-scroll:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
-.career-chart { display: block; width: 100%; min-width: 880px; height: auto; overflow: visible; }
+.career-chart { display: block; width: 100%; min-width: 0; height: auto; overflow: visible; }
 .career-grid { stroke: var(--line); stroke-width: 1; stroke-dasharray: 2 4; }
 .career-tick { fill: var(--muted); font: 10px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
 .career-lane { fill: var(--muted); font: 8px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; letter-spacing: .5px; }
@@ -71,22 +71,71 @@ nav a[aria-current="location"] { color: var(--accent); box-shadow: 0 1px 0 var(-
 /* A plain academic introduction. */
 body { background: var(--bg); }
 .header { background: var(--bg); backdrop-filter: none; }
-.hero { grid-template-columns: minmax(0, 1fr) 190px; gap: 50px; padding: 40px 0 32px; align-items: start; }
-h1 { font: 600 32px/1.2 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; letter-spacing: -.8px; margin: 0 0 7px; }
-.position { margin: 0 0 19px; font-size: 14px; color: var(--muted); }
-.position a { color: var(--accent); }
-.bio { max-width: 650px; margin-bottom: 10px; line-height: 1.75; }
+.nav-wrap { padding-top: 17px; padding-bottom: 17px; gap: 25px; }
+.site-identity h1 { font: 600 23px/1.25 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; letter-spacing: -.45px; margin: 0 0 4px; }
+.site-identity p { margin: 0; font-size: 11px; line-height: 1.5; color: var(--muted); }
+.site-identity p a { color: var(--accent); }
+.hero { grid-template-columns: minmax(0, 1fr) 270px; gap: 48px; padding: 32px 0; align-items: center; }
+.bio { max-width: 650px; margin-bottom: 13px; line-height: 1.8; }
+.bio:last-child { margin-bottom: 0; }
 .profile { display: block; padding: 0; }
-.profile-photo { display: block; width: 100%; height: 165px; object-fit: cover; object-position: 32% center; border-radius: 3px; }
+.profile-photo { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: 32% center; border-radius: 4px; border: 1px solid var(--line); }
 h2, .experience-heading h2 { font: 600 21px/1.3 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; letter-spacing: -.3px; }
 .section-heading { margin-bottom: 20px; }
-@media (min-width: 1300px) { .hero { padding-top: 40px; } }
-@media (max-width: 760px) {
-  .hero { grid-template-columns: minmax(0, 1fr) 100px; gap: 22px; padding: 28px 0; }
-  .intro { display: contents; }
-  .hero h1 { grid-column: 1; grid-row: 1; font-size: 27px; margin: 0; align-self: end; }
-  .position { grid-column: 1; grid-row: 2; font-size: 12px; margin: -12px 0 0; }
-  .profile { grid-column: 2; grid-row: 1 / 3; }
-  .profile-photo { height: 100px; }
-  .bio { grid-column: 1 / -1; margin: 0; font-size: 13px; }
+@media (min-width: 1300px) { .hero { padding-top: 32px; } }
+@media (max-width: 600px) {
+  .nav-wrap { flex-wrap: wrap; gap: 13px; }
+  .site-identity { width: 100%; }
+  .site-identity h1 { font-size: 22px; }
+  nav { width: 100%; gap: 22px; }
+  nav a:nth-child(4) { display: block; }
+  html { scroll-padding-top: 145px; }
+  .hero { grid-template-columns: minmax(0, 1fr); gap: 22px; padding: 25px 0; }
+  .intro { display: block; }
+  .profile { grid-column: auto; grid-row: auto; order: -1; max-width: 270px; width: 100%; }
+  .bio { font-size: 13px; }
 }
+
+.career-chart-mobile { display: none; }
+@media (max-width: 800px) {
+  .career-chart-desktop { display: none; }
+  .career-chart-mobile { display: block; max-height: 185px; }
+  .career-chart-mobile .career-label { font-size: 9px; }
+  .career-chart-mobile .career-lane { font-size: 8px; letter-spacing: 0; }
+}
+@media (max-width: 800px) {
+  .career-chart-mobile { height: 170px; max-height: none; }
+}
+@media (max-width: 600px) {
+  .hero { grid-template-columns: minmax(0, 1fr) 130px; gap: 18px; align-items: start; }
+  .profile { order: 0; }
+}
+.photo-controls { display: flex; align-items: center; justify-content: space-between; margin-top: 6px; }
+.photo-controls button { border: 0; background: transparent; color: var(--muted); cursor: pointer; min-width: 30px; min-height: 30px; padding: 4px; }
+.photo-controls button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.photo-dots { display: flex; justify-content: center; flex-wrap: wrap; }
+.photo-dots button { min-width: 24px; }
+.photo-dots button::after { content: ''; display: block; width: 5px; height: 5px; margin: auto; border-radius: 50%; background: var(--line); }
+.photo-dots button[aria-pressed="true"]::after { background: var(--accent); }
+.career-break { fill: var(--bg); }
+.career-break-mark { font-size: 12px; fill: var(--accent); }
+.chart-note { font-size: 10px; color: var(--muted); text-align: right; margin: 0 0 8px; }
+.paper-illustrated { display: grid; grid-template-columns: 156px minmax(0,1fr); gap: 22px; align-items: start; }
+.paper-thumbnail { display: block; background: #fff; }
+.paper-thumbnail img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: contain; }
+.paper-copy { min-width: 0; }
+@media (max-width: 600px) {
+  .paper-illustrated { grid-template-columns: 92px minmax(0,1fr); gap: 14px; }
+}
+
+.feature { padding: 0 0 20px; overflow: hidden; background: transparent; }
+.feature::before, .feature::after { display: none; }
+.feature .story-image { width: 100%; height: 180px; object-fit: cover; display: block; margin-bottom: 18px; }
+.feature-top, .feature h3, .feature p, .feature .read { margin-left: 18px; margin-right: 18px; }
+.feature h3 { font: 600 20px/1.3 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; letter-spacing: -.3px; }
+.feature h3 br { display: none; }
+.story-list a { display: grid; grid-template-columns: 96px minmax(0, 1fr) auto; gap: 16px; align-items: center; }
+.story-list .story-image { width: 96px; height: 60px; object-fit: contain; background: white; }
+nav a:nth-child(3), nav a:nth-child(4) { display: block; }
+@media (max-width: 800px) { .nav-wrap { flex-wrap: wrap; gap: 12px; } .site-identity { width: 100%; } nav { width: 100%; gap: 22px; } html { scroll-padding-top: 150px; } }
+@media (max-width: 600px) { .story-list a { grid-template-columns: 80px minmax(0, 1fr); gap: 12px; } .story-list .story-image { width: 80px; grid-row: span 2; } .story-list span { grid-column: 2; margin: 0; } .feature .story-image { height: 140px; } }
