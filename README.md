@@ -14,7 +14,7 @@ Open http://localhost:8000. No Node packages or build service are required.
 
 - Biography, experience, and articles: `index.template.html`
 - Publications: `publications.json` (newest year first; original full citations preserved). The build shows the latest three years separately and combines all earlier entries into Older, retaining individual years for search.
-- Career timeline: the `experience` section in `index.template.html`; a horizontal list of milestones ordered by starting date, with full dates and mentor information in a disclosure below. On narrow screens the timeline scrolls horizontally.
+- Career timeline: `scripts/career.py` generates a compact chart with date-proportional bars. Education, internships, and industry share one horizontal scale. Full dates and mentor information remain in `index.template.html`. Rebuilding updates the present-day endpoint.
 - Design: `style.css`
 - Search: `script.js`
 - Photo: `assets/profile.png`

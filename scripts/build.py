@@ -1,6 +1,7 @@
 """Rebuild static HTML after editing publications.json or index.template.html."""
 import json
 import re
+from career import render_career
 from pathlib import Path
 from html import escape
 ROOT = Path(__file__).resolve().parent.parent
@@ -30,5 +31,5 @@ for year, entries in groups.items():
     opened = ' open' if year == recent_years[0] else ''
     blocks.append(f'<details class="year-group" data-year="{escape(year)}"{opened}><summary>{escape(year)} <span class="count">{len(entries)} papers</span><span class="plus" aria-hidden="true">+</span></summary><ol class="papers">{"".join(items)}</ol></details>')
 template = (ROOT / 'index.template.html').read_text()
-(ROOT / 'index.html').write_text(template.replace('{{PUBLICATIONS}}', '\n'.join(blocks)))
+(ROOT / 'index.html').write_text(template.replace('{{PUBLICATIONS}}', '\n'.join(blocks)).replace('{{CAREER_TIMELINE}}', render_career()))
 print(f'Built index.html with {len(papers)} publications.')
