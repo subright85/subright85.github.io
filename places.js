@@ -46,6 +46,40 @@ async function initializeGlobe() {
     markers.append('circle').attr('class', 'pin-center').attr('cy', -12).attr('r', 2.8);
     let selected = null;
     let selectedMove = null;
+    let timeState = null;
+    const timeSlider = document.querySelector('#journey-time');
+    const timeLabel = document.querySelector('#journey-date');
+    const rotationButton = document.querySelector('#rotate-globe');
+    const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+    let rotating = !reducedMotion.matches;
+    let rotationTimer = null;
+    let globeVisible = true;
+    let lastRotation = 0;
+    function updateRotation() {
+      clearTimeout(rotationTimer);
+      rotationTimer = null;
+      rotationButton.textContent = rotating ? 'Pause rotation' : 'Resume rotation';
+      rotationButton.setAttribute('aria-pressed', String(rotating));
+      if (!rotating || document.hidden || !globeVisible) return;
+      lastRotation = performance.now();
+      rotationTimer = setTimeout(rotateFrame, 50);
+    }
+    function rotateFrame() {
+      const now = performance.now();
+      const rotation = projection.rotate();
+      projection.rotate([rotation[0] + Math.min(now - lastRotation, 100) * .003, rotation[1], rotation[2]]);
+      lastRotation = now;
+      scheduleDraw();
+      rotationTimer = setTimeout(rotateFrame, 50);
+    }
+    function pauseRotation() { rotating = false; updateRotation(); }
+    rotationButton.addEventListener('click', () => { rotating = !rotating; updateRotation(); });
+    document.addEventListener('visibilitychange', updateRotation);
+    reducedMotion.addEventListener('change', () => { if (reducedMotion.matches) pauseRotation(); });
+    const visibilityObserver = new IntersectionObserver(entries => {
+      globeVisible = entries[0].isIntersecting; updateRotation();
+    });
+    visibilityObserver.observe(svg.node());
     const toggle = document.querySelector('#show-conferences');
     let projectionDirty = true;
     const renderer = createFrameScheduler(() => {
@@ -60,6 +94,8 @@ async function initializeGlobe() {
       choiceButtons.forEach((button, id) => button.setAttribute('aria-pressed', String(id === selected)));
     }
     function resetView() {
+      clearTime();
+      rotating = !reducedMotion.matches; updateRotation();
       projection.rotate([-180, -25]).scale(274);
       selected = null; selectedMove = null; moveSelect.value = '';
       detail.hidden = true; status.textContent = '';
@@ -68,24 +104,25 @@ async function initializeGlobe() {
     function draw(projectionChanged) {
       if (projectionChanged) geographicPaths.attr('d', path);
       const center = projection.invert([320, 300]);
-      routes.classed('active', d => d.move.id === selectedMove);
+      routes.classed('active', d => d.move.id === selectedMove).attr('display', d => !timeState || timeState.moveIds.has(d.move.id) ? null : 'none');
       arrows.classed('active', m => m.id === selectedMove);
-      if (projectionChanged) arrows.each(function(m) {
+      arrows.each(function(m) {
         const {point, ahead} = routeGeometry.get(m.id);
-        const visible = d3.geoDistance(center, point) < Math.PI / 2 && d3.geoDistance(center, ahead) < Math.PI / 2;
+        const visible = (!timeState || timeState.moveIds.has(m.id)) && d3.geoDistance(center, point) < Math.PI / 2 && d3.geoDistance(center, ahead) < Math.PI / 2;
         const a = projection(point), b = projection(ahead);
         const angle = Math.atan2(b[1] - a[1], b[0] - a[0]);
         const dx = Math.cos(angle), dy = Math.sin(angle);
         d3.select(this).attr('display', visible ? null : 'none').attr('points', `${a[0]+dx*5},${a[1]+dy*5} ${a[0]-dx*4-dy*3},${a[1]-dy*4+dx*3} ${a[0]-dx*4+dy*3},${a[1]-dy*4-dx*3}`);
       });
       markers.each(function(p) {
-        const visible = (p.status === 'visited' || toggle.checked) && d3.geoDistance(center, p.coordinates) < Math.PI / 2;
+        const visible = (p.status === 'visited' ? !timeState || timeState.visited.has(p.id) : toggle.checked) && d3.geoDistance(center, p.coordinates) < Math.PI / 2;
         const point = projection(p.coordinates);
         d3.select(this).attr('transform', `translate(${point[0]},${point[1]})`).attr('display', visible ? null : 'none')
           .attr('tabindex', visible ? 0 : -1).classed('selected', p.id === selected);
       });
     }
     function selectPlace(p) {
+      pauseRotation(); clearTime();
       selectedMove = null;
       moveSelect.value = '';
       selected = p.id;
@@ -112,6 +149,7 @@ async function initializeGlobe() {
       option.textContent = `${i + 1}. ${move.label} · ${move.date}`; moveSelect.append(option);
     });
     function showMove(index) {
+      pauseRotation(); clearTime();
       const move = moves[index];
       if (!move) {
         resetView(); return;
@@ -152,11 +190,11 @@ async function initializeGlobe() {
       }
       scheduleDraw(false);
     });
-    svg.call(d3.drag().on('drag', event => {
+    svg.call(d3.drag().on('start', pauseRotation).on('drag', event => {
       const rotation = projection.rotate(); const factor = 60 / projection.scale();
       projection.rotate([rotation[0] + event.dx * factor, Math.max(-85, Math.min(85, rotation[1] - event.dy * factor))]); scheduleDraw();
     }));
-    function zoom(factor) { projection.scale(Math.max(180, Math.min(600, projection.scale() * factor))); scheduleDraw(); }
+    function zoom(factor) { pauseRotation(); projection.scale(Math.max(180, Math.min(600, projection.scale() * factor))); scheduleDraw(); }
     svg.on('wheel', event => { event.preventDefault(); zoom(Math.exp(-event.deltaY * .001)); }, {passive: false});
     svg.on('keydown', event => {
       const rotation = projection.rotate(); let handled = true;
@@ -167,16 +205,62 @@ async function initializeGlobe() {
       else if (event.key === '+' || event.key === '=') zoom(1.15);
       else if (event.key === '-') zoom(1 / 1.15);
       else handled = false;
-      if (handled) { event.preventDefault(); projection.rotate(rotation); scheduleDraw(); }
+      if (handled) { pauseRotation(); event.preventDefault(); projection.rotate(rotation); scheduleDraw(); }
     });
     document.querySelector('#zoom-in').addEventListener('click', () => zoom(1.15));
     document.querySelector('#zoom-out').addEventListener('click', () => zoom(1 / 1.15));
     document.querySelector('#reset-globe').addEventListener('click', resetView);
-    renderResidenceTimeline(residence, id => {
+    const timeline = renderResidenceTimeline(residence, id => {
       const place = placeById.get(id);
       if (place) selectPlace(place);
     });
-    scheduleDraw();
+    const now = new Date();
+    timeSlider.min = residence.start_year * 12;
+    timeSlider.max = now.getUTCFullYear() * 12 + now.getUTCMonth();
+    timeSlider.value = timeSlider.max;
+    timeSlider.disabled = false;
+    timeSlider.setAttribute('aria-valuetext', 'All years');
+    const monthFormatter = new Intl.DateTimeFormat('en-US', {month: 'short', year: 'numeric', timeZone: 'UTC'});
+    function clearTime() {
+      timeState = null; focusedStop = null;
+      timeLabel.textContent = 'All years';
+      timeSlider.value = timeSlider.max;
+      timeSlider.setAttribute('aria-valuetext', 'All years');
+      timeline.setDate(null);
+    }
+    let focusedStop = null;
+    function showMonth() {
+      pauseRotation();
+      const value = Number(timeSlider.value);
+      const date = new Date(Date.UTC(Math.floor(value / 12), value % 12, 1));
+      const month = date.toISOString().slice(0, 7);
+      timeState = journeyAtMonth(journey, month);
+      const stop = timeState.active;
+      const location = stop && journey.locations[stop.location];
+      const label = `${monthFormatter.format(date)} · ${location ? location.city : 'Location unknown'}${stop?.approximate ? ' (approx.)' : ''}`;
+      timeLabel.textContent = label;
+      timeSlider.setAttribute('aria-valuetext', label);
+      timeline.setDate(date);
+      selected = stop?.location || null;
+      selectedMove = null; moveSelect.value = '';
+      let projectionChanged = false;
+      if (stop?.id !== focusedStop && location?.coordinates) {
+        projection.rotate([-location.coordinates[0], -location.coordinates[1]]);
+        projectionChanged = true;
+      }
+      focusedStop = stop?.id;
+      detail.hidden = true;
+      status.textContent = label + (stop?.note ? ` · ${stop.note}` : '');
+      syncSelection(); scheduleDraw(projectionChanged);
+    }
+    timeSlider.addEventListener('input', showMonth);
+    document.querySelector('#all-years').addEventListener('click', () => {
+      clearTime(); focusedStop = null; selected = null; selectedMove = null;
+      moveSelect.value = ''; detail.hidden = true; status.textContent = '';
+      syncSelection(); scheduleDraw(false);
+    });
+    svg.on('focusin', pauseRotation);
+    scheduleDraw(); updateRotation();
   } catch (error) {
     status.textContent = 'The globe could not load. Please reload the page.';
     console.error(error);

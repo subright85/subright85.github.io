@@ -56,6 +56,13 @@ function renderResidenceTimeline(data, selectPlace) {
       if (!period.start) at(group.append('text').attr('class', 'residence-break').attr('y', y + 7).text('‹'), 'x', 0, -7);
     });
   });
+  const cursor = svg.append('line').attr('class', 'residence-cursor').attr('y1', 22).attr('y2', height - 8).attr('display', 'none');
+  let cursorDate = null;
+  function updateCursor() {
+    const left = lastWidth < 450 ? 72 : 95;
+    const x = left + fraction(cursorDate) * (lastWidth - 12 - left);
+    cursor.attr('x1', x).attr('x2', x).attr('display', cursorDate ? null : 'none');
+  }
   let lastWidth = 0;
   const renderer = createFrameScheduler(width => {
     if (!width || width === lastWidth) return;
@@ -70,9 +77,13 @@ function renderResidenceTimeline(data, selectPlace) {
       if (visible) previousTick = x;
     });
     positionUpdates.forEach(update => update(left, width - 12 - left));
+    updateCursor();
   });
   const observer = new ResizeObserver(entries => renderer.schedule(entries[0].contentRect.width));
   observer.observe(container);
   renderer.schedule(container.clientWidth);
-  return () => { observer.disconnect(); renderer.cancel(); svg.remove(); };
+  return {
+    setDate(date) { cursorDate = date; updateCursor(); },
+    destroy() { observer.disconnect(); renderer.cancel(); svg.remove(); }
+  };
 }

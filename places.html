@@ -4,8 +4,8 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Places · Sungchul Kim</title>
 <meta name="description" content="Places in Sungchul Kim's life and research.">
-<link rel="icon" href="assets/favicon.svg?v=3"><link rel="stylesheet" href="style.css?v=9"><link rel="stylesheet" href="places.css?v=7">
-<script src="assets/vendor/d3.v7.min.js" defer></script><script src="render-utils.js?v=1" defer></script><script src="journey.js?v=2" defer></script><script src="residence.js?v=4" defer></script><script src="places.js?v=7" defer></script>
+<link rel="icon" href="assets/favicon.svg?v=3"><link rel="stylesheet" href="style.css?v=9"><link rel="stylesheet" href="places.css?v=8">
+<script src="assets/vendor/d3.v7.min.js" defer></script><script src="render-utils.js?v=1" defer></script><script src="journey.js?v=3" defer></script><script src="residence.js?v=5" defer></script><script src="places.js?v=8" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -20,10 +20,15 @@
 <div class="residence-footer"><p id="residence-detail" role="status" aria-live="polite">Select a stay to explore the place.</p></div>
 </details>
 </section>
+<div class="journey-time">
+<label for="journey-time">Journey through time</label><output id="journey-date" for="journey-time">All years</output>
+<input id="journey-time" type="range" min="0" max="1" value="1" step="1" aria-label="Journey month" disabled>
+<button id="all-years" type="button">All years</button>
+</div>
 <div class="places-layout">
 <section class="globe-panel" aria-label="Interactive globe">
 <svg id="globe" viewBox="0 0 640 600" tabindex="0" role="group" aria-label="Earth. Drag or use arrow keys to rotate; use plus and minus to zoom."><title>Places on Earth</title></svg>
-<div class="globe-controls"><span>Drag to rotate · Scroll to zoom</span><button id="zoom-out" type="button" aria-label="Zoom out">−</button><button id="zoom-in" type="button" aria-label="Zoom in">+</button><button id="reset-globe" type="button">Reset</button></div>
+<div class="globe-controls"><span>Drag to rotate · Scroll to zoom</span><button id="zoom-out" type="button" aria-label="Zoom out">−</button><button id="zoom-in" type="button" aria-label="Zoom in">+</button><button id="rotate-globe" type="button" aria-pressed="true">Pause rotation</button><button id="reset-globe" type="button">Reset</button></div>
 <div class="journey-controls"><label for="journey-move">Moves</label><button id="previous-move" type="button" aria-label="Previous move">←</button><select id="journey-move"><option value="">All moves</option></select><button id="next-move" type="button" aria-label="Next move">→</button></div>
 <p id="globe-status" role="status" aria-live="polite"></p>
 </section>

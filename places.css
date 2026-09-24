@@ -68,3 +68,11 @@
 #place-detail p { margin: 8px 0; }
 #place-detail a { color: var(--accent); margin-right: 12px; }
 @media (max-width: 800px) { .places-layout { grid-template-columns: minmax(0,1fr); gap: 5px; } .globe-panel { max-width: 590px; width: 100%; margin: auto; } .places-sidebar { padding-top: 0; } }
+
+.journey-time { display: grid; grid-template-columns: 1fr auto; gap: 9px 16px; padding: 18px 0 6px; align-items: center; font-size: 12px; }
+.journey-time label { font-weight: 600; }
+.journey-time output { color: var(--muted); text-align: right; }
+.journey-time input { width: 100%; margin: 0; accent-color: var(--accent); }
+.journey-time button { font: inherit; color: var(--accent); background: transparent; border: 1px solid var(--line); border-radius: 4px; padding: 5px 9px; cursor: pointer; }
+.residence-cursor { stroke: var(--accent); stroke-width: 1.5; pointer-events: none; }
+.globe-controls { flex-wrap: wrap; }

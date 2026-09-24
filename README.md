@@ -32,7 +32,7 @@ The Places residence timeline uses an uncompressed linear time scale, independen
 
 The globe uses a small, precomputed tile map (`assets/maps/land-game.json`) generated from Natural Earth. Terrain colors are stylized. Regenerate it with `node scripts/build-game-map.cjs`; TopoJSON conversion runs only in that build script, not in visitors’ browsers.
 
-Globe updates are batched once per animation frame. Route interpolation and data formatting are cached, and the timeline retains its SVG elements when resized. No animation runs while the map is idle.
+Globe updates are batched once per animation frame. Route interpolation and data formatting are cached, and the timeline retains its SVG elements when resized. The globe rotates slowly by default (20 updates per second), pausing during interaction, off-screen, or in a hidden tab. Reduced-motion preferences disable rotation by default. A monthly slider filters the journey and marks the linear residence timeline; All years restores the full journey.
 
 Checks: `node scripts/check-journey.cjs` and `node scripts/check-rendering.cjs`.
 

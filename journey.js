@@ -59,3 +59,22 @@ function prepareJourney(data) {
   return {places, moves, residence: {start_year: Number(earliestDate?.slice(0, 4)) || 2010, early_life: data.early_life || '', rows}};
 }
 if (typeof module !== 'undefined') module.exports = {prepareJourney};
+
+// Month boundaries follow journey.json: departed includes the whole month.
+function journeyAtMonth(journey, month) {
+  const active = journey.stops.find(stop =>
+    (stop.arrived ? stop.arrived <= month : !!stop.departed) &&
+    (stop.departed ? month <= stop.departed : !!stop.current));
+  const reachedIndex = journey.stops.reduce((latest, stop, index) =>
+    (stop === active || (stop.arrived && stop.arrived <= month) || (stop.departed && stop.departed <= month)) ? index : latest, -1);
+  const visited = new Set();
+  const moveIds = new Set();
+  journey.stops.forEach((stop, index) => {
+    const reached = stop.arrived ? stop.arrived <= month : index <= reachedIndex;
+    if (!reached) return;
+    visited.add(stop.location);
+    if (index) moveIds.add(`${journey.stops[index - 1].id}--${stop.id}`);
+  });
+  return {active, visited, moveIds};
+}
+if (typeof module !== 'undefined') module.exports.journeyAtMonth = journeyAtMonth;
