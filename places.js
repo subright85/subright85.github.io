@@ -23,8 +23,8 @@ async function initializeGlobe() {
     const projection = d3.geoOrthographic().translate([320, 300]).scale(274).rotate([-180, -25]).clipAngle(90);
     const path = d3.geoPath(projection);
     const gradient = svg.append('defs').append('radialGradient').attr('id', 'ocean-color').attr('cx', '35%').attr('cy', '25%').attr('r', '85%');
-    gradient.append('stop').attr('offset', '0%').attr('stop-color', '#b3e5e9');
-    gradient.append('stop').attr('offset', '100%').attr('stop-color', '#669fc7');
+    gradient.append('stop').attr('offset', '0%').attr('stop-color', '#39dcf0');
+    gradient.append('stop').attr('offset', '100%').attr('stop-color', '#0879dd');
     svg.append('path').datum({type: 'Sphere'}).attr('class', 'ocean');
     svg.append('path').datum(d3.geoGraticule().step([30, 30])()).attr('class', 'graticule');
     svg.append('g').selectAll('path').data(world.features).join('path').attr('class', feature => `land terrain-${feature.properties.terrain}`);

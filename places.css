@@ -24,23 +24,23 @@
 #globe { width: 100%; display: block; cursor: grab; touch-action: none; }
 #globe:active { cursor: grabbing; }
 #globe:focus-visible, .places-page button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-.ocean { fill: url(#ocean-color); stroke: #5e91b3; stroke-width: 1.5; }
-.land { fill: #85ba78; stroke: #759c6b; stroke-width: .35; stroke-linejoin: bevel; }
-.terrain-north { fill: #a3c399; }
-.terrain-tropical { fill: #64a77b; }
-.terrain-sand { fill: #dac08d; stroke: #bda779; }
-.terrain-polar { fill: #e8eee2; stroke: #cad4c5; }
-.graticule { fill: none; stroke: #4385ab; stroke-width: .7; opacity: .25; }
+.ocean { fill: url(#ocean-color); stroke: #087bc4; stroke-width: 1.5; }
+.land { fill: #65ce38; stroke: #389c38; stroke-width: .35; stroke-linejoin: bevel; }
+.terrain-north { fill: #a2dd45; }
+.terrain-tropical { fill: #18b86b; }
+.terrain-sand { fill: #ffc64c; stroke: #dda132; }
+.terrain-polar { fill: #f0fbff; stroke: #aedeea; }
+.graticule { fill: none; stroke: #087bb5; stroke-width: .7; opacity: .25; }
 .place-marker { cursor: pointer; }
 .pin-hit { fill: transparent; stroke: none; }
-.pin-body { fill: #c12c87; stroke: #fffaf2; stroke-width: 2; paint-order: stroke fill; }
+.pin-body { fill: #ec168e; stroke: #fffaf2; stroke-width: 2; paint-order: stroke fill; }
 .pin-center { fill: white; stroke: none; }
 .place-marker.conference .pin-body { fill: var(--bg); stroke: #817787; }
 .place-marker.conference .pin-center { fill: #817787; }
 .place-marker.selected .pin-body, .place-marker:focus-visible .pin-body { stroke: #302630; stroke-width: 3; }
-.journey-route { fill: none; stroke: #973279; stroke-width: 1.8; opacity: .55; pointer-events: none; }
+.journey-route { fill: none; stroke: #d90083; stroke-width: 1.8; opacity: .72; pointer-events: none; }
 .journey-route.active { stroke-width: 3; opacity: 1; }
-.journey-arrow { fill: var(--accent); opacity: .45; pointer-events: none; }
+.journey-arrow { fill: #d90083; opacity: .8; pointer-events: none; }
 .journey-arrow.active { opacity: 1; }
 .journey-controls { display: flex; align-items: center; gap: 8px; margin-top: 12px; }
 .journey-controls label { font-size: 12px; }
