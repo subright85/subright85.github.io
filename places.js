@@ -1,9 +1,10 @@
 async function initializeGlobe() {
   const status = document.querySelector('#globe-status');
   try {
-    const [world, places] = await Promise.all([
+    const [world, places, residence] = await Promise.all([
       fetch('assets/maps/countries-110m.json').then(r => { if (!r.ok) throw new Error('Map unavailable'); return r.json(); }),
-      fetch('places.json').then(r => { if (!r.ok) throw new Error('Places unavailable'); return r.json(); })
+      fetch('places.json').then(r => { if (!r.ok) throw new Error('Places unavailable'); return r.json(); }),
+      fetch('residence.json').then(r => { if (!r.ok) throw new Error('Residence data unavailable'); return r.json(); })
     ]);
     const svg = d3.select('#globe');
     const projection = d3.geoOrthographic().translate([320, 300]).scale(274).rotate([-180, -25]).clipAngle(90);
@@ -87,6 +88,10 @@ async function initializeGlobe() {
       projection.rotate([-180, -25]).scale(274); selected = null; document.querySelector('#place-detail').hidden = true;
       document.querySelectorAll('.place-choice').forEach(button => button.setAttribute('aria-pressed', 'false'));
       status.textContent = ''; draw();
+    });
+    renderResidenceTimeline(residence, id => {
+      const place = places.find(p => p.id === id);
+      if (place) selectPlace(place);
     });
     draw();
   } catch (error) {

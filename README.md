@@ -18,6 +18,7 @@ Open http://localhost:8000. No Node packages or build service are required.
 - Design: `style.css`
 - Search: `script.js`
 - Photos: `photos.json` lists carousel images, alt text, dimensions, and framing. Add photos to `assets/`, then rebuild. Arrows, dots, keyboard navigation, and swiping activate when two or more photos are listed. No autoplay.
+- Residence timeline: `residence.json` stores living periods; `residence.js` draws responsive bars and connects them to the globe. Early calendar years remain unspecified until confirmed. Month-level intervals include each internship’s final month; the early-2016 Korea return is approximate.
 - Places: `places.json` holds confirmed places and separate conference candidates. `places.html` uses a locally bundled D3 globe, with rotation, zoom, and accessible place buttons.
 - Paper illustrations: `paper-visuals.json` records source papers, concepts, and generation prompts. Six plain conceptual illustrations were made with built-in image generation, independently of the site colors.
 - Article images: `story-images.json` records original article and image URLs. Images are locally hosted and link back to the stories.

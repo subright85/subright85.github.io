@@ -8,7 +8,40 @@
       37.4563
     ],
     "status": "visited",
-    "note": "Born here"
+    "note": "Born here · until age 19"
+  },
+  {
+    "id": "pohang",
+    "city": "Pohang",
+    "country": "South Korea",
+    "coordinates": [
+      129.3435,
+      36.019
+    ],
+    "status": "visited",
+    "note": "From age 19 to Aug 2015 · POSTECH; with internship stays abroad"
+  },
+  {
+    "id": "beijing",
+    "city": "Beijing",
+    "country": "China",
+    "coordinates": [
+      116.4074,
+      39.9042
+    ],
+    "status": "visited",
+    "note": "Sep 2010–May 2011 · Microsoft Research Asia internship"
+  },
+  {
+    "id": "seattle",
+    "city": "Seattle / Redmond",
+    "country": "USA",
+    "coordinates": [
+      -122.3321,
+      47.6062
+    ],
+    "status": "visited",
+    "note": "Jun–Aug 2011 · Microsoft Research internship"
   },
   {
     "id": "san-jose",
@@ -19,7 +52,7 @@
       37.3382
     ],
     "status": "visited",
-    "note": "Current home"
+    "note": "Adobe internship, Aug–Dec 2015 · Home since Jul 2016"
   },
   {
     "id": "hyderabad",
@@ -37,7 +70,7 @@
     "paper_source": "https://doi.org/10.1109/ICASSP49660.2025.10887984"
   },
   {
-    "id": "seattle",
+    "id": "seattle-conference",
     "city": "Seattle",
     "country": "USA",
     "coordinates": [

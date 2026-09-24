@@ -4,14 +4,20 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Places · Sungchul Kim</title>
 <meta name="description" content="Places in Sungchul Kim's life and research.">
-<link rel="icon" href="assets/favicon.svg?v=3"><link rel="stylesheet" href="style.css?v=9"><link rel="stylesheet" href="places.css?v=1">
-<script src="assets/vendor/d3.v7.min.js" defer></script><script src="assets/vendor/topojson-client.min.js" defer></script><script src="places.js?v=1" defer></script>
+<link rel="icon" href="assets/favicon.svg?v=3"><link rel="stylesheet" href="style.css?v=9"><link rel="stylesheet" href="places.css?v=2">
+<script src="assets/vendor/d3.v7.min.js" defer></script><script src="assets/vendor/topojson-client.min.js" defer></script><script src="residence.js?v=1" defer></script><script src="places.js?v=2" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="header"><div class="nav-wrap"><div class="site-identity"><h1><a href="index.html">Sungchul Kim</a></h1><p>Senior Research Scientist · <a href="https://research.adobe.com/">Adobe Research</a></p></div><nav aria-label="Main navigation"><a href="index.html#about">About</a><a href="index.html#experience">Experience</a><a href="index.html#publications">Publications</a><a href="index.html#research">Research</a><a href="places.html" aria-current="page">Places</a></nav></div></header>
 <main id="main" class="page places-page">
 <h2>Places</h2><p class="places-intro">From Incheon to San Jose.</p>
+<section class="residence-section" aria-labelledby="residence-title">
+<h3 id="residence-title">Where I’ve lived</h3>
+<p id="residence-earlier">Incheon · birth–age 19 → Pohang · age 19–Aug 2015</p>
+<div id="residence-chart"></div>
+<div class="residence-footer"><p id="residence-detail" role="status" aria-live="polite">Select a stay to explore the place.</p><span>// Time compressed after 2017</span></div>
+</section>
 <div class="places-layout">
 <section class="globe-panel" aria-label="Interactive globe">
 <svg id="globe" viewBox="0 0 640 600" tabindex="0" role="group" aria-label="Earth. Drag or use arrow keys to rotate; use plus and minus to zoom."><title>Places on Earth</title></svg>

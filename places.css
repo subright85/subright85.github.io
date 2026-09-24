@@ -1,6 +1,24 @@
 .places-page { padding-top: 30px; }
 .places-page h2 { margin: 0; }
 .places-intro { color: var(--muted); font-size: 14px; margin: 7px 0 20px; }
+.residence-section { padding: 10px 0 24px; border-bottom: 1px solid var(--line); }
+.residence-section h3 { font-size: 14px; margin: 0; }
+#residence-earlier { font-size: 12px; color: var(--muted); margin: 6px 0 18px; }
+#residence-chart svg { width: 100%; display: block; overflow: visible; }
+.residence-label { fill: var(--ink); font-size: 11px; }
+.residence-label[role="button"], .residence-period { cursor: pointer; }
+.residence-period:focus-visible, .residence-label:focus-visible { outline: 1px solid var(--accent); outline-offset: 3px; }
+.residence-tick { fill: var(--muted); font-size: 10px; }
+.residence-grid { stroke: var(--line); stroke-dasharray: 2 5; }
+.residence-hit { fill: transparent; }
+.residence-bar { fill: #b68da9; }
+.residence-bar.current { fill: var(--accent); }
+.residence-bar.approximate { fill: none; stroke: #b68da9; stroke-width: 2; stroke-dasharray: 3 2; }
+.residence-break { fill: var(--accent); font-size: 12px; }
+.residence-footer { display: flex; justify-content: space-between; gap: 20px; font-size: 10px; color: var(--muted); }
+.residence-footer p { margin: 0; }
+.residence-footer span { flex-shrink: 0; }
+@media (max-width: 500px) { .residence-footer { flex-wrap: wrap; gap: 5px; } }
 .places-layout { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 32px; align-items: start; }
 .globe-panel { min-width: 0; }
 #globe { width: 100%; display: block; cursor: grab; touch-action: none; }
