@@ -1,20 +1,5 @@
 [
   {
-    "id": "hyderabad",
-    "city": "Hyderabad",
-    "country": "India",
-    "coordinates": [
-      78.4867,
-      17.385
-    ],
-    "status": "conference",
-    "note": "ICASSP 2025",
-    "author_role": "last",
-    "paper": "A Quantitative Metric Selection Approach for Time-series Forecasting Foundation Models",
-    "venue_source": "https://signalprocessingsociety.org/events/icassp-2025-2025-ieee-international-conference-acoustics-speech-and-signal-processing",
-    "paper_source": "https://doi.org/10.1109/ICASSP49660.2025.10887984"
-  },
-  {
     "id": "seattle-conference",
     "city": "Seattle",
     "country": "USA",
@@ -58,21 +43,6 @@
     "paper": "Purchase Intention Mining by Leveraging Item-Item Relationship",
     "venue_source": "https://www2016.uqam.ca/",
     "paper_source": "https://www2016.uqam.ca/fichier/document/programBook/www2016_Program_Book.pdf"
-  },
-  {
-    "id": "dublin",
-    "city": "Dublin",
-    "country": "Ireland",
-    "coordinates": [
-      -6.2603,
-      53.3498
-    ],
-    "status": "conference",
-    "note": "ISMB/ECCB 2015",
-    "author_role": "first",
-    "paper": "Tumor Stratification with Four Somatic Mutation Profiles",
-    "venue_source": "https://academic.oup.com/bioinformatics/article/31/12/i1/216831",
-    "paper_source": null
   },
   {
     "id": "jeju",

@@ -24,14 +24,22 @@
 #globe { width: 100%; display: block; cursor: grab; touch-action: none; }
 #globe:active { cursor: grabbing; }
 #globe:focus-visible, .places-page button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-.ocean { fill: #edf2f5; stroke: #d7e0e6; }
-.land { fill: #dce3dc; stroke: #fafcfb; stroke-width: .7; }
-.graticule { fill: none; stroke: #d3dde4; stroke-width: .5; }
-.place-marker { fill: var(--accent); stroke: white; stroke-width: 2; cursor: pointer; }
-.place-marker.conference { fill: white; stroke: #817787; stroke-width: 2; }
-.place-marker.selected { stroke: #302630; stroke-width: 3; }
-.journey-route { fill: none; stroke: var(--accent); stroke-width: 1.4; opacity: .35; pointer-events: none; }
-.journey-route.active { stroke-width: 2.7; opacity: .95; }
+.ocean { fill: url(#ocean-color); stroke: #5e91b3; stroke-width: 1.5; }
+.land { fill: #85ba78; stroke: #759c6b; stroke-width: .35; stroke-linejoin: bevel; }
+.terrain-north { fill: #a3c399; }
+.terrain-tropical { fill: #64a77b; }
+.terrain-sand { fill: #dac08d; stroke: #bda779; }
+.terrain-polar { fill: #e8eee2; stroke: #cad4c5; }
+.graticule { fill: none; stroke: #4385ab; stroke-width: .7; opacity: .25; }
+.place-marker { cursor: pointer; }
+.pin-hit { fill: transparent; stroke: none; }
+.pin-body { fill: #c12c87; stroke: #fffaf2; stroke-width: 2; paint-order: stroke fill; }
+.pin-center { fill: white; stroke: none; }
+.place-marker.conference .pin-body { fill: var(--bg); stroke: #817787; }
+.place-marker.conference .pin-center { fill: #817787; }
+.place-marker.selected .pin-body, .place-marker:focus-visible .pin-body { stroke: #302630; stroke-width: 3; }
+.journey-route { fill: none; stroke: #973279; stroke-width: 1.8; opacity: .55; pointer-events: none; }
+.journey-route.active { stroke-width: 3; opacity: 1; }
 .journey-arrow { fill: var(--accent); opacity: .45; pointer-events: none; }
 .journey-arrow.active { opacity: 1; }
 .journey-controls { display: flex; align-items: center; gap: 8px; margin-top: 12px; }

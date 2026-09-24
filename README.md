@@ -25,6 +25,15 @@ Open http://localhost:8000. No Node packages or build service are required.
 
 After editing the template or publication data, run `python3 scripts/build.py` and commit the generated `index.html` too. All publication text is available without JavaScript; JavaScript adds search, responsive chart sizing, and carousel controls.
 
+
+## Map implementation
+
+The globe uses a small, precomputed tile map (`assets/maps/land-game.json`) generated from Natural Earth. Terrain colors are stylized. Regenerate it with `node scripts/build-game-map.cjs`; TopoJSON conversion runs only in that build script, not in visitors’ browsers.
+
+Globe updates are batched once per animation frame. Route interpolation and data formatting are cached, and the timeline retains its SVG elements when resized. No animation runs while the map is idle.
+
+Checks: `node scripts/check-journey.cjs` and `node scripts/check-rendering.cjs`.
+
 ## GitHub Pages
 
 Publish the `main` branch, `/ (root)` folder, using Settings → Pages → Deploy from a branch. A repository named `subright85.github.io` will be served at https://subright85.github.io/.

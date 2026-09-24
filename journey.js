@@ -15,23 +15,40 @@ function prepareJourney(data) {
     if (s.current && (s.departed !== null || i !== data.stops.length - 1)) throw new Error('Only the final, open-ended stay can be current');
     if (s.arrived && i && data.stops[i - 1].arrived && s.arrived < data.stops[i - 1].arrived) throw new Error('Stops must be chronological');
   });
-  const dateLabel = value => new Date(`${value}-01T00:00:00Z`).toLocaleDateString('en-US', {month: 'short', year: 'numeric', timeZone: 'UTC'});
+  const formatter = new Intl.DateTimeFormat('en-US', {month: 'short', year: 'numeric', timeZone: 'UTC'});
+  const dateLabels = new Map();
+  const dateLabel = value => {
+    if (!dateLabels.has(value)) dateLabels.set(value, formatter.format(new Date(`${value}-01T00:00:00Z`)));
+    return dateLabels.get(value);
+  };
   const periodLabel = s => s.arrived ? `${dateLabel(s.arrived)}–${s.current ? 'present' : s.departed ? dateLabel(s.departed) : 'end unknown'}` : s.age_note || 'Dates to add';
   const describe = s => {
     const period = periodLabel(s);
     return `${data.locations[s.location].city} · ${period}${s.note ? ` · ${s.note}` : ''}${s.approximate ? ' (approximate)' : ''}`;
   };
-  const used = [...new Set(data.stops.map(s => s.location))];
+  const byLocation = new Map();
+  const descriptions = new Map();
+  const periods = new Map();
+  let earliestDate = null;
+  data.stops.forEach(stop => {
+    if (!byLocation.has(stop.location)) byLocation.set(stop.location, []);
+    byLocation.get(stop.location).push(stop);
+    descriptions.set(stop.id, describe(stop));
+    periods.set(stop.id, periodLabel(stop));
+    for (const value of [stop.arrived, stop.departed]) {
+      if (value && (!earliestDate || value < earliestDate)) earliestDate = value;
+    }
+  });
+  const used = [...byLocation.keys()];
   const places = used.filter(id => data.locations[id].coordinates).map(id => ({
-    id, ...data.locations[id], status: 'visited', note: data.stops.filter(s => s.location === id).map(periodLabel).join(' / '), stays: data.stops.filter(s => s.location === id).map(describe)
+    id, ...data.locations[id], status: 'visited', note: byLocation.get(id).map(s => periods.get(s.id)).join(' / '), stays: byLocation.get(id).map(s => descriptions.get(s.id))
   }));
   const nextMonth = value => {
     const date = new Date(`${value}-01T00:00:00Z`); date.setUTCMonth(date.getUTCMonth() + 1); return date.toISOString().slice(0, 10);
   };
-  const dated = data.stops.flatMap(s => [s.arrived, s.departed]).filter(Boolean).sort();
-  const rows = used.map(id => ({place_id: data.locations[id].coordinates ? id : null, label: data.locations[id].city.replace(' / Redmond', '').replace(' (city to add)', ''), periods: data.stops.filter(s => s.location === id && (s.arrived || s.departed || s.current)).map(s => ({
+  const rows = used.map(id => ({place_id: data.locations[id].coordinates ? id : null, label: data.locations[id].city.replace(' / Redmond', '').replace(' (city to add)', ''), periods: byLocation.get(id).filter(s => s.arrived || s.departed || s.current).map(s => ({
     start: s.arrived ? `${s.arrived}-01` : null, end: s.departed ? nextMonth(s.departed) : null,
-    current: !!s.current, approximate: !!s.approximate, description: describe(s), end_unknown: !s.departed && !s.current
+    current: !!s.current, approximate: !!s.approximate, description: descriptions.get(s.id), end_unknown: !s.departed && !s.current
   }))})).filter(r => r.periods.length);
   const moves = data.stops.slice(1).map((to, i) => {
     const from = data.stops[i];
@@ -39,6 +56,6 @@ function prepareJourney(data) {
     return {id: `${from.id}--${to.id}`, from: from.location, to: to.location, coordinates: a.coordinates && b.coordinates ? [a.coordinates, b.coordinates] : null,
       label: `${a.city} → ${b.city}`, date: to.arrived ? dateLabel(to.arrived) : to.age_note || 'Date to add', approximate: !!to.approximate, note: to.note};
   });
-  return {places, moves, residence: {start_year: Number(dated[0]?.slice(0, 4)) || 2010, early_life: data.early_life || '', rows}};
+  return {places, moves, residence: {start_year: Number(earliestDate?.slice(0, 4)) || 2010, early_life: data.early_life || '', rows}};
 }
 if (typeof module !== 'undefined') module.exports = {prepareJourney};

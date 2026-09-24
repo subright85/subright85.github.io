@@ -1,0 +1,26 @@
+const assert = require('node:assert/strict');
+const {createFrameScheduler} = require('../render-utils');
+let nextId = 0;
+const queue = new Map();
+const request = callback => { queue.set(++nextId, callback); return nextId; };
+const cancel = id => queue.delete(id);
+const frame = () => {
+  const callbacks = [...queue.values()]; queue.clear(); callbacks.forEach(callback => callback());
+};
+const rendered = [];
+const scheduler = createFrameScheduler(value => rendered.push(value), request, cancel);
+for (let i = 0; i < 100; i++) scheduler.schedule(i);
+assert.equal(queue.size, 1, 'Input bursts must request only one animation frame');
+assert.deepEqual(rendered, [], 'Rendering must wait for the frame');
+frame();
+assert.deepEqual(rendered, [99], 'The newest input must win');
+scheduler.schedule('cancelled'); scheduler.cancel(); frame();
+assert.deepEqual(rendered, [99], 'Cancelled work must not render');
+scheduler.schedule('resumed'); frame();
+assert.deepEqual(rendered, [99, 'resumed']);
+let reentrant;
+reentrant = createFrameScheduler(value => { if (value === 1) reentrant.schedule(2); rendered.push(value); }, request, cancel);
+reentrant.schedule(1); frame();
+assert.equal(queue.size, 1, 'Updates during rendering must schedule the next frame');
+frame(); assert.deepEqual(rendered.slice(-2), [1, 2]);
+console.log('Rendering checks passed: 100 input events coalesce into one render; latest state, cancellation, and subsequent frames preserved.');
