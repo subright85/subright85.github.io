@@ -28,6 +28,8 @@ After editing the template or publication data, run `python3 scripts/build.py` a
 
 ## Map implementation
 
+The Places residence timeline uses an uncompressed linear time scale, independent of the compressed career chart on the home page.
+
 The globe uses a small, precomputed tile map (`assets/maps/land-game.json`) generated from Natural Earth. Terrain colors are stylized. Regenerate it with `node scripts/build-game-map.cjs`; TopoJSON conversion runs only in that build script, not in visitors’ browsers.
 
 Globe updates are batched once per animation frame. Route interpolation and data formatting are cached, and the timeline retains its SVG elements when resized. No animation runs while the map is idle.

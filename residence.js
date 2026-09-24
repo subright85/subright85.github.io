@@ -6,20 +6,10 @@ function renderResidenceTimeline(data, selectPlace) {
   const startYear = data.start_year || 2010;
   const start = new Date(Date.UTC(startYear, 0, 1));
   const end = new Date();
-  const compression = new Date('2017-01-01T00:00:00Z');
-  const earlyCompression = new Date('2010-01-01T00:00:00Z');
-  const compressionLabel = startYear < 2010 ? 'Time compressed before 2010 & after 2017' : 'Time compressed after 2017';
-  document.querySelector('.residence-footer span').textContent = `// ${compressionLabel}`;
-  svg.attr('aria-label', `Residence timeline. ${compressionLabel}.`);
+  svg.attr('aria-label', 'Residence timeline. Linear time scale: equal distances represent equal durations.');
   const time = value => new Date(value + 'T00:00:00Z');
-  const weighted = date => {
-    const early = Math.max(0, Math.min(+date, +earlyCompression) - +start) * .25;
-    const middle = Math.max(0, Math.min(+date, +compression) - Math.max(+start, +earlyCompression));
-    const late = Math.max(0, +date - +compression) * .35;
-    return early + middle + late;
-  };
-  const total = weighted(end) || 1;
-  const fraction = date => weighted(date) / total;
+  const total = end - start || 1;
+  const fraction = date => (date - start) / total;
   const height = data.rows.length * 29 + 41;
   svg.attr('height', height);
   const positionUpdates = [];
@@ -32,14 +22,15 @@ function renderResidenceTimeline(data, selectPlace) {
   });
 
   // Build once; resizing preserves elements, listeners, and keyboard focus.
-  const tickYears = [...new Set([startYear, 2010, 2015])].filter(year => year >= startYear && year <= end.getUTCFullYear());
+  const tickYears = [startYear];
+  for (let year = Math.floor(startYear / 5) * 5 + 5; year <= end.getUTCFullYear(); year += 5) tickYears.push(year);
   const ticks = tickYears.map(year => {
     const f = fraction(new Date(Date.UTC(year, 0, 1)));
     const group = svg.append('g');
     const line = group.append('line').attr('class', 'residence-grid').attr('y1', 24).attr('y2', height - 8);
     at(line, 'x1', f); at(line, 'x2', f);
     at(group.append('text').attr('class', 'residence-tick').attr('y', 13).text(year), 'x', f);
-    return {year, group};
+    return {fraction: f, group};
   });
   at(svg.append('text').attr('class', 'residence-tick').attr('y', 13).attr('text-anchor', 'end').text('Now'), 'x', 1);
   data.rows.forEach((row, i) => {
@@ -58,27 +49,26 @@ function renderResidenceTimeline(data, selectPlace) {
       const bar = at(group.append('rect').attr('class', `residence-bar${period.current ? ' current' : ''}${period.approximate ? ' approximate' : ''}`).attr('y', y).attr('height', 5).attr('rx', 2), 'x', fromFraction);
       positionUpdates.push((left, span) => {
         hit.attr('width', Math.max(12, length * span + 8));
-        bar.attr('width', Math.max(2, length * span));
+        bar.attr('width', length > 0 ? length * span : 2);
       });
       group.append('title').text(description);
       activate(group, () => { detail.textContent = description; if (row.place_id) selectPlace(row.place_id); });
       if (!period.start) at(group.append('text').attr('class', 'residence-break').attr('y', y + 7).text('‹'), 'x', 0, -7);
-      if (period.current && from <= compression) {
-        const f = fraction(compression);
-        at(group.append('rect').attr('y', y - 3).attr('width', 13).attr('height', 12).attr('fill', 'var(--bg)'), 'x', f, -4);
-        at(group.append('text').attr('class', 'residence-break').attr('y', y + 7).text('//'), 'x', f, -3);
-      }
     });
   });
-  if (compression >= start && compression <= end) at(svg.append('text').attr('class', 'residence-tick').attr('y', 13).text('//'), 'x', fraction(compression));
-  if (startYear < 2010) at(svg.append('text').attr('class', 'residence-tick').attr('y', 13).text('//'), 'x', fraction(earlyCompression), 27);
   let lastWidth = 0;
   const renderer = createFrameScheduler(width => {
     if (!width || width === lastWidth) return;
     lastWidth = width;
     const left = width < 450 ? 72 : 95;
     svg.attr('viewBox', `0 0 ${width} ${height}`);
-    ticks.forEach(({year, group}) => group.attr('display', width < 450 && year !== startYear && year !== 2015 ? 'none' : null));
+    let previousTick = -Infinity;
+    ticks.forEach(({fraction, group}, index) => {
+      const x = left + fraction * (width - 12 - left);
+      const visible = index === 0 || (x - previousTick >= 55 && width - 12 - x >= 45);
+      group.attr('display', visible ? null : 'none');
+      if (visible) previousTick = x;
+    });
     positionUpdates.forEach(update => update(left, width - 12 - left));
   });
   const observer = new ResizeObserver(entries => renderer.schedule(entries[0].contentRect.width));

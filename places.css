@@ -2,6 +2,12 @@
 .places-page h2 { margin: 0; }
 .places-intro { color: var(--muted); font-size: 14px; margin: 7px 0 20px; }
 .residence-section { padding: 10px 0 24px; border-bottom: 1px solid var(--line); }
+.residence-disclosure summary { display: flex; align-items: center; justify-content: space-between; cursor: pointer; list-style: none; }
+.residence-disclosure summary::-webkit-details-marker { display: none; }
+.residence-disclosure summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
+.residence-disclosure summary span { font-size: 11px; color: var(--accent); }
+.residence-disclosure .residence-collapse, .residence-disclosure[open] .residence-expand { display: none; }
+.residence-disclosure[open] .residence-collapse { display: inline; }
 .residence-section h3 { font-size: 14px; margin: 0; }
 #residence-earlier { font-size: 12px; color: var(--muted); margin: 6px 0 18px; }
 #residence-chart svg { width: 100%; display: block; overflow: visible; }
@@ -17,30 +23,29 @@
 .residence-break { fill: var(--accent); font-size: 12px; }
 .residence-footer { display: flex; justify-content: space-between; gap: 20px; font-size: 10px; color: var(--muted); }
 .residence-footer p { margin: 0; }
-.residence-footer span { flex-shrink: 0; }
 @media (max-width: 500px) { .residence-footer { flex-wrap: wrap; gap: 5px; } }
 .places-layout { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 32px; align-items: start; }
 .globe-panel { min-width: 0; }
 #globe { width: 100%; display: block; cursor: grab; touch-action: none; }
 #globe:active { cursor: grabbing; }
 #globe:focus-visible, .places-page button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-.ocean { fill: url(#ocean-color); stroke: #087bc4; stroke-width: 1.5; }
-.land { fill: #65ce38; stroke: #389c38; stroke-width: .35; stroke-linejoin: bevel; }
-.terrain-north { fill: #a2dd45; }
-.terrain-tropical { fill: #18b86b; }
-.terrain-sand { fill: #ffc64c; stroke: #dda132; }
-.terrain-polar { fill: #f0fbff; stroke: #aedeea; }
-.graticule { fill: none; stroke: #087bb5; stroke-width: .7; opacity: .25; }
+.ocean { fill: url(#ocean-color); stroke: #237aab; stroke-width: 1.5; }
+.land { fill: #65b873; stroke: #489668; stroke-width: .35; stroke-linejoin: bevel; }
+.terrain-north { fill: #9cc783; }
+.terrain-tropical { fill: #269b78; }
+.terrain-sand { fill: #e9ba71; stroke: #c9a15f; }
+.terrain-polar { fill: #f0f6f2; stroke: #cadfdf; }
+.graticule { fill: none; stroke: #287b9f; stroke-width: .7; opacity: .25; }
 .place-marker { cursor: pointer; }
 .pin-hit { fill: transparent; stroke: none; }
-.pin-body { fill: #ec168e; stroke: #fffaf2; stroke-width: 2; paint-order: stroke fill; }
+.pin-body { fill: #db187f; stroke: #fffaf2; stroke-width: 2; paint-order: stroke fill; }
 .pin-center { fill: white; stroke: none; }
 .place-marker.conference .pin-body { fill: var(--bg); stroke: #817787; }
 .place-marker.conference .pin-center { fill: #817787; }
 .place-marker.selected .pin-body, .place-marker:focus-visible .pin-body { stroke: #302630; stroke-width: 3; }
-.journey-route { fill: none; stroke: #d90083; stroke-width: 1.8; opacity: .72; pointer-events: none; }
+.journey-route { fill: none; stroke: #bd146f; stroke-width: 1.8; opacity: .72; pointer-events: none; }
 .journey-route.active { stroke-width: 3; opacity: 1; }
-.journey-arrow { fill: #d90083; opacity: .8; pointer-events: none; }
+.journey-arrow { fill: #bd146f; opacity: .8; pointer-events: none; }
 .journey-arrow.active { opacity: 1; }
 .journey-controls { display: flex; align-items: center; gap: 8px; margin-top: 12px; }
 .journey-controls label { font-size: 12px; }

@@ -4,8 +4,8 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Places · Sungchul Kim</title>
 <meta name="description" content="Places in Sungchul Kim's life and research.">
-<link rel="icon" href="assets/favicon.svg?v=3"><link rel="stylesheet" href="style.css?v=9"><link rel="stylesheet" href="places.css?v=6">
-<script src="assets/vendor/d3.v7.min.js" defer></script><script src="render-utils.js?v=1" defer></script><script src="journey.js?v=2" defer></script><script src="residence.js?v=3" defer></script><script src="places.js?v=6" defer></script>
+<link rel="icon" href="assets/favicon.svg?v=3"><link rel="stylesheet" href="style.css?v=9"><link rel="stylesheet" href="places.css?v=7">
+<script src="assets/vendor/d3.v7.min.js" defer></script><script src="render-utils.js?v=1" defer></script><script src="journey.js?v=2" defer></script><script src="residence.js?v=4" defer></script><script src="places.js?v=7" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -13,10 +13,12 @@
 <main id="main" class="page places-page">
 <h2>Places</h2><p class="places-intro">From Incheon to San Jose.</p>
 <section class="residence-section" aria-labelledby="residence-title">
-<h3 id="residence-title">Where I’ve lived</h3>
+<details class="residence-disclosure" open>
+<summary><h3 id="residence-title">Where I’ve lived</h3><span class="residence-collapse">Collapse</span><span class="residence-expand">Expand</span></summary>
 <p id="residence-earlier">Incheon · birth–age 19 → Pohang · age 19–Aug 2015</p>
 <div id="residence-chart"></div>
-<div class="residence-footer"><p id="residence-detail" role="status" aria-live="polite">Select a stay to explore the place.</p><span>// Time compressed after 2017</span></div>
+<div class="residence-footer"><p id="residence-detail" role="status" aria-live="polite">Select a stay to explore the place.</p></div>
+</details>
 </section>
 <div class="places-layout">
 <section class="globe-panel" aria-label="Interactive globe">
