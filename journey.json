@@ -1,7 +1,7 @@
 {
   "format_version": 1,
   "instructions": "Edit locations and stops below. Stops are in travel order, including return visits. Dates are YYYY-MM; departed includes that month. Use null for unknown dates or coordinates. current:true marks your current stay. See JOURNEY.md.",
-  "early_life": "Incheon · birth–age 19 → Pohang · age 19–Aug 2015",
+  "early_life": "Incheon 1985–2004 → Pohang 2004–2015, with internships abroad",
   "locations": {
     "incheon": {
       "city": "Incheon",
@@ -53,22 +53,24 @@
     {
       "id": "incheon-childhood",
       "location": "incheon",
-      "arrived": null,
-      "departed": null,
+      "arrived": "1985-01",
+      "departed": "2003-12",
       "age_note": "Birth–age 19",
-      "note": "Grew up in Incheon",
+      "note": "Grew up in Incheon · years confirmed; month boundaries approximate",
       "current": false,
-      "approximate": false
+      "approximate": true,
+      "period_label": "1985–2004"
     },
     {
       "id": "pohang-study",
       "location": "pohang",
-      "arrived": null,
+      "arrived": "2004-01",
       "departed": "2010-08",
       "age_note": "From age 19",
-      "note": "POSTECH, before internships abroad",
+      "note": "POSTECH, before internships abroad · arrival year confirmed; month approximate",
       "current": false,
-      "approximate": false
+      "approximate": true,
+      "period_label": "2004–Aug 2010"
     },
     {
       "id": "beijing-intern",

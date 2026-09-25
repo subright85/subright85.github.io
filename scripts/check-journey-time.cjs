@@ -1,7 +1,7 @@
 const assert = require('node:assert/strict');
 const {journeyAtMonth} = require('../journey.js');
 const journey = require('../journey.json');
-for (const [month, city] of [['2010-01', 'Pohang'], ['2010-09', 'Beijing'], ['2011-05', 'Beijing'], ['2011-06', 'Seattle / Redmond'], ['2011-09', 'Pohang'], ['2015-08', 'San Jose'], ['2016-03', 'Korea (city to add)'], ['2016-07', 'San Jose']]) {
+for (const [month, city] of [['1985-01', 'Incheon'], ['2003-12', 'Incheon'], ['2004-01', 'Pohang'], ['2010-01', 'Pohang'], ['2010-09', 'Beijing'], ['2011-05', 'Beijing'], ['2011-06', 'Seattle / Redmond'], ['2011-09', 'Pohang'], ['2015-08', 'San Jose'], ['2016-03', 'Korea (city to add)'], ['2016-07', 'San Jose']]) {
   const state = journeyAtMonth(journey, month);
   assert.equal(journey.locations[state.active.location].city, city, month);
   assert(state.visited.has(state.active.location));

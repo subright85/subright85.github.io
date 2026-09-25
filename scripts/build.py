@@ -23,6 +23,9 @@ for year, entries in groups.items():
         markers = ['Click, Type, Repeat: A Comprehensive Survey on GUI Agents', 'From Selection to Generation: A Survey of LLM-based Active Learning', 'On Proximity and Structural Role-based Embeddings in Networks: Misconceptions, Techniques, and Applications', 'EXACTA: Explainable Column Annotation']
         title = next((title for title in markers if citation.startswith(title)), citation.split(', ', 1)[0])
         rest = citation[len(title):].lstrip(' ,.')
+        author_prefix = re.split(r'Sungch[u]?l\s+Kim', rest, maxsplit=1)[0]
+        author_rank = author_prefix.count(',') + 1
+        selected = not re.search(r'\bsurvey\b', title, re.I) and author_rank <= 5
         rest = re.sub(r'Sungchul\s+Kim', '<strong>Sungchul Kim</strong>', escape(rest))
         links = ''.join(f'<a class="paper-link" href="{escape(link["url"], quote=True)}">Read paper ↗</a>' for link in paper['links'])
         source_year = escape(paper['year'])
@@ -30,7 +33,7 @@ for year, entries in groups.items():
         thumbnail = ''
         if paper.get('image'):
             thumbnail = f'<a class="paper-thumbnail" href="{escape(paper["links"][0]["url"], quote=True)}" aria-label="Read {escape(title, quote=True)}"><img src="{escape(paper["image"], quote=True)}" alt="{escape(paper["image_alt"], quote=True)}" width="1536" height="1024" loading="lazy"></a>'
-        items.append(f'<li class="paper{" paper-illustrated" if thumbnail else ""}" data-year="{source_year}">{thumbnail}<div class="paper-copy"><h3>{escape(title)}</h3><p>{year_label}{rest}</p>{links}</div></li>')
+        items.append(f'<li class="paper{" paper-illustrated" if thumbnail else ""}" data-year="{source_year}" data-selected="{str(selected).lower()}">{thumbnail}<div class="paper-copy"><h3>{escape(title)}</h3><p>{year_label}{rest}</p>{links}</div></li>')
     opened = ' open' if year == recent_years[0] else ''
     blocks.append(f'<details class="year-group" data-year="{escape(year)}"{opened}><summary>{escape(year)} <span class="count">{len(entries)} papers</span><span class="plus" aria-hidden="true">+</span></summary><ol class="papers">{"".join(items)}</ol></details>')
 template = (ROOT / 'index.template.html').read_text()

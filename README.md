@@ -16,7 +16,7 @@ Open http://localhost:8000. No Node packages or build service are required.
 - Publications: `publications.json` (newest year first; original full citations preserved). The build shows the latest three years separately and combines all earlier entries into Older, retaining individual years for search.
 - Career timeline: `scripts/career.py` generates a compact chart with date-proportional bars. Education, internships, and industry share one horizontal scale; years after 2017 are compressed to 35% of the earlier scale, with a visible break. Full dates and mentor information remain in `index.template.html`. Rebuilding updates the present-day endpoint.
 - Design: `style.css`
-- Search: `script.js`
+- Search and Selected / All publications: `script.js`. Selected excludes Survey titles and papers where Sungchul Kim is sixth author or later; `scripts/build.py` derives rank from the citation author list.
 - Photos: `photos.json` lists carousel images, alt text, dimensions, and framing. Add photos to `assets/`, then rebuild. Arrows, dots, keyboard navigation, and swiping activate when two or more photos are listed. No autoplay.
 - Journey, residence timeline, and globe routes: edit `journey.json`. See `JOURNEY.md` for the field guide and a sample entry. The ordered stays drive all three automatically, including return visits. Validate with `node scripts/check-journey.cjs`. No rebuild required for journey edits.
 - Conference candidates: `places.json` is separate from confirmed journey stops.
@@ -28,7 +28,7 @@ After editing the template or publication data, run `python3 scripts/build.py` a
 
 ## Map implementation
 
-The Places residence timeline uses an uncompressed linear time scale, independent of the compressed career chart on the home page.
+The Places residence timeline starts with a linear scale. Compact time / Expand time changes the graph scale without hiding the chart. Compact mode compresses before 2010 and after 2017, with an explicit scale note.
 
 The globe uses a small, precomputed tile map (`assets/maps/land-game.json`) generated from Natural Earth. Terrain colors are stylized. Regenerate it with `node scripts/build-game-map.cjs`; TopoJSON conversion runs only in that build script, not in visitors’ browsers.
 

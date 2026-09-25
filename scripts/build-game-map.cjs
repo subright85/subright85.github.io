@@ -7,7 +7,7 @@ const root = path.join(__dirname, '..');
 const world = JSON.parse(fs.readFileSync(path.join(root, 'assets/maps/countries-110m.json')));
 const land = topojson.merge(world, world.objects.countries.geometries);
 const groups = new Map();
-const step = 6;
+const step = 4;
 for (let lat = -90; lat < 90; lat += step) {
   for (let lon = -180; lon < 180; lon += step) {
     const center = [lon + step / 2, lat + step / 2];

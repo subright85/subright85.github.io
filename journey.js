@@ -21,7 +21,7 @@ function prepareJourney(data) {
     if (!dateLabels.has(value)) dateLabels.set(value, formatter.format(new Date(`${value}-01T00:00:00Z`)));
     return dateLabels.get(value);
   };
-  const periodLabel = s => s.arrived ? `${dateLabel(s.arrived)}–${s.current ? 'present' : s.departed ? dateLabel(s.departed) : 'end unknown'}` : s.age_note || 'Dates to add';
+  const periodLabel = s => s.period_label || (s.arrived ? `${dateLabel(s.arrived)}–${s.current ? 'present' : s.departed ? dateLabel(s.departed) : 'end unknown'}` : s.age_note || 'Dates to add');
   const describe = s => {
     const period = periodLabel(s);
     return `${data.locations[s.location].city} · ${period}${s.note ? ` · ${s.note}` : ''}${s.approximate ? ' (approximate)' : ''}`;
@@ -46,10 +46,10 @@ function prepareJourney(data) {
   const nextMonth = value => {
     const date = new Date(`${value}-01T00:00:00Z`); date.setUTCMonth(date.getUTCMonth() + 1); return date.toISOString().slice(0, 10);
   };
-  const rows = used.map(id => ({place_id: data.locations[id].coordinates ? id : null, label: data.locations[id].city.replace(' / Redmond', '').replace(' (city to add)', ''), periods: byLocation.get(id).filter(s => s.arrived || s.departed || s.current).map(s => ({
+  const rows = used.map(id => ({date_note: byLocation.get(id).filter(s => !s.arrived && !s.departed && !s.current).map(s => `${s.age_note || 'Dates unknown'} · years to add`).join(' / '), place_id: data.locations[id].coordinates ? id : null, label: data.locations[id].city.replace(' / Redmond', '').replace(' (city to add)', ''), periods: byLocation.get(id).filter(s => s.arrived || s.departed || s.current).map(s => ({
     start: s.arrived ? `${s.arrived}-01` : null, end: s.departed ? nextMonth(s.departed) : null,
     current: !!s.current, approximate: !!s.approximate, description: descriptions.get(s.id), end_unknown: !s.departed && !s.current
-  }))})).filter(r => r.periods.length);
+  }))})).filter(r => r.periods.length || r.date_note);
   const moves = data.stops.slice(1).map((to, i) => {
     const from = data.stops[i];
     const a = data.locations[from.location], b = data.locations[to.location];

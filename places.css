@@ -2,12 +2,6 @@
 .places-page h2 { margin: 0; }
 .places-intro { color: var(--muted); font-size: 14px; margin: 7px 0 20px; }
 .residence-section { padding: 10px 0 24px; border-bottom: 1px solid var(--line); }
-.residence-disclosure summary { display: flex; align-items: center; justify-content: space-between; cursor: pointer; list-style: none; }
-.residence-disclosure summary::-webkit-details-marker { display: none; }
-.residence-disclosure summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
-.residence-disclosure summary span { font-size: 11px; color: var(--accent); }
-.residence-disclosure .residence-collapse, .residence-disclosure[open] .residence-expand { display: none; }
-.residence-disclosure[open] .residence-collapse { display: inline; }
 .residence-section h3 { font-size: 14px; margin: 0; }
 #residence-earlier { font-size: 12px; color: var(--muted); margin: 6px 0 18px; }
 #residence-chart svg { width: 100%; display: block; overflow: visible; }
@@ -30,12 +24,12 @@
 #globe:active { cursor: grabbing; }
 #globe:focus-visible, .places-page button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .ocean { fill: url(#ocean-color); stroke: #237aab; stroke-width: 1.5; }
-.land { fill: #65b873; stroke: #489668; stroke-width: .35; stroke-linejoin: bevel; }
+.land { fill: #65b873; stroke: #489668; stroke-width: .22; stroke-linejoin: round; }
 .terrain-north { fill: #9cc783; }
 .terrain-tropical { fill: #269b78; }
 .terrain-sand { fill: #e9ba71; stroke: #c9a15f; }
 .terrain-polar { fill: #f0f6f2; stroke: #cadfdf; }
-.graticule { fill: none; stroke: #287b9f; stroke-width: .7; opacity: .25; }
+.graticule { fill: none; stroke: #287b9f; stroke-width: .55; opacity: .17; }
 .place-marker { cursor: pointer; }
 .pin-hit { fill: transparent; stroke: none; }
 .pin-body { fill: #db187f; stroke: #fffaf2; stroke-width: 2; paint-order: stroke fill; }
@@ -76,3 +70,8 @@
 .journey-time button { font: inherit; color: var(--accent); background: transparent; border: 1px solid var(--line); border-radius: 4px; padding: 5px 9px; cursor: pointer; }
 .residence-cursor { stroke: var(--accent); stroke-width: 1.5; pointer-events: none; }
 .globe-controls { flex-wrap: wrap; }
+
+.residence-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.residence-heading button { font: inherit; font-size: 11px; color: var(--accent); background: #f6edf3; border: 1px solid var(--line); border-radius: 5px; padding: 5px 10px; cursor: pointer; }
+.residence-undated { fill: var(--muted); font-size: 10px; }
+#residence-scale-note { text-align: right; }

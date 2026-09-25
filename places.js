@@ -2,9 +2,9 @@ async function initializeGlobe() {
   const status = document.querySelector('#globe-status');
   try {
     const [world, savedPlaces, journey] = await Promise.all([
-      fetch('assets/maps/land-game.json').then(r => { if (!r.ok) throw new Error('Map unavailable'); return r.json(); }),
-      fetch('places.json').then(r => { if (!r.ok) throw new Error('Places unavailable'); return r.json(); }),
-      fetch('journey.json').then(r => { if (!r.ok) throw new Error('Journey unavailable'); return r.json(); })
+      fetch('assets/maps/land-game.json?v=2').then(r => { if (!r.ok) throw new Error('Map unavailable'); return r.json(); }),
+      fetch('places.json?v=2').then(r => { if (!r.ok) throw new Error('Places unavailable'); return r.json(); }),
+      fetch('journey.json?v=2').then(r => { if (!r.ok) throw new Error('Journey unavailable'); return r.json(); })
     ]);
     const {places: journeyPlaces, residence, moves} = prepareJourney(journey);
     const places = [...journeyPlaces, ...savedPlaces.filter(p => p.status === 'conference')];
@@ -26,7 +26,7 @@ async function initializeGlobe() {
     gradient.append('stop').attr('offset', '0%').attr('stop-color', '#65cbd9');
     gradient.append('stop').attr('offset', '100%').attr('stop-color', '#246da9');
     svg.append('path').datum({type: 'Sphere'}).attr('class', 'ocean');
-    svg.append('path').datum(d3.geoGraticule().step([30, 30])()).attr('class', 'graticule');
+    svg.append('path').datum(d3.geoGraticule().step([15, 15])()).attr('class', 'graticule');
     svg.append('g').selectAll('path').data(world.features).join('path').attr('class', feature => `land terrain-${feature.properties.terrain}`);
     const routes = svg.append('g').attr('class', 'journey-routes').selectAll('path').data(drawableMoves).join('path')
       .attr('class', 'journey-route')

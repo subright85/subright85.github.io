@@ -10,11 +10,18 @@ function renderResidenceTimeline(data, selectPlace) {
   const time = value => new Date(value + 'T00:00:00Z');
   const total = end - start || 1;
   const fraction = date => (date - start) / total;
+  let compact = false;
+  const scaleButton = document.querySelector('#residence-scale');
+  const scaleNote = document.querySelector('#residence-scale-note');
+  const early = Math.max(0, Math.min(1, fraction(new Date('2010-01-01T00:00:00Z'))));
+  const late = Math.max(early, Math.min(1, fraction(new Date('2017-01-01T00:00:00Z'))));
+  const weight = f => Math.min(f, early) * .25 + Math.max(0, Math.min(f, late) - early) + Math.max(0, f - late) * .35;
+  const scaled = f => compact ? weight(f) / weight(1) : f;
   const height = data.rows.length * 29 + 41;
   svg.attr('height', height);
   const positionUpdates = [];
   const at = (selection, attribute, value, offset = 0) => {
-    positionUpdates.push((left, span) => selection.attr(attribute, left + value * span + offset));
+    positionUpdates.push((left, span) => selection.attr(attribute, left + scaled(value) * span + offset));
     return selection;
   };
   const activate = (selection, handler) => selection.on('click', handler).on('keydown', event => {
@@ -37,6 +44,7 @@ function renderResidenceTimeline(data, selectPlace) {
     const y = 37 + i * 29;
     const label = svg.append('text').attr('class', 'residence-label').attr('x', 0).attr('y', y + 4).text(row.label);
     if (row.place_id) activate(label.attr('role', 'button').attr('tabindex', 0).attr('aria-label', `Show ${row.label} on the globe`), () => selectPlace(row.place_id));
+    if (row.date_note) at(svg.append('text').attr('class', 'residence-undated').attr('y', y + 4).text(row.date_note), 'x', 0);
     row.periods.forEach(period => {
       const from = period.start ? time(period.start) : start;
       const to = period.end ? time(period.end) : period.current ? end : from;
@@ -48,8 +56,9 @@ function renderResidenceTimeline(data, selectPlace) {
       const hit = at(group.append('rect').attr('class', 'residence-hit').attr('y', y - 10).attr('height', 24), 'x', fromFraction, -4);
       const bar = at(group.append('rect').attr('class', `residence-bar${period.current ? ' current' : ''}${period.approximate ? ' approximate' : ''}`).attr('y', y).attr('height', 5).attr('rx', 2), 'x', fromFraction);
       positionUpdates.push((left, span) => {
-        hit.attr('width', Math.max(12, length * span + 8));
-        bar.attr('width', length > 0 ? length * span : 2);
+        const pixels = (scaled(fromFraction + length) - scaled(fromFraction)) * span;
+        hit.attr('width', Math.max(12, pixels + 8));
+        bar.attr('width', length > 0 ? pixels : 2);
       });
       group.append('title').text(description);
       activate(group, () => { detail.textContent = description; if (row.place_id) selectPlace(row.place_id); });
@@ -60,7 +69,7 @@ function renderResidenceTimeline(data, selectPlace) {
   let cursorDate = null;
   function updateCursor() {
     const left = lastWidth < 450 ? 72 : 95;
-    const x = left + fraction(cursorDate) * (lastWidth - 12 - left);
+    const x = left + scaled(fraction(cursorDate)) * (lastWidth - 12 - left);
     cursor.attr('x1', x).attr('x2', x).attr('display', cursorDate ? null : 'none');
   }
   let lastWidth = 0;
@@ -71,7 +80,7 @@ function renderResidenceTimeline(data, selectPlace) {
     svg.attr('viewBox', `0 0 ${width} ${height}`);
     let previousTick = -Infinity;
     ticks.forEach(({fraction, group}, index) => {
-      const x = left + fraction * (width - 12 - left);
+      const x = left + scaled(fraction) * (width - 12 - left);
       const visible = index === 0 || (x - previousTick >= 55 && width - 12 - x >= 45);
       group.attr('display', visible ? null : 'none');
       if (visible) previousTick = x;
@@ -79,11 +88,21 @@ function renderResidenceTimeline(data, selectPlace) {
     positionUpdates.forEach(update => update(left, width - 12 - left));
     updateCursor();
   });
+  function toggleScale() {
+    compact = !compact;
+    scaleButton.textContent = compact ? 'Expand time' : 'Compact time';
+    scaleButton.setAttribute('aria-pressed', String(compact));
+    scaleNote.textContent = compact ? `${early > 0 ? 'Before 2010 ×¼ · ' : ''}After 2017 ×0.35` : 'Linear time scale';
+    svg.attr('aria-label', compact ? `Residence timeline. Compressed time scale. ${scaleNote.textContent}` : 'Residence timeline. Linear time scale: equal distances represent equal durations.');
+    lastWidth = 0;
+    renderer.schedule(container.clientWidth);
+  }
+  scaleButton.addEventListener('click', toggleScale);
   const observer = new ResizeObserver(entries => renderer.schedule(entries[0].contentRect.width));
   observer.observe(container);
   renderer.schedule(container.clientWidth);
   return {
     setDate(date) { cursorDate = date; updateCursor(); },
-    destroy() { observer.disconnect(); renderer.cancel(); svg.remove(); }
+    destroy() { scaleButton.removeEventListener('click', toggleScale); observer.disconnect(); renderer.cancel(); svg.remove(); }
   };
 }

@@ -38,6 +38,7 @@ The example is illustrative; it is not included in your actual journey.
 | `id` | Unique name for this stay. |
 | `location` | A key from `locations`. |
 | `arrived`, `departed` | `YYYY-MM`, or `null` if unknown. Departure includes that entire month. |
+| `period_label` | Optional display label when years are confirmed but month boundaries are approximate. |
 | `age_note` | Optional age-based label, e.g. `Birth–age 19`. |
 | `note` | Your own description. |
 | `current` | `true` only for the final stay where you live now; leave `departed` as `null`. |
@@ -45,7 +46,7 @@ The example is illustrative; it is not included in your actual journey.
 
 When adding a new current home, fill the prior home's departure month and change its `current` to `false`. Unknown historical end dates do **not** count as ongoing residence. Stays with neither date are retained in the route but cannot yet have a duration bar.
 
-The initial file preserves your eight known stays, including repeat stays in Pohang and San Jose. Incheon/Pohang's early dates and the early-2016 Korean city remain blank. Fill those when ready; do not infer a calendar year from age without confirming it.
+The initial file preserves your eight known stays, including repeat stays in Pohang and San Jose. Incheon is confirmed as 1985–2004, with Pohang starting in 2004. January boundaries are approximate placeholders for those year-only dates; `period_label` preserves the confirmed year ranges. The early-2016 Korean city remains unknown.
 
 `early_life` is the short sentence above the chart; update it when changing the early history. Conference candidates remain separately in `places.json` and never become journey stops automatically.
 

@@ -30,21 +30,6 @@
     "paper_source": null
   },
   {
-    "id": "montreal",
-    "city": "Montréal",
-    "country": "Canada",
-    "coordinates": [
-      -73.5673,
-      45.5017
-    ],
-    "status": "conference",
-    "note": "WWW 2016",
-    "author_role": "first",
-    "paper": "Purchase Intention Mining by Leveraging Item-Item Relationship",
-    "venue_source": "https://www2016.uqam.ca/",
-    "paper_source": "https://www2016.uqam.ca/fichier/document/programBook/www2016_Program_Book.pdf"
-  },
-  {
     "id": "jeju",
     "city": "Jeju",
     "country": "South Korea",
