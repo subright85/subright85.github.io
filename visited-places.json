@@ -1,0 +1,415 @@
+[
+  {
+    "id": "place-2bc2ae88f4",
+    "city": "Niagara Falls",
+    "country": "Canada",
+    "country_code": "CA",
+    "coordinates": [
+      -79.0849,
+      43.0896
+    ],
+    "status": "travel"
+  },
+  {
+    "id": "place-bfc0692a2f",
+    "city": "Toronto",
+    "country": "Canada",
+    "country_code": "CA",
+    "coordinates": [
+      -79.3832,
+      43.6532
+    ],
+    "status": "visit"
+  },
+  {
+    "id": "place-e6f83f779e",
+    "city": "Beijing",
+    "country": "China",
+    "coordinates": [
+      116.4074,
+      39.9042
+    ],
+    "status": "visited"
+  },
+  {
+    "id": "place-4bd6a4b268",
+    "city": "Hong Kong",
+    "country": "China",
+    "country_code": "CN",
+    "coordinates": [
+      114.1694,
+      22.3193
+    ],
+    "status": "visit"
+  },
+  {
+    "id": "place-b0d443c893",
+    "city": "Qingdao",
+    "country": "China",
+    "country_code": "CN",
+    "coordinates": [
+      120.3826,
+      36.0671
+    ],
+    "status": "travel"
+  },
+  {
+    "id": "place-240e4590a6",
+    "city": "Shanghai",
+    "country": "China",
+    "country_code": "CN",
+    "coordinates": [
+      121.4737,
+      31.2304
+    ],
+    "status": "travel"
+  },
+  {
+    "id": "place-bf42d05461",
+    "city": "Kota Kinabalu",
+    "country": "Malaysia",
+    "country_code": "MY",
+    "coordinates": [
+      116.0735,
+      5.9804
+    ],
+    "status": "visit"
+  },
+  {
+    "id": "place-1f1f164d1a",
+    "city": "Maldives",
+    "country": "Maldives",
+    "country_code": "MV",
+    "coordinates": [
+      73.22,
+      3.2
+    ],
+    "status": "travel"
+  },
+  {
+    "id": "place-a22592fb4f",
+    "city": "Los Cabos",
+    "country": "Mexico",
+    "country_code": "MX",
+    "coordinates": [
+      -109.7,
+      23
+    ],
+    "status": "travel"
+  },
+  {
+    "id": "place-15113e592c",
+    "city": "Singapore",
+    "country": "Singapore",
+    "country_code": "SG",
+    "coordinates": [
+      103.8198,
+      1.3521
+    ],
+    "status": "travel"
+  },
+  {
+    "id": "place-afb8ac64e4",
+    "city": "Incheon",
+    "country": "South Korea",
+    "coordinates": [
+      126.7052,
+      37.4563
+    ],
+    "status": "visited"
+  },
+  {
+    "id": "place-389ab4b5c1",
+    "city": "Pohang",
+    "country": "South Korea",
+    "coordinates": [
+      129.3435,
+      36.019
+    ],
+    "status": "visited"
+  },
+  {
+    "id": "place-81c529b17c",
+    "city": "Seoul",
+    "country": "South Korea",
+    "country_code": "KR",
+    "coordinates": [
+      126.978,
+      37.5665
+    ],
+    "status": "visit"
+  },
+  {
+    "id": "place-a5b05de724",
+    "city": "Barcelona",
+    "country": "Spain",
+    "country_code": "ES",
+    "coordinates": [
+      2.1734,
+      41.3851
+    ],
+    "status": "visit"
+  },
+  {
+    "id": "place-ff5145bc51",
+    "city": "Girona",
+    "country": "Spain",
+    "country_code": "ES",
+    "coordinates": [
+      2.8214,
+      41.9794
+    ],
+    "status": "travel"
+  },
+  {
+    "id": "place-9770186294",
+    "city": "Taipei",
+    "country": "Taiwan",
+    "country_code": "TW",
+    "coordinates": [
+      121.5654,
+      25.033
+    ],
+    "status": "travel"
+  },
+  {
+    "id": "place-6006320b08",
+    "city": "Glasgow",
+    "country": "United Kingdom",
+    "country_code": "GB",
+    "coordinates": [
+      -4.2518,
+      55.8642
+    ],
+    "status": "visit"
+  },
+  {
+    "id": "place-12e4c4d5e2",
+    "city": "Anaheim, CA",
+    "country": "USA",
+    "country_code": "US",
+    "coordinates": [
+      -117.9145,
+      33.8366
+    ],
+    "status": "travel"
+  },
+  {
+    "id": "place-a893e442cd",
+    "city": "Anchorage, AK",
+    "country": "USA",
+    "country_code": "US",
+    "coordinates": [
+      -149.9003,
+      61.2181
+    ],
+    "status": "visit"
+  },
+  {
+    "id": "place-a9abbac3fb",
+    "city": "Aspen, CO",
+    "country": "USA",
+    "country_code": "US",
+    "coordinates": [
+      -106.8175,
+      39.1911
+    ],
+    "status": "travel"
+  },
+  {
+    "id": "place-bd7353e2b4",
+    "city": "Boston, MA",
+    "country": "USA",
+    "country_code": "US",
+    "coordinates": [
+      -71.0589,
+      42.3601
+    ],
+    "status": "visit"
+  },
+  {
+    "id": "place-1542d45514",
+    "city": "Hawaii Island",
+    "country": "USA",
+    "country_code": "US",
+    "coordinates": [
+      -155.5,
+      19.6
+    ],
+    "status": "travel"
+  },
+  {
+    "id": "place-8979f4cc14",
+    "city": "Honolulu, Hawaii",
+    "country": "USA",
+    "country_code": "US",
+    "coordinates": [
+      -157.8583,
+      21.3069
+    ],
+    "status": "travel"
+  },
+  {
+    "id": "place-492655c1ce",
+    "city": "Kauai, Hawaii",
+    "country": "USA",
+    "country_code": "US",
+    "coordinates": [
+      -159.5,
+      22.05
+    ],
+    "status": "travel"
+  },
+  {
+    "id": "place-0fad5eedc2",
+    "city": "Lake Tahoe",
+    "country": "USA",
+    "country_code": "US",
+    "coordinates": [
+      -120.0324,
+      39.0968
+    ],
+    "status": "travel"
+  },
+  {
+    "id": "place-f2dcd7722c",
+    "city": "Las Vegas, NV",
+    "country": "USA",
+    "country_code": "US",
+    "coordinates": [
+      -115.1398,
+      36.1699
+    ],
+    "status": "travel"
+  },
+  {
+    "id": "place-560b3f8055",
+    "city": "Long Beach, CA",
+    "country": "USA",
+    "country_code": "US",
+    "coordinates": [
+      -118.1937,
+      33.7701
+    ],
+    "status": "visit"
+  },
+  {
+    "id": "place-7f716b95dd",
+    "city": "Maui, Hawaii",
+    "country": "USA",
+    "country_code": "US",
+    "coordinates": [
+      -156.68,
+      20.88
+    ],
+    "status": "visit"
+  },
+  {
+    "id": "place-45a369b845",
+    "city": "Mendocino, CA",
+    "country": "USA",
+    "country_code": "US",
+    "coordinates": [
+      -123.7995,
+      39.3077
+    ],
+    "status": "travel"
+  },
+  {
+    "id": "place-199b45d449",
+    "city": "Napa, CA",
+    "country": "USA",
+    "country_code": "US",
+    "coordinates": [
+      -122.2869,
+      38.2975
+    ],
+    "status": "travel"
+  },
+  {
+    "id": "place-965c801ed7",
+    "city": "New York, NY",
+    "country": "USA",
+    "country_code": "US",
+    "coordinates": [
+      -74.006,
+      40.7128
+    ],
+    "status": "travel"
+  },
+  {
+    "id": "place-acf408a4db",
+    "city": "Reno, NV",
+    "country": "USA",
+    "country_code": "US",
+    "coordinates": [
+      -119.8138,
+      39.5296
+    ],
+    "status": "travel"
+  },
+  {
+    "id": "place-1f7a9ad83a",
+    "city": "Sacramento, CA",
+    "country": "USA",
+    "country_code": "US",
+    "coordinates": [
+      -121.4944,
+      38.5816
+    ],
+    "status": "travel"
+  },
+  {
+    "id": "place-1b73146c7b",
+    "city": "San Diego, CA",
+    "country": "USA",
+    "country_code": "US",
+    "coordinates": [
+      -117.1611,
+      32.7157
+    ],
+    "status": "travel"
+  },
+  {
+    "id": "place-ac57a063a6",
+    "city": "San Jose",
+    "country": "USA",
+    "coordinates": [
+      -121.8863,
+      37.3382
+    ],
+    "status": "visited"
+  },
+  {
+    "id": "place-dea6ef24ed",
+    "city": "Seattle / Redmond",
+    "country": "USA",
+    "coordinates": [
+      -122.3321,
+      47.6062
+    ],
+    "status": "visited"
+  },
+  {
+    "id": "place-a980aa072e",
+    "city": "Washington, DC",
+    "country": "USA",
+    "country_code": "US",
+    "coordinates": [
+      -77.0369,
+      38.9072
+    ],
+    "status": "visit"
+  },
+  {
+    "id": "place-e9e63a91d7",
+    "city": "Yosemite National Park",
+    "country": "USA",
+    "country_code": "US",
+    "coordinates": [
+      -119.5383,
+      37.8651
+    ],
+    "status": "travel"
+  }
+]

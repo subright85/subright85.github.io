@@ -2,11 +2,11 @@ const fs = require('node:fs');
 const path = require('node:path');
 const assert = require('node:assert/strict');
 const {prepareJourney} = require('../journey.js');
-const input = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'journey.json'), 'utf8'));
+const input = require('./fixtures/journey.cjs');
 const result = prepareJourney(input);
-assert.equal(result.residence.start_year, 1985);
-assert.equal(result.residence.rows[0].place_id, 'incheon');
-assert.equal(result.residence.rows[0].periods[0].start, '1985-01-01');
+assert.equal(result.residence.start_year, 2001);
+assert.equal(result.residence.rows[0].place_id, 'a');
+assert.equal(result.residence.rows[0].periods[0].start, '2001-01-01');
 assert.equal(result.residence.rows[0].periods[0].end, '2004-01-01');
 assert.equal(result.moves.length, input.stops.length - 1);
 for (let i = 0; i < result.moves.length; i++) {

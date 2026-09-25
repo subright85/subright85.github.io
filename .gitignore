@@ -5,3 +5,7 @@ __pycache__/
 data/paper-sources/
 # One-off Overpass responses; published regional extracts retain provenance.
 data/neighbor-cache/
+
+# Personal dates belong outside the served/published repository.
+/journey.json
+/places.json

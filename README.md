@@ -18,8 +18,8 @@ Open http://localhost:8000. No Node packages or build service are required.
 - Design: `style.css`, with the shared charcoal/red palette in `theme.css`.
 - Search and Selected / All publications: `script.js`. Selected excludes Survey titles and papers where Sungchul Kim is sixth author or later; `scripts/build.py` derives rank from the citation author list.
 - Photos: `photos.json` lists carousel images, alt text, dimensions, and framing. Add photos to `assets/`, then rebuild. Arrows, dots, keyboard navigation, and swiping activate when two or more photos are listed. No autoplay.
-- Journey, residence timeline, and globe routes: edit `journey.json`. See `JOURNEY.md` for the field guide and a sample entry. The ordered stays drive all three automatically, including return visits. Validate with `node scripts/check-journey.cjs`. No rebuild required for journey edits.
-- Visits and trips: `places.json` stores `status: "visit"` for confirmed conference visits, `status: "travel"` for trips, and `status: "conference"` for unconfirmed candidates. Use `month: "YYYY-MM"` for month precision, or `year` for year-only visits. The map sidebar groups all places by country and city; the timeline shows residences only. Country flags, dates, and notes appear in the map overlay.
+- Public places: `visited-places.json` contains unique cities without dates or personal notes.
+- Owner timeline: stored outside this repository and viewed locally with `python3 scripts/serve-owner.py`. See `JOURNEY.md`.
 - Paper illustrations: `paper-visuals.json` records source papers, concepts, and generation prompts. Six plain conceptual illustrations were made with built-in image generation, independently of the site colors.
 - Article images: `story-images.json` records original article and image URLs. Images are locally hosted and link back to the stories.
 
@@ -28,11 +28,11 @@ After editing the template or publication data, run `python3 scripts/build.py` a
 
 ## Map implementation
 
-The Places chart shows residences only, grouped by country and expandable into cities. Quiet residence gaps longer than three years shrink to 1.5 years of display space; Expand time restores a linear scale. Travel and conference visits appear only on the map. Selecting a place or month shows an illustrative home-to-destination arrow for month-dated trips; these are not confirmed flight itineraries. Unknown departure cities and year-only dates do not create arrows. Month-only visits follow the map slider by month, year-only visits by year, without inventing exact travel dates.
+The public Places page shows undated cities grouped by country. The detailed residence chart, time slider, notes, and routes are available only in the separate local owner view.
 
 The globe uses one simplified natural coastline (`assets/maps/land-natural.json`, about 58 KB) built from Natural Earth with `node scripts/build-globe-map.cjs`. At city zoom, a small local TopoJSON decoder expands the selected regional extract. Neutral land receives vivid highlights within real simplified place boundaries (`assets/maps/visited-boundaries.json`, about 109 KB). Cities use administrative boundaries; islands, parks, a lake, a district and a census place use their respective outlines. Boundary type is shown on the zoom button. Reviewed source selections are in `data/boundary-selections.json`; rebuild offline with `node scripts/build-place-boundaries.cjs`. OSM data is © OpenStreetMap contributors (ODbL); Mendocino CDP is from the US Census TIGERweb service. Cached source responses avoid API calls during page visits. No live GIS service is called. Neighboring boundaries and local coastal land masks are fetched from static local assets only on zoom; exact source IDs identify the visited polygons. See `data/BOUNDARIES.md` for scope, sources and rebuild commands.
 
-Globe updates are batched once per animation frame. Route interpolation and data formatting are cached, and timeline layout updates only on resize, country expansion, or scale changes; scrubbing moves just its date cursor. The globe rotates slowly by default (20 updates per second), pausing during interaction, off-screen, or in a hidden tab. Reduced-motion preferences disable rotation by default. A monthly slider filters the journey and marks the residence timeline in its current scale; All years restores the full journey.
+Globe updates are batched once per animation frame. The globe rotates slowly by default, pausing during interaction, off-screen, or in a hidden tab. Reduced-motion preferences disable rotation by default. Country borders remain visible at globe zoom; administrative highlights and nearby boundaries are clipped to the displayed land so water portions are not painted.
 
 Checks: `node scripts/check-journey.cjs` and `node scripts/check-rendering.cjs`.
 

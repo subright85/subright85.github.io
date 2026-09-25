@@ -26,3 +26,7 @@ const result = {type: 'FeatureCollection', features: [{type: 'Feature', properti
 const output = JSON.stringify(result);
 fs.writeFileSync(path.join(root, 'assets/maps/land-natural.json'), output);
 console.log(`Natural coastline: ${Buffer.byteLength(output)} bytes.`);
+
+const borders = topojson.mesh(world, world.objects.countries, (a, b) => a !== b);
+borders.coordinates = round(borders.coordinates);
+fs.writeFileSync(path.join(root, "assets/maps/country-borders.json"), JSON.stringify(borders));

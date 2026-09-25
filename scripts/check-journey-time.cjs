@@ -1,16 +1,14 @@
 const assert = require('node:assert/strict');
 const {journeyAtMonth} = require('../journey.js');
-const journey = require('../journey.json');
-for (const [month, city] of [['1985-01', 'Incheon'], ['2003-12', 'Incheon'], ['2004-01', 'Pohang'], ['2010-01', 'Pohang'], ['2010-09', 'Beijing'], ['2011-05', 'Beijing'], ['2011-06', 'Seattle / Redmond'], ['2011-09', 'Pohang'], ['2015-08', 'San Jose'], ['2016-03', 'South Korea'], ['2016-07', 'San Jose']]) {
+const journey = require('./fixtures/journey.cjs');
+for (const [month, location] of [['2001-01', 'a'], ['2003-12', 'a'], ['2004-01', 'b'], ['2004-05', 'b'], ['2004-06', 'a'], ['2006-03', 'unknown'], ['2006-07', 'b']]) {
   const state = journeyAtMonth(journey, month);
-  assert.equal(journey.locations[state.active.location].city, city, month);
-  assert(state.visited.has(state.active.location));
+  assert.equal(state.active.location, location, month);
+  assert(state.visited.has(location));
 }
-const beijing = journeyAtMonth(journey, '2010-09');
-assert(![...beijing.visited].some(id => journey.locations[id].city === 'San Jose'));
-assert.equal(beijing.moveIds.size, 2);
-assert.equal(journeyAtMonth(journey, '2026-09').moveIds.size, 7);
-assert.equal(journeyAtMonth(journey, '2016-03').active.approximate, true);
+assert.equal(journeyAtMonth(journey, '2004-01').moveIds.size, 1);
+assert.equal(journeyAtMonth(journey, '2006-07').moveIds.size, 4);
+assert.equal(journeyAtMonth(journey, '2006-03').active.approximate, true);
 const unknown = {locations: {}, stops: [
   {id: 'a', location: 'a', arrived: null, departed: null},
   {id: 'b', location: 'b', arrived: '2020-01', departed: '2020-02'},

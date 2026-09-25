@@ -43,3 +43,7 @@ For coastal extracts, `data/coastline-query.ql` fetches OSM `natural=coastline` 
 To regenerate these optional masks, fetch the recorded query with a descriptive User-Agent using an Overpass endpoint, then run `python3 scripts/build-regional-coasts.py` in a Python environment with `shapely` installed, before the neighbor builder. The bounding boxes and query are public place-level map extents, not precise travel routes. Administrative boundaries can legitimately extend across water; their extent is not changed to match a coastline.
 
 The regional builder removes coastal polygon slivers below roughly 400 m² before quantization to prevent collapsed rings from inverting the spherical land mask. These tiny islets/slivers are below the intended overview precision.
+
+## Display clipping and national borders
+
+Administrative areas can legally extend over water. Their source geometry is retained; SVG land masks clip highlights and neighboring outlines to the currently displayed coastline, including regional coastal replacements. Global country borders are a compact, rounded Natural Earth 110m internal-boundary mesh and are visible at globe zoom. They are generalized cartographic boundaries, not a cadastral source.
