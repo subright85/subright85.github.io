@@ -65,18 +65,35 @@ function renderResidenceTimeline(data, selectPlace, visits = []) {
       if (!period.start) at(group.append('text').attr('class', 'residence-break').attr('y', y + 7).text('‹'), 'x', 0, -7);
     });
   });
+  const conferenceTypes = ['CIKM', 'KDD', 'ICWSM', 'IMCOM'];
+  const visitType = visit => conferenceTypes.find(type => visit.note.includes(type)) || 'Other';
+  const visitRows = [...new Set(visits.map(visitType))];
   const visitMarks = visits.map(visit => {
     const date = time(visit.date || `${visit.year}-07-01`);
-    const flag = visit.country_code ? [...visit.country_code].map(letter => String.fromCodePoint(127397 + letter.charCodeAt(0))).join('') : '◆';
+    const flag = visit.country_code ? [...visit.country_code].map(letter => String.fromCodePoint(127397 + letter.charCodeAt(0))).join('') : '';
+    const type = visitType(visit);
     const description = `${visit.city}, ${visit.country} · ${visit.note}${visit.date ? '' : ' · year only; month unknown'}`;
-    const group = svg.append('g').attr('class', 'residence-visit').attr('role', 'button').attr('tabindex', 0).attr('aria-label', description);
-    group.append('rect').attr('x', -12).attr('y', -15).attr('width', 24).attr('height', 25).attr('rx', 4);
-    group.append('text').attr('text-anchor', 'middle').attr('y', 2).text(flag);
-    group.append('title').text(description);
-    activate(group, () => { detail.textContent = description; selectPlace(visit.id); });
-    return {fraction: fraction(date), group};
-  }).sort((a, b) => a.fraction - b.fraction);
-  if (visits.length) svg.append('text').attr('class', 'residence-label').attr('x', 0).attr('y', height + 22).text('Visits');
+    const group = svg.append('g').attr('class', `residence-visit visit-${type.toLowerCase()}`).attr('role', 'button').attr('tabindex', 0).attr('aria-label', description);
+    group.append('circle').attr('class', 'visit-hit').attr('r', 11);
+    group.append('circle').attr('class', 'visit-dot').attr('r', 4);
+    group.append('title').text(`${flag} ${description}`);
+    activate(group, () => {
+      svg.selectAll('.residence-visit').classed('active', false);
+      group.classed('active', true);
+      detail.textContent = `${flag} ${visit.note} · ${visit.city}${visit.date ? '' : ' · month unknown'}`;
+      selectPlace(visit.id);
+    });
+    return {fraction: fraction(date), group, row: visitRows.indexOf(type)};
+  });
+  if (visits.length) {
+    svg.append('text').attr('class', 'residence-visit-heading').attr('x', 0).attr('y', height + 10).text('CONFERENCES');
+    visitRows.forEach((type, row) => {
+      const y = height + 32 + row * 25;
+      svg.append('text').attr('class', 'residence-label').attr('x', 0).attr('y', y + 4).text(type);
+      const rail = svg.insert('line', '.residence-visit').attr('class', 'visit-rail').attr('y1', y).attr('y2', y);
+      at(rail, 'x1', 0); at(rail, 'x2', 1);
+    });
+  }
   const cursor = svg.append('line').attr('class', 'residence-cursor').attr('y1', 22).attr('y2', height - 8).attr('display', 'none');
   let cursorDate = null;
   function updateCursor() {
@@ -98,15 +115,11 @@ function renderResidenceTimeline(data, selectPlace, visits = []) {
       if (visible) previousTick = x;
     });
     positionUpdates.forEach(update => update(left, width - 12 - left));
-    const lanes = [];
     visitMarks.forEach(mark => {
       const x = left + scaled(mark.fraction) * (width - 12 - left);
-      let lane = lanes.findIndex(previous => x - previous >= 27);
-      if (lane < 0) lane = lanes.length;
-      lanes[lane] = x;
-      mark.group.attr('transform', `translate(${x},${height + 20 + lane * 26})`);
+      mark.group.attr('transform', `translate(${x},${height + 32 + mark.row * 25})`);
     });
-    const fullHeight = height + (visits.length ? 40 + lanes.length * 26 : 0);
+    const fullHeight = height + (visits.length ? 50 + visitRows.length * 25 : 0);
     svg.attr('height', fullHeight).attr('viewBox', `0 0 ${width} ${fullHeight}`);
     svg.selectAll('.residence-grid').attr('y2', fullHeight - 8);
     cursor.attr('y2', fullHeight - 8);

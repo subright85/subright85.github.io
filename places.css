@@ -79,8 +79,12 @@
 .visits-title { margin-top: 25px !important; }
 .place-marker.visit .pin-body { fill: #157f8c; }
 
-.residence-visit { cursor: pointer; }
-.residence-visit rect { fill: var(--bg); stroke: var(--line); stroke-width: .7; }
-.residence-visit text { font-size: 15px; }
-.residence-visit:hover rect, .residence-visit:focus-visible rect { stroke: var(--accent); }
-.residence-visit:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+ .residence-visit { cursor: pointer; }
+.visit-hit { fill: transparent; }
+.visit-dot { fill: #258696; stroke: var(--bg); stroke-width: 2; }
+.visit-cikm .visit-dot { fill: #b34c8d; }
+.visit-icwsm .visit-dot, .visit-imcom .visit-dot { fill: #8873a5; }
+.residence-visit:hover .visit-dot, .residence-visit.active .visit-dot, .residence-visit:focus-visible .visit-dot { r: 6; stroke: #fff; filter: drop-shadow(0 1px 2px #30263035); }
+.residence-visit:focus-visible { outline: 1px solid var(--accent); outline-offset: 2px; }
+.visit-rail { stroke: #e8dce4; stroke-width: 1; }
+.residence-visit-heading { fill: var(--muted); font-size: 8px; letter-spacing: 1px; }

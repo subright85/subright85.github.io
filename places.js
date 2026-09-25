@@ -129,7 +129,8 @@ async function initializeGlobe() {
       projection.rotate([-p.coordinates[0], -p.coordinates[1]]);
       syncSelection();
       detail.replaceChildren(); detail.hidden = false;
-      const title = document.createElement('h3'); title.textContent = `${p.city}, ${p.country}`; detail.append(title);
+      const flag = p.country_code ? [...p.country_code].map(letter => String.fromCodePoint(127397 + letter.charCodeAt(0))).join('') + ' ' : '';
+      const title = document.createElement('h3'); title.textContent = `${flag}${p.city}, ${p.country}`; detail.append(title);
       const note = document.createElement('p'); note.textContent = p.note; detail.append(note);
       (p.stays || []).forEach(stay => {
         const paragraph = document.createElement('p'); paragraph.textContent = stay; detail.append(paragraph);
