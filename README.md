@@ -15,7 +15,7 @@ Open http://localhost:8000. No Node packages or build service are required.
 - Biography, experience, and articles: `index.template.html`
 - Publications: `publications.json` (newest year first; original full citations preserved). The build shows the latest three years separately and combines all earlier entries into Older, retaining individual years for search.
 - Career timeline: `scripts/career.py` generates a compact chart with date-proportional bars. Education, internships, and industry share one horizontal scale; years after 2017 are compressed to 35% of the earlier scale, with a visible break. Full dates and mentor information remain in `index.template.html`. Rebuilding updates the present-day endpoint.
-- Design: `style.css`, with the shared charcoal/red palette in `theme.css`.
+- Design: `style.css` and the shared light/dark palettes in `theme.css`. `theme.js` applies the system preference before paint, saves manual selections, and synchronizes pages and the private journey frame. Neon accents use CSS only; no extra images or animation libraries.
 - Search and Selected / All publications: `script.js`. Selected excludes Survey titles and papers where Sungchul Kim is sixth author or later; `scripts/build.py` derives rank from the citation author list.
 - Photos: `photos.json` lists carousel images, alt text, dimensions, and framing. Add photos to `assets/`, then rebuild. Arrows, dots, keyboard navigation, and swiping activate when two or more photos are listed. No autoplay.
 - Public places: `visited-places.json` contains unique cities without dates or personal notes.
