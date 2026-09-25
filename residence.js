@@ -1,4 +1,4 @@
-function renderResidenceTimeline(data, selectPlace) {
+function renderResidenceTimeline(data, selectPlace, visits = []) {
   const container = document.querySelector('#residence-chart');
   const detail = document.querySelector('#residence-detail');
   const svg = d3.select(container).append('svg').attr('role', 'group');
@@ -65,6 +65,18 @@ function renderResidenceTimeline(data, selectPlace) {
       if (!period.start) at(group.append('text').attr('class', 'residence-break').attr('y', y + 7).text('‹'), 'x', 0, -7);
     });
   });
+  const visitMarks = visits.map(visit => {
+    const date = time(visit.date || `${visit.year}-07-01`);
+    const flag = visit.country_code ? [...visit.country_code].map(letter => String.fromCodePoint(127397 + letter.charCodeAt(0))).join('') : '◆';
+    const description = `${visit.city}, ${visit.country} · ${visit.note}${visit.date ? '' : ' · year only; month unknown'}`;
+    const group = svg.append('g').attr('class', 'residence-visit').attr('role', 'button').attr('tabindex', 0).attr('aria-label', description);
+    group.append('rect').attr('x', -12).attr('y', -15).attr('width', 24).attr('height', 25).attr('rx', 4);
+    group.append('text').attr('text-anchor', 'middle').attr('y', 2).text(flag);
+    group.append('title').text(description);
+    activate(group, () => { detail.textContent = description; selectPlace(visit.id); });
+    return {fraction: fraction(date), group};
+  }).sort((a, b) => a.fraction - b.fraction);
+  if (visits.length) svg.append('text').attr('class', 'residence-label').attr('x', 0).attr('y', height + 22).text('Visits');
   const cursor = svg.append('line').attr('class', 'residence-cursor').attr('y1', 22).attr('y2', height - 8).attr('display', 'none');
   let cursorDate = null;
   function updateCursor() {
@@ -86,6 +98,18 @@ function renderResidenceTimeline(data, selectPlace) {
       if (visible) previousTick = x;
     });
     positionUpdates.forEach(update => update(left, width - 12 - left));
+    const lanes = [];
+    visitMarks.forEach(mark => {
+      const x = left + scaled(mark.fraction) * (width - 12 - left);
+      let lane = lanes.findIndex(previous => x - previous >= 27);
+      if (lane < 0) lane = lanes.length;
+      lanes[lane] = x;
+      mark.group.attr('transform', `translate(${x},${height + 20 + lane * 26})`);
+    });
+    const fullHeight = height + (visits.length ? 40 + lanes.length * 26 : 0);
+    svg.attr('height', fullHeight).attr('viewBox', `0 0 ${width} ${fullHeight}`);
+    svg.selectAll('.residence-grid').attr('y2', fullHeight - 8);
+    cursor.attr('y2', fullHeight - 8);
     updateCursor();
   });
   function toggleScale() {

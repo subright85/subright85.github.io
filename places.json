@@ -43,5 +43,166 @@
     "paper": "Multilingual Named Entity Recognition using Parallel Data and Metadata from Wikipedia",
     "venue_source": "https://2012.aclweb.org/",
     "paper_source": "https://aclanthology.org/P12-1073/"
+  },
+  {
+    "id": "seoul-cikm-2025",
+    "city": "Seoul",
+    "country": "South Korea",
+    "coordinates": [
+      126.978,
+      37.5665
+    ],
+    "year": 2025,
+    "note": "CIKM 2025 · Coex",
+    "status": "visit",
+    "confirmed": true,
+    "coordinate_precision": "city",
+    "source": "user",
+    "country_code": "KR"
+  },
+  {
+    "id": "maui-cikm-2012",
+    "city": "Maui, Hawaii",
+    "country": "USA",
+    "coordinates": [
+      -156.68,
+      20.88
+    ],
+    "year": 2012,
+    "note": "CIKM 2012 · Sheraton Maui Resort & Spa",
+    "status": "visit",
+    "confirmed": true,
+    "coordinate_precision": "city",
+    "source": "user",
+    "country_code": "US"
+  },
+  {
+    "id": "glasgow-cikm-2011",
+    "city": "Glasgow",
+    "country": "United Kingdom",
+    "coordinates": [
+      -4.2518,
+      55.8642
+    ],
+    "year": 2011,
+    "note": "CIKM 2011",
+    "status": "visit",
+    "confirmed": true,
+    "coordinate_precision": "city",
+    "source": "user",
+    "country_code": "GB"
+  },
+  {
+    "id": "hong-kong-cikm-2009",
+    "city": "Hong Kong",
+    "country": "China",
+    "coordinates": [
+      114.1694,
+      22.3193
+    ],
+    "year": 2009,
+    "note": "CIKM 2009",
+    "status": "visit",
+    "confirmed": true,
+    "coordinate_precision": "city",
+    "source": "user",
+    "country_code": "CN"
+  },
+  {
+    "id": "barcelona-kdd-2024",
+    "city": "Barcelona",
+    "country": "Spain",
+    "coordinates": [
+      2.1734,
+      41.3851
+    ],
+    "year": 2024,
+    "note": "KDD 2024",
+    "status": "visit",
+    "confirmed": true,
+    "coordinate_precision": "city",
+    "source": "user",
+    "country_code": "ES"
+  },
+  {
+    "id": "long-beach-kdd-2023",
+    "city": "Long Beach, CA",
+    "country": "USA",
+    "coordinates": [
+      -118.1937,
+      33.7701
+    ],
+    "year": 2023,
+    "note": "KDD 2023",
+    "status": "visit",
+    "confirmed": true,
+    "coordinate_precision": "city",
+    "source": "user",
+    "country_code": "US"
+  },
+  {
+    "id": "washington-kdd-2022",
+    "city": "Washington, DC",
+    "country": "USA",
+    "coordinates": [
+      -77.0369,
+      38.9072
+    ],
+    "year": 2022,
+    "note": "KDD 2022 · Walter E. Washington Convention Center",
+    "status": "visit",
+    "confirmed": true,
+    "coordinate_precision": "city",
+    "source": "user",
+    "country_code": "US"
+  },
+  {
+    "id": "anchorage-kdd-2019",
+    "city": "Anchorage, AK",
+    "country": "USA",
+    "coordinates": [
+      -149.9003,
+      61.2181
+    ],
+    "year": 2019,
+    "note": "KDD 2019",
+    "status": "visit",
+    "confirmed": true,
+    "coordinate_precision": "city",
+    "source": "user",
+    "country_code": "US"
+  },
+  {
+    "id": "boston-icwsm-2013",
+    "city": "Boston, MA",
+    "country": "USA",
+    "coordinates": [
+      -71.0589,
+      42.3601
+    ],
+    "year": 2013,
+    "note": "ICWSM 2013 · July 8–11, 2013",
+    "status": "visit",
+    "confirmed": true,
+    "coordinate_precision": "city",
+    "source": "user",
+    "country_code": "US",
+    "date": "2013-07-08"
+  },
+  {
+    "id": "kota-kinabalu-imcom-2013",
+    "city": "Kota Kinabalu",
+    "country": "Malaysia",
+    "coordinates": [
+      116.0735,
+      5.9804
+    ],
+    "year": 2013,
+    "note": "ACM ICUIMC (IMCOM) 2013 · Shangri-La’s Rasa Ria Resort",
+    "status": "visit",
+    "confirmed": true,
+    "coordinate_precision": "city",
+    "source": "user",
+    "country_code": "MY"
   }
 ]

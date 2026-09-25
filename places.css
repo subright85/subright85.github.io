@@ -75,3 +75,12 @@
 .residence-heading button { font: inherit; font-size: 11px; color: var(--accent); background: #f6edf3; border: 1px solid var(--line); border-radius: 5px; padding: 5px 10px; cursor: pointer; }
 .residence-undated { fill: var(--muted); font-size: 10px; }
 #residence-scale-note { text-align: right; }
+
+.visits-title { margin-top: 25px !important; }
+.place-marker.visit .pin-body { fill: #157f8c; }
+
+.residence-visit { cursor: pointer; }
+.residence-visit rect { fill: var(--bg); stroke: var(--line); stroke-width: .7; }
+.residence-visit text { font-size: 15px; }
+.residence-visit:hover rect, .residence-visit:focus-visible rect { stroke: var(--accent); }
+.residence-visit:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }

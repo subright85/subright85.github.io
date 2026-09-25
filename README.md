@@ -19,7 +19,7 @@ Open http://localhost:8000. No Node packages or build service are required.
 - Search and Selected / All publications: `script.js`. Selected excludes Survey titles and papers where Sungchul Kim is sixth author or later; `scripts/build.py` derives rank from the citation author list.
 - Photos: `photos.json` lists carousel images, alt text, dimensions, and framing. Add photos to `assets/`, then rebuild. Arrows, dots, keyboard navigation, and swiping activate when two or more photos are listed. No autoplay.
 - Journey, residence timeline, and globe routes: edit `journey.json`. See `JOURNEY.md` for the field guide and a sample entry. The ordered stays drive all three automatically, including return visits. Validate with `node scripts/check-journey.cjs`. No rebuild required for journey edits.
-- Conference candidates: `places.json` is separate from confirmed journey stops.
+- Conference visits and candidates: `places.json` is separate from residence stops. `status: "visit"` records user-confirmed conference visits (city-level coordinates and a year); `status: "conference"` remains unconfirmed. Confirmed visits use teal pins and flags on the residence chart, and follow the time slider at year precision. Country flags select the corresponding place. Year-only visits are positioned at mid-year with an explicit month-unknown tooltip; exact dates use their actual position.
 - Paper illustrations: `paper-visuals.json` records source papers, concepts, and generation prompts. Six plain conceptual illustrations were made with built-in image generation, independently of the site colors.
 - Article images: `story-images.json` records original article and image URLs. Images are locally hosted and link back to the stories.
 

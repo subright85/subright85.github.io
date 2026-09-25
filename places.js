@@ -3,11 +3,11 @@ async function initializeGlobe() {
   try {
     const [world, savedPlaces, journey] = await Promise.all([
       fetch('assets/maps/land-game.json?v=2').then(r => { if (!r.ok) throw new Error('Map unavailable'); return r.json(); }),
-      fetch('places.json?v=2').then(r => { if (!r.ok) throw new Error('Places unavailable'); return r.json(); }),
+      fetch('places.json?v=3').then(r => { if (!r.ok) throw new Error('Places unavailable'); return r.json(); }),
       fetch('journey.json?v=2').then(r => { if (!r.ok) throw new Error('Journey unavailable'); return r.json(); })
     ]);
     const {places: journeyPlaces, residence, moves} = prepareJourney(journey);
-    const places = [...journeyPlaces, ...savedPlaces.filter(p => p.status === 'conference')];
+    const places = [...journeyPlaces, ...savedPlaces.filter(p => p.status === 'conference' || p.status === 'visit')];
     const placeById = new Map(places.map(place => [place.id, place]));
     const moveIndexById = new Map(moves.map((move, index) => [move.id, index]));
     const detail = document.querySelector('#place-detail');
@@ -115,7 +115,7 @@ async function initializeGlobe() {
         d3.select(this).attr('display', visible ? null : 'none').attr('points', `${a[0]+dx*5},${a[1]+dy*5} ${a[0]-dx*4-dy*3},${a[1]-dy*4+dx*3} ${a[0]-dx*4+dy*3},${a[1]-dy*4-dx*3}`);
       });
       markers.each(function(p) {
-        const visible = (p.status === 'visited' ? !timeState || timeState.visited.has(p.id) : toggle.checked) && d3.geoDistance(center, p.coordinates) < Math.PI / 2;
+        const visible = (p.status === 'visited' ? !timeState || timeState.visited.has(p.id) : p.status === 'visit' ? !timeState || p.year <= timeState.year : toggle.checked) && d3.geoDistance(center, p.coordinates) < Math.PI / 2;
         const point = projection(p.coordinates);
         d3.select(this).attr('transform', `translate(${point[0]},${point[1]})`).attr('display', visible ? null : 'none')
           .attr('tabindex', visible ? 0 : -1).classed('selected', p.id === selected);
@@ -173,9 +173,9 @@ async function initializeGlobe() {
     document.querySelector('#next-move').addEventListener('click', () => {
       const index = moveIndexById.get(selectedMove) ?? -1; showMove((index + 1) % moves.length);
     });
-    for (const [target, kind] of [['#visited-list', 'visited'], ['#conference-list', 'conference']]) {
+    for (const [target, kind] of [['#visited-list', 'visited'], ['#visit-list', 'visit'], ['#conference-list', 'conference']]) {
       const list = document.querySelector(target); list.replaceChildren();
-      places.filter(p => p.status === kind).forEach(p => {
+      places.filter(p => p.status === kind).sort((a, b) => kind === 'visit' ? b.year - a.year : 0).forEach(p => {
         const button = document.createElement('button'); button.type = 'button'; button.className = 'place-choice'; button.dataset.id = p.id;
         button.textContent = `${p.city}, ${p.country}`; button.setAttribute('aria-pressed', 'false');
         const note = document.createElement('span'); note.textContent = p.note; button.append(note);
@@ -213,7 +213,7 @@ async function initializeGlobe() {
     const timeline = renderResidenceTimeline(residence, id => {
       const place = placeById.get(id);
       if (place) selectPlace(place);
-    });
+    }, savedPlaces.filter(p => p.status === 'visit'));
     const now = new Date();
     timeSlider.min = residence.start_year * 12;
     timeSlider.max = now.getUTCFullYear() * 12 + now.getUTCMonth();
@@ -235,6 +235,7 @@ async function initializeGlobe() {
       const date = new Date(Date.UTC(Math.floor(value / 12), value % 12, 1));
       const month = date.toISOString().slice(0, 7);
       timeState = journeyAtMonth(journey, month);
+      timeState.year = date.getUTCFullYear();
       const stop = timeState.active;
       const location = stop && journey.locations[stop.location];
       const label = `${monthFormatter.format(date)} · ${location ? location.city : 'Location unknown'}${stop?.approximate ? ' (approx.)' : ''}`;
