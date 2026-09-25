@@ -19,7 +19,7 @@ Open http://localhost:8000. No Node packages or build service are required.
 - Search and Selected / All publications: `script.js`. Selected excludes Survey titles and papers where Sungchul Kim is sixth author or later; `scripts/build.py` derives rank from the citation author list.
 - Photos: `photos.json` lists carousel images, alt text, dimensions, and framing. Add photos to `assets/`, then rebuild. Arrows, dots, keyboard navigation, and swiping activate when two or more photos are listed. No autoplay.
 - Public places: `visited-places.json` contains unique cities without dates or personal notes.
-- Owner timeline: stored outside this repository and viewed locally with `python3 scripts/serve-owner.py`. See `JOURNEY.md`.
+- Owner timeline: the Places lock icon opens a password-protected, encrypted view. Personal sources and the password stay outside the repository; run `node scripts/encrypt-journey.cjs` to publish encrypted updates. Local viewing remains available with `python3 scripts/serve-owner.py`. See `JOURNEY.md`.
 - Paper illustrations: `paper-visuals.json` records source papers, concepts, and generation prompts. Six plain conceptual illustrations were made with built-in image generation, independently of the site colors.
 - Article images: `story-images.json` records original article and image URLs. Images are locally hosted and link back to the stories.
 
@@ -28,7 +28,7 @@ After editing the template or publication data, run `python3 scripts/build.py` a
 
 ## Map implementation
 
-The public Places page shows undated cities grouped by country. The detailed residence chart, time slider, notes, and routes are available only in the separate local owner view.
+The public Places page shows undated cities grouped by country. The detailed residence chart, time slider, notes, and routes are available in the password-unlocked owner view and the separate local view.
 
 The globe uses one simplified natural coastline (`assets/maps/land-natural.json`, about 58 KB) built from Natural Earth with `node scripts/build-globe-map.cjs`. At city zoom, a small local TopoJSON decoder expands the selected regional extract. Neutral land receives vivid highlights within real simplified place boundaries (`assets/maps/visited-boundaries.json`, about 109 KB). Cities use administrative boundaries; islands, parks, a lake, a district and a census place use their respective outlines. Boundary type is shown on the zoom button. Reviewed source selections are in `data/boundary-selections.json`; rebuild offline with `node scripts/build-place-boundaries.cjs`. OSM data is © OpenStreetMap contributors (ODbL); Mendocino CDP is from the US Census TIGERweb service. Cached source responses avoid API calls during page visits. No live GIS service is called. Neighboring boundaries and local coastal land masks are fetched from static local assets only on zoom; exact source IDs identify the visited polygons. See `data/BOUNDARIES.md` for scope, sources and rebuild commands.
 

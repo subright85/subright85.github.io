@@ -9,3 +9,6 @@ data/neighbor-cache/
 # Personal dates belong outside the served/published repository.
 /journey.json
 /places.json
+
+# Never publish an encryption password.
+website-password.txt
