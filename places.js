@@ -2,9 +2,9 @@ async function initializeGlobe() {
   const status = document.querySelector('#globe-status');
   try {
     const [world, savedPlaces, journey] = await Promise.all([
-      fetch('assets/maps/land-game.json?v=2').then(r => { if (!r.ok) throw new Error('Map unavailable'); return r.json(); }),
-      fetch('places.json?v=4').then(r => { if (!r.ok) throw new Error('Places unavailable'); return r.json(); }),
-      fetch('journey.json?v=2').then(r => { if (!r.ok) throw new Error('Journey unavailable'); return r.json(); })
+      fetch('assets/maps/land-natural.json?v=1').then(r => { if (!r.ok) throw new Error('Map unavailable'); return r.json(); }),
+      fetch('places.json?v=5').then(r => { if (!r.ok) throw new Error('Places unavailable'); return r.json(); }),
+      fetch('journey.json?v=3').then(r => { if (!r.ok) throw new Error('Journey unavailable'); return r.json(); })
     ]);
     const {places: journeyPlaces, residence, moves} = prepareJourney(journey);
     const places = [...journeyPlaces, ...savedPlaces.filter(p => ['conference', 'visit', 'travel'].includes(p.status))];
@@ -31,16 +31,19 @@ async function initializeGlobe() {
     const projection = d3.geoOrthographic().translate([320, 300]).scale(274).rotate([-180, -25]).clipAngle(90);
     const path = d3.geoPath(projection);
     const gradient = svg.append('defs').append('radialGradient').attr('id', 'ocean-color').attr('cx', '35%').attr('cy', '25%').attr('r', '85%');
-    gradient.append('stop').attr('offset', '0%').attr('stop-color', '#b9e3e5');
-    gradient.append('stop').attr('offset', '100%').attr('stop-color', '#588dab');
+    gradient.append('stop').attr('offset', '0%').attr('stop-color', '#edf4f6');
+    gradient.append('stop').attr('offset', '100%').attr('stop-color', '#9abacb');
     svg.append('path').datum({type: 'Sphere'}).attr('class', 'ocean');
     svg.append('path').datum(d3.geoGraticule().step([15, 15])()).attr('class', 'graticule');
-    svg.append('g').selectAll('path').data(world.features).join('path').attr('class', feature => `land terrain-${feature.properties.terrain}`);
+    svg.append('g').selectAll('path').data(world.features).join('path').attr('class', 'land').attr('id', 'land-outline');
+    svg.select('defs').append('clipPath').attr('id', 'visited-land-clip').append('use').attr('href', '#land-outline');
+    const areas = svg.append('g').attr('clip-path', 'url(#visited-land-clip)').attr('aria-hidden', 'true').selectAll('path').data(pinPlaces.filter(p => p.status !== 'conference').map(place => ({...d3.geoCircle().center(place.coordinates).radius(1.6).precision(30)(), place}))).join('path').attr('class', d => `visit-area area-${d.place.status}`);
+
     const routes = svg.append('g').attr('class', 'journey-routes').selectAll('path').data(drawableMoves).join('path')
       .attr('class', 'journey-route')
       .datum(m => ({type: 'LineString', coordinates: m.coordinates, move: m}));
     routes.append('title').text(d => `${d.move.label} · ${d.move.date}`);
-    const geographicPaths = svg.selectAll('.ocean, .graticule, .land, .journey-route');
+    const geographicPaths = svg.selectAll('.ocean, .graticule, .land, .visit-area, .journey-route');
     const arrows = svg.append('g').attr('aria-hidden', 'true').selectAll('polygon').data(drawableMoves).join('polygon').attr('class', 'journey-arrow');
     const markers = svg.append('g').selectAll('g').data(pinPlaces).join('g')
       .attr('class', p => `place-marker ${p.status}`).attr('role', 'button')
@@ -109,6 +112,7 @@ async function initializeGlobe() {
       detail.hidden = true; status.textContent = '';
       syncSelection(); scheduleDraw();
     }
+    function placeReached(p) { return p.events.some(event => event.status === 'visited' ? !timeState || timeState.visited.has(event.id) : ['visit', 'travel'].includes(event.status) ? !timeState || (event.month ? event.month <= timeState.month : event.year != null && event.year <= timeState.year) : toggle.checked); }
     function draw(projectionChanged) {
       if (projectionChanged) geographicPaths.attr('d', path);
       const center = projection.invert([320, 300]);
@@ -122,8 +126,9 @@ async function initializeGlobe() {
         const dx = Math.cos(angle), dy = Math.sin(angle);
         d3.select(this).attr('display', visible ? null : 'none').attr('points', `${a[0]+dx*5},${a[1]+dy*5} ${a[0]-dx*4-dy*3},${a[1]-dy*4+dx*3} ${a[0]-dx*4+dy*3},${a[1]-dy*4-dx*3}`);
       });
+      areas.attr('display', d => placeReached(d.place) ? null : 'none');
       markers.each(function(p) {
-        const visible = p.events.some(event => event.status === 'visited' ? !timeState || timeState.visited.has(event.id) : ['visit', 'travel'].includes(event.status) ? !timeState || (event.month ? event.month <= timeState.month : event.year <= timeState.year) : toggle.checked) && d3.geoDistance(center, p.coordinates) < Math.PI / 2;
+        const visible = placeReached(p) && d3.geoDistance(center, p.coordinates) < Math.PI / 2;
         const point = projection(p.coordinates);
         d3.select(this).attr('transform', `translate(${point[0]},${point[1]}) scale(.8)`).attr('display', visible ? null : 'none')
           .attr('tabindex', visible ? 0 : -1).classed('selected', p.city === placeById.get(selected)?.city && p.country === placeById.get(selected)?.country);
@@ -146,9 +151,7 @@ async function initializeGlobe() {
         related.forEach(other => { const item = document.createElement('li'); item.textContent = other.note; history.append(item); });
         detail.append(history);
       }
-      (p.stays || []).forEach(stay => {
-        const paragraph = document.createElement('p'); paragraph.textContent = stay; detail.append(paragraph);
-      });
+      if (p.summary_notes?.length) { const memo = document.createElement('p'); memo.textContent = p.summary_notes.join(' · '); detail.append(memo); }
       if (p.paper) {
         const paper = document.createElement('p'); paper.textContent = `${p.paper} · ${p.author_role} author`; detail.append(paper);
         for (const [label, href] of [['Venue source', p.venue_source], ['Paper', p.paper_source]]) {
@@ -206,10 +209,17 @@ async function initializeGlobe() {
     }
     countryGroups.forEach((cities, country) => {
       const countryDetails = document.createElement('details'); countryDetails.className = 'country-places';
-      const summary = document.createElement('summary'); summary.textContent = `${country} · ${cities.size}`; countryDetails.append(summary);
+      const summary = document.createElement('summary');
+      const name = document.createElement('span'); name.textContent = country;
+      const count = document.createElement('span'); count.className = 'count'; count.textContent = cities.size;
+      const plus = document.createElement('span'); plus.className = 'plus'; plus.setAttribute('aria-hidden', 'true'); plus.textContent = '+';
+      summary.append(name, count, plus); countryDetails.append(summary);
       cities.forEach((entries, city) => {
         const cityDetails = document.createElement('details'); cityDetails.className = 'city-places';
-        const label = document.createElement('summary'); label.textContent = city; cityDetails.append(label);
+        const label = document.createElement('summary');
+        const cityName = document.createElement('span'); cityName.textContent = city;
+        const cityPlus = document.createElement('span'); cityPlus.className = 'plus'; cityPlus.setAttribute('aria-hidden', 'true'); cityPlus.textContent = '+';
+        label.append(cityName, cityPlus); cityDetails.append(label);
         entries.sort((a,b) => (b.month || String(b.year || '')) .localeCompare(a.month || String(a.year || ''))).forEach(p => cityDetails.append(placeButton(p, p.note)));
         countryDetails.append(cityDetails);
       });
@@ -274,7 +284,7 @@ async function initializeGlobe() {
       timeState.month = month;
       const stop = timeState.active;
       const location = stop && journey.locations[stop.location];
-      const label = `${monthFormatter.format(date)} · ${location ? location.city : 'Location unknown'}${stop?.approximate ? ' (approx.)' : ''}`;
+      const label = `${monthFormatter.format(date)} · ${location ? location.city : 'Location unknown'}`;
       timeLabel.textContent = label;
       timeSlider.setAttribute('aria-valuetext', label);
       timeline.setDate(date);
@@ -299,6 +309,7 @@ async function initializeGlobe() {
     svg.on('focusin', pauseRotation);
     scheduleDraw(); updateRotation();
   } catch (error) {
+    status.classList.add('load-error');
     status.textContent = 'The globe could not load. Please reload the page.';
     console.error(error);
   }

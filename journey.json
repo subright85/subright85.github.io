@@ -44,7 +44,7 @@
       ]
     },
     "korea-return": {
-      "city": "Korea (city to add)",
+      "city": "South Korea",
       "country": "South Korea",
       "coordinates": null
     }
@@ -56,7 +56,7 @@
       "arrived": "1985-01",
       "departed": "2003-12",
       "age_note": "Birth–age 19",
-      "note": "Grew up in Incheon · years confirmed; month boundaries approximate",
+      "note": "",
       "current": false,
       "approximate": true,
       "period_label": "1985–2004"
@@ -67,7 +67,7 @@
       "arrived": "2004-01",
       "departed": "2010-08",
       "age_note": "From age 19",
-      "note": "POSTECH, before internships abroad · arrival year confirmed; month approximate",
+      "note": "POSTECH",
       "current": false,
       "approximate": true,
       "period_label": "2004–Aug 2010"
@@ -78,7 +78,7 @@
       "arrived": "2010-09",
       "departed": "2011-05",
       "age_note": null,
-      "note": "Microsoft Research Asia internship",
+      "note": "Microsoft Research Asia",
       "current": false,
       "approximate": false
     },
@@ -88,7 +88,7 @@
       "arrived": "2011-06",
       "departed": "2011-08",
       "age_note": null,
-      "note": "Microsoft Research internship in Redmond",
+      "note": "Microsoft Research",
       "current": false,
       "approximate": false
     },
@@ -98,7 +98,7 @@
       "arrived": "2011-09",
       "departed": "2015-07",
       "age_note": null,
-      "note": "Returned to POSTECH; moved to San Jose in Aug 2015",
+      "note": "POSTECH",
       "current": false,
       "approximate": false
     },
@@ -118,7 +118,7 @@
       "arrived": "2016-01",
       "departed": "2016-06",
       "age_note": null,
-      "note": "Returned to Korea; Bagelcode Feb–May 2016. City and move dates to confirm.",
+      "note": "Bagelcode",
       "current": false,
       "approximate": true
     },
@@ -128,7 +128,7 @@
       "arrived": "2016-07",
       "departed": null,
       "age_note": null,
-      "note": "Adobe Research · current home",
+      "note": "Adobe Research",
       "current": true,
       "approximate": false
     }

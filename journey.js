@@ -24,7 +24,7 @@ function prepareJourney(data) {
   const periodLabel = s => s.period_label || (s.arrived ? `${dateLabel(s.arrived)}–${s.current ? 'present' : s.departed ? dateLabel(s.departed) : 'end unknown'}` : s.age_note || 'Dates to add');
   const describe = s => {
     const period = periodLabel(s);
-    return `${data.locations[s.location].city} · ${period}${s.note ? ` · ${s.note}` : ''}${s.approximate ? ' (approximate)' : ''}`;
+    return `${data.locations[s.location].city} · ${period}${s.note ? ` · ${s.note}` : ''}`;
   };
   const byLocation = new Map();
   const descriptions = new Map();
@@ -41,7 +41,7 @@ function prepareJourney(data) {
   });
   const used = [...byLocation.keys()];
   const places = used.filter(id => data.locations[id].coordinates).map(id => ({
-    id, ...data.locations[id], status: 'visited', note: byLocation.get(id).map(s => periods.get(s.id)).join(' / '), stays: byLocation.get(id).map(s => descriptions.get(s.id))
+    id, ...data.locations[id], status: 'visited', summary_notes: [...new Set(byLocation.get(id).map(s => s.note).filter(Boolean))], note: byLocation.get(id).map(s => periods.get(s.id)).join(' / '), stays: byLocation.get(id).map(s => descriptions.get(s.id))
   }));
   const nextMonth = value => {
     const date = new Date(`${value}-01T00:00:00Z`); date.setUTCMonth(date.getUTCMonth() + 1); return date.toISOString().slice(0, 10);

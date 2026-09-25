@@ -3,7 +3,6 @@ function renderResidenceTimeline(data, selectPlace) {
   const detail = document.querySelector('#residence-detail');
   const scaleButton = document.querySelector('#residence-scale');
   const scaleNote = document.querySelector('#residence-scale-note');
-  document.querySelector('#residence-earlier').textContent = data.early_life;
   const svg = d3.select(container).append('svg').attr('role', 'group');
   const start = new Date(Date.UTC(data.start_year || 2010, 0, 1)), end = new Date();
   const time = value => new Date(value + 'T00:00:00Z');
@@ -36,7 +35,7 @@ function renderResidenceTimeline(data, selectPlace) {
   });
   function dateX(date) {
     const f = fraction(date), left = width < 450 ? 96 : 130;
-    return left + (compact ? weighted(date) / weightedTotal : f) * (width - left - 12);
+    return left + (compact ? weighted(date) / weightedTotal : f) * (width - left - 36);
   }
   function draw() {
     if (!width) return;
@@ -54,20 +53,25 @@ function renderResidenceTimeline(data, selectPlace) {
     if (compact) segments.filter(p => p.factor < 1).forEach(p => tickYears.add(new Date(p.to).getUTCFullYear()));
     for (const year of [...tickYears].sort((a,b) => a-b)) {
       const x = dateX(new Date(Date.UTC(year, 0, 1)));
-      if (x - lastTick < 48 || width - 12 - x < 34) continue;
+      if (x - lastTick < 48 || width - 36 - x < 34) continue;
       lastTick = x;
       grid.append('line').attr('class', 'residence-grid').attr('x1', x).attr('x2', x).attr('y1', 24).attr('y2', height - 8);
       grid.append('text').attr('class', 'residence-tick').attr('x', x).attr('y', 13).text(year);
     }
     if (compact) segments.filter(p => p.factor < 1).forEach(p => grid.append('text').attr('class', 'residence-break').attr('x', dateX(new Date((p.from + p.to) / 2))).attr('y', 24).text('//').append('title').text('Quiet period compressed'));
-    grid.append('text').attr('class', 'residence-tick').attr('x', width - 12).attr('y', 13).attr('text-anchor', 'end').text('Now');
+    grid.append('text').attr('class', 'residence-tick').attr('x', width - 36).attr('y', 13).attr('text-anchor', 'end').text('Now');
     layout.forEach(({country, entry, parent}, index) => {
       const y = index * 28 + 37;
       const group = rows.append('g');
       const label = group.append('text').attr('class', `residence-label${parent ? ' country-label' : ''}`).attr('x', parent ? 0 : 12).attr('y', y + 4);
       const max = width < 450 ? 12 : 18;
-      label.text(`${parent ? country.open ? '− ' : '+ ' : ''}${entry.name.length > max ? entry.name.slice(0, max - 1) + '…' : entry.name}`);
+      label.text(entry.name.length > max ? entry.name.slice(0, max - 1) + '…' : entry.name);
       label.append('title').text(entry.name);
+      if (parent) {
+        group.append('line').attr('class', 'country-row-rule').attr('x1', 0).attr('x2', width).attr('y1', y + 16).attr('y2', y + 16);
+        const plus = group.append('text').attr('class', 'country-row-plus').attr('x', width - 8).attr('y', y + 5).attr('text-anchor', 'middle').attr('aria-hidden', 'true').text(country.open ? '×' : '+');
+        plus.on('click', () => { country.open = !country.open; draw(); });
+      }
       if (parent) activate(label.attr('role', 'button').attr('tabindex', 0).attr('aria-expanded', String(country.open)).attr('aria-label', `${country.open ? 'Collapse' : 'Expand'} ${country.name}`), () => {
         country.open = !country.open; draw();
         rows.selectAll('.country-label').filter(function() { return this.getAttribute('aria-label').endsWith(country.name); }).node()?.focus();

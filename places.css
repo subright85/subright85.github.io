@@ -126,3 +126,28 @@
 .globe-controls { gap: 5px; }
 .globe-controls button { border-radius: 6px; font-size: 11px; }
 @media (max-width: 800px) { .places-layout { grid-template-columns: 1fr; } .places-sidebar { margin-top: 20px; } }
+
+/* The same disclosure treatment as publication-year groups on About. */
+.country-places { padding: 0; }
+.country-places > summary { display: flex; align-items: center; gap: 10px; padding: 14px 0; font: 18px var(--serif); }
+.country-places > summary::before, .city-places > summary::before { content: none; }
+.country-places .count { font: 10px/1.5 -apple-system, BlinkMacSystemFont, sans-serif; color: var(--muted); background: #f3e7ef; padding: 2px 7px; border-radius: 20px; }
+.country-places .plus { margin-left: auto; }
+.city-places { margin: 0 0 0 14px; border-top: 1px solid var(--line); }
+.city-places > summary { display: flex; align-items: center; gap: 10px; padding: 10px 0; }
+.city-places .plus { font-size: 16px; }
+.country-row-rule { stroke: var(--line); stroke-width: .7; }
+.country-row-plus { fill: var(--muted); font: 17px sans-serif; cursor: pointer; }
+.land { fill: #e4e5df; stroke: #bec8c1; stroke-width: .55; }
+.ocean { stroke: #a5bdc9; }
+.graticule { stroke: #96acb7; opacity: .17; stroke-width: .5; }
+.visit-area { fill: #729d89; opacity: .8; pointer-events: none; }
+.area-visited { fill: #cc7aa7; }
+.area-visit { fill: #65a5a7; }
+.area-travel { fill: #b99a67; }
+
+.residence-bar.approximate { fill: #c293b0; stroke: none; opacity: .85; }
+
+.residence-heading { justify-content: flex-end; margin: 4px 0 10px; }
+.country-places[open] > summary::before, .city-places[open] > summary::before { content: none; }
+#globe-status:not(.load-error) { position: absolute; width: 1px; height: 1px; min-height: 0; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }

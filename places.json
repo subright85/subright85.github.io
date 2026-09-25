@@ -101,7 +101,7 @@
       22.3193
     ],
     "year": 2009,
-    "note": "CIKM 2009 · Aug 2009 (reported visit month)",
+    "note": "CIKM 2009 · Aug 2009",
     "status": "visit",
     "confirmed": true,
     "coordinate_precision": "city",
@@ -643,7 +643,7 @@
     ],
     "year": 2013,
     "month": "2013-07",
-    "note": "Jul 2013 · Conference to identify",
+    "note": "Jul 2013",
     "status": "travel",
     "confirmed": true,
     "coordinate_precision": "approximate locality",
@@ -684,5 +684,73 @@
     "source": "user",
     "venue_source": "https://cikm2019.net/",
     "conference_inferred": true
+  },
+  {
+    "id": "shanghai-trip-2010",
+    "city": "Shanghai",
+    "country": "China",
+    "country_code": "CN",
+    "coordinates": [
+      121.4737,
+      31.2304
+    ],
+    "year": 2010,
+    "note": "2010",
+    "status": "travel",
+    "confirmed": true,
+    "coordinate_precision": "city",
+    "source": "user"
+  },
+  {
+    "id": "qingdao-trip-2010",
+    "city": "Qingdao",
+    "country": "China",
+    "country_code": "CN",
+    "coordinates": [
+      120.3826,
+      36.0671
+    ],
+    "year": 2010,
+    "note": "2010",
+    "status": "travel",
+    "confirmed": true,
+    "coordinate_precision": "city",
+    "source": "user"
+  },
+  {
+    "id": "toronto-cikm-2010",
+    "city": "Toronto",
+    "country": "Canada",
+    "country_code": "CA",
+    "coordinates": [
+      -79.3832,
+      43.6532
+    ],
+    "year": 2010,
+    "month": "2010-10",
+    "note": "CIKM 2010 · Oct 2010 · RankSVR",
+    "status": "visit",
+    "confirmed": true,
+    "coordinate_precision": "city",
+    "source": "user",
+    "venue_source": "https://www.yorku.ca/cikm10/"
+  },
+  {
+    "id": "niagara-trip-2010",
+    "city": "Niagara Falls",
+    "country": "Canada",
+    "country_code": "CA",
+    "coordinates": [
+      -79.0849,
+      43.0896
+    ],
+    "year": 2010,
+    "month": "2010-10",
+    "note": "Oct 2010 · Trip around CIKM in Toronto",
+    "status": "travel",
+    "confirmed": true,
+    "coordinate_precision": "city",
+    "source": "user",
+    "venue_source": "https://www.yorku.ca/cikm10/"
   }
 ]

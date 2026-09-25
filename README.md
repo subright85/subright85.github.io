@@ -30,7 +30,7 @@ After editing the template or publication data, run `python3 scripts/build.py` a
 
 The Places chart shows residences only, grouped by country and expandable into cities. Quiet residence gaps longer than three years shrink to 1.5 years of display space, marked `//`; Expand time restores a linear scale. Travel and conference visits appear only on the map. Month-only visits follow the map slider by month, year-only visits by year, without inventing exact travel dates.
 
-The globe uses a small, precomputed tile map (`assets/maps/land-game.json`) generated from Natural Earth. Terrain colors are stylized. Regenerate it with `node scripts/build-game-map.cjs`; TopoJSON conversion runs only in that build script, not in visitors’ browsers.
+The globe uses one simplified natural coastline (`assets/maps/land-natural.json`, about 58 KB) built from Natural Earth with `node scripts/build-globe-map.cjs`. TopoJSON runs only during the build. Neutral land receives small colored areas around confirmed visited cities, clipped to land; these are approximate vicinity highlights, not administrative city boundaries. No GIS service or additional runtime library is loaded.
 
 Globe updates are batched once per animation frame. Route interpolation and data formatting are cached, and timeline layout updates only on resize, country expansion, or scale changes; scrubbing moves just its date cursor. The globe rotates slowly by default (20 updates per second), pausing during interaction, off-screen, or in a hidden tab. Reduced-motion preferences disable rotation by default. A monthly slider filters the journey and marks the residence timeline in its current scale; All years restores the full journey.
 
