@@ -1,0 +1,81 @@
+/* Charcoal, paper white, and a restrained racing-red accent. No external fonts. */
+:root {
+  --bg: #fafafa;
+  --ink: #202126;
+  --muted: #686a73;
+  --accent: #c82743;
+  --line: #e3e3e7;
+  --soft: #f3f3f5;
+  --accent-soft: #faedf0;
+  --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+body { background: var(--bg); }
+::selection { background: #f8ccd4; color: #222; }
+.header { background: #191a1f; border-bottom: 2px solid var(--accent); box-shadow: none; }
+.nav-wrap { padding-top: 17px; padding-bottom: 17px; }
+.site-identity { border-left: 0; padding-left: 0; }
+.site-identity h1 { color: #fff; font-size: 22px; font-weight: 650; letter-spacing: -.7px; }
+.site-identity h1 a:hover { color: #fff; }
+.site-identity p { color: #b6b7c0; font-size: 10.5px; }
+.site-identity p a { color: #e0e0e6; }
+.header nav { background: transparent; border: 0; border-radius: 0; padding: 0; gap: 4px; }
+.header nav a { color: #bfc0c9; border-radius: 3px; padding: 8px 12px; font-size: 11.5px; }
+.header nav a:hover { color: #fff; background: #292a32; }
+.header nav a[aria-current] { color: #fff; background: #303139; box-shadow: inset 0 -2px 0 #ef405b; }
+.header a:focus-visible { outline-color: #f8758b; }
+.places-shortcut { color: #868894; border-radius: 3px; }
+.places-shortcut:hover, .places-shortcut[aria-current] { color: #fa758a; background: #303139; }
+.hero { gap: 42px; padding: 34px 0; }
+.bio { color: #52545d; line-height: 1.85; }
+.profile-photo { border-radius: 3px; border-color: #d9d9df; box-shadow: 5px 5px 0 #ececef; }
+h2, .experience-heading h2 { font-size: 20px; letter-spacing: -.5px; font-weight: 650; }
+.section-heading { margin-bottom: 20px; }
+.period-bar, .career-milestone { fill: #ac9ca6; }
+.period-bar.present { fill: var(--accent); }
+.career-break-mark { fill: #9d8490; }
+.chart-note { font-size: 9px; color: #92929b; }
+.search { border-radius: 4px; background: #fff; }
+.publication-scope button { border-radius: 3px; }
+.publication-scope button[aria-pressed="true"] { background: var(--accent-soft); }
+.year-group > summary { font: 600 19px/1.5 var(--sans); letter-spacing: -.4px; padding: 16px 0; }
+.year-group > summary .count, .country-places .count { background: #eeeef1; border-radius: 4px; color: var(--muted); }
+.plus { font-size: 18px; font-weight: 300; }
+.papers { padding-left: 38px; }
+.paper { border-color: var(--line); padding: 18px 0; }
+.paper h3 { font-weight: 600; font-size: 13px; }
+.paper strong { color: #a62d44; }
+.paper-link { border-color: #e7b9c2; font-size: 10px; margin-top: 5px; }
+.paper-heading { display: flex; align-items: baseline; gap: 6px; }
+.paper-explanation { flex-shrink: 0; }
+.summary-trigger { display: inline-flex; vertical-align: -3px; align-items: center; justify-content: center; width: 25px; height: 25px; padding: 3px; border: 0; border-radius: 50%; background: transparent; color: #999aa4; cursor: help; }
+.summary-trigger:hover, .summary-trigger[aria-expanded="true"] { background: var(--accent-soft); color: var(--accent); }
+.summary-trigger:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.paper-tooltip { position: fixed; z-index: 10; display: block; padding: 16px 18px; border: 1px solid #dcdde2; border-top: 2px solid var(--accent); border-radius: 5px; box-shadow: 0 8px 30px #1718231a; background: #fff; color: #444650; font: 12px/1.8 var(--sans); max-height: calc(100dvh - 32px); overflow: auto; }
+.feature { background: #fff; border: 1px solid var(--line); border-radius: 4px; }
+.feature:hover { background: #fff; border-color: #d7a3ad; transform: none; }
+.feature .story-image { border-radius: 2px; }
+.feature h3 { font-weight: 650; }
+.feature-top { letter-spacing: .7px; }
+footer { color: var(--muted); }
+/* The map stays naturally colored; only the interface shares the site accent. */
+.residence-heading button, .boundary-zoom { background: var(--soft); border: 1px solid var(--line); border-radius: 3px; }
+.map-info { background: #fffffff5; border-color: #dddfe5; border-radius: 5px; }
+.globe-controls button { background: #fff; border-radius: 3px; }
+.country-places > summary { font-size: 12px; }
+.residence-bar { fill: #b98f9b; }
+.residence-bar.current { fill: var(--accent); }
+.residence-bar.approximate { fill: #d794a3; }
+.journey-route { stroke: var(--accent); }
+.journey-arrow { fill: var(--accent); }
+.area-visited { fill: #e7446f; stroke: #c32a52; }
+.pin-body { fill: #d72f55; }
+@media (max-width: 900px) { .header nav a { padding: 8px 6px; } }
+@media (max-width: 600px) {
+  .hero { gap: 19px; padding: 27px 0; }
+  .papers { padding-left: 0; }
+  .paper-heading { gap: 2px; }
+  .summary-trigger { width: 28px; height: 28px; }
+  .nav-wrap { padding-top: 14px; padding-bottom: 12px; }
+  .header nav a { font-size: 11px; }
+}
+@media print { .paper-explanation { display: none; } }

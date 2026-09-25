@@ -1,3 +1,52 @@
+// One lightweight, keyboard- and touch-accessible explanation at a time.
+let activeSummary = null;
+let pinnedSummary = false;
+let summaryCloseTimer = null;
+function closeSummary() {
+  clearTimeout(summaryCloseTimer);
+  if (!activeSummary) return;
+  activeSummary.querySelector('.paper-tooltip').hidden = true;
+  activeSummary.querySelector('button').setAttribute('aria-expanded', 'false');
+  activeSummary = null;
+  pinnedSummary = false;
+}
+function openSummary(wrapper) {
+  clearTimeout(summaryCloseTimer);
+  if (activeSummary !== wrapper) closeSummary();
+  activeSummary = wrapper;
+  const button = wrapper.querySelector('button');
+  const tip = wrapper.querySelector('.paper-tooltip');
+  tip.hidden = false;
+  button.setAttribute('aria-expanded', 'true');
+  const rect = button.getBoundingClientRect();
+  const viewportWidth = document.documentElement.clientWidth;
+  const width = Math.min(410, viewportWidth - 32);
+  tip.style.width = `${width}px`;
+  tip.style.left = `${Math.max(16, Math.min(rect.right - width, viewportWidth - width - 16))}px`;
+  const height = tip.getBoundingClientRect().height;
+  const headerBottom = document.querySelector('.header').getBoundingClientRect().bottom;
+  const above = rect.top - height - 12;
+  tip.style.top = `${above > headerBottom + 8 ? above : Math.min(rect.bottom + 10, window.innerHeight - height - 12)}px`;
+}
+document.querySelectorAll('.paper-explanation').forEach(wrapper => {
+  const button = wrapper.querySelector('button');
+  wrapper.addEventListener('mouseenter', () => openSummary(wrapper));
+  wrapper.addEventListener('mouseleave', () => {
+    if (!pinnedSummary && !wrapper.contains(document.activeElement)) summaryCloseTimer = setTimeout(closeSummary, 150);
+  });
+  button.addEventListener('focus', () => openSummary(wrapper));
+  button.addEventListener('click', () => {
+    if (activeSummary === wrapper && pinnedSummary) closeSummary();
+    else { openSummary(wrapper); pinnedSummary = true; }
+  });
+  wrapper.addEventListener('focusout', event => { if (!wrapper.contains(event.relatedTarget) && !pinnedSummary) closeSummary(); });
+});
+document.addEventListener('keydown', event => { if (event.key === 'Escape') closeSummary(); });
+document.addEventListener('click', event => { if (activeSummary && !activeSummary.contains(event.target)) closeSummary(); });
+window.addEventListener('resize', closeSummary);
+window.addEventListener('scroll', closeSummary, {passive: true});
+document.querySelectorAll('.year-group').forEach(group => group.addEventListener('toggle', closeSummary));
+
 const toolbar = document.querySelector('.publication-toolbar');
 const search = document.querySelector('#paper-search');
 const groups = [...document.querySelectorAll('.year-group')];
@@ -10,6 +59,7 @@ let publicationScope = 'selected';
 const scopeControls = document.querySelector('.publication-scope');
 scopeControls.hidden = false;
 function filterPublications() {
+  closeSummary();
   const query = search.value.toLocaleLowerCase().trim();
   if (query && !previousState) previousState = groups.map(group => group.open);
   let matches = 0;
@@ -22,7 +72,7 @@ function filterPublications() {
       if (match) found++;
     });
     group.hidden = found === 0;
-    group.querySelector('.count').textContent = `${found} papers`;
+    group.querySelector('.count').textContent = `${found} paper${found === 1 ? '' : 's'}`;
     if (query) group.open = true;
     else if (previousState) group.open = previousState[index];
     matches += found;

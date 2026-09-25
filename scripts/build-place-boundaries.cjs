@@ -17,7 +17,7 @@ const features = selections.map(selection => {
     if (d3.geoArea({type:'Polygon',coordinates:rounded}) > 2 * Math.PI) rounded.forEach(ring => ring.reverse());
     return rounded;
   });
-  return {type:'Feature',properties:{place_keys:selection.place_keys,kind:selection.kind},geometry:{type:'MultiPolygon',coordinates:polygons}};
+  return {type:'Feature',properties:{place_keys:selection.place_keys,kind:selection.kind,region:selection.sources[0].cache},geometry:{type:'MultiPolygon',coordinates:polygons}};
 });
 const output = JSON.stringify({type:'FeatureCollection',features});
 fs.writeFileSync(path.join(root,'assets/maps/visited-boundaries.json'),output+'\n');

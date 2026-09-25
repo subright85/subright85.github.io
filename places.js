@@ -5,7 +5,7 @@ async function initializeGlobe() {
       fetch('assets/maps/land-natural.json?v=1').then(r => { if (!r.ok) throw new Error('Map unavailable'); return r.json(); }),
       fetch('places.json?v=5').then(r => { if (!r.ok) throw new Error('Places unavailable'); return r.json(); }),
       fetch('journey.json?v=3').then(r => { if (!r.ok) throw new Error('Journey unavailable'); return r.json(); }),
-      fetch('assets/maps/visited-boundaries.json?v=1').then(r => { if (!r.ok) throw new Error('Boundaries unavailable'); return r.json(); })
+      fetch('assets/maps/visited-boundaries.json?v=2').then(r => { if (!r.ok) throw new Error('Boundaries unavailable'); return r.json(); })
     ]);
     const {places: journeyPlaces, residence, moves} = prepareJourney(journey);
     const places = [...journeyPlaces, ...savedPlaces.filter(p => ['conference', 'visit', 'travel'].includes(p.status))];
@@ -32,8 +32,12 @@ async function initializeGlobe() {
       return [move.id, {point: interpolate(.58), ahead: interpolate(.60), midpoint: interpolate(.5)}];
     }));
     const svg = d3.select('#globe');
-    const projection = d3.geoOrthographic().translate([320, 300]).scale(274).rotate([-180, -25]).clipAngle(90);
+    const projection = d3.geoOrthographic().translate([320, 300]).scale(274).rotate([-180, -25]).clipAngle(90).clipExtent([[0, 0], [640, 600]]);
     const path = d3.geoPath(projection);
+    let detailCoast = null, detailCoastRequest = null;
+    function loadDetailCoast() {
+      if (!detailCoastRequest) detailCoastRequest = fetch('assets/maps/land-detail.json?v=1').then(r => { if (!r.ok) throw new Error(); return r.json(); }).then(data => { detailCoast = data.features[0]; scheduleDraw(); }).catch(() => { detailCoastRequest = null; });
+    }
     const gradient = svg.append('defs').append('radialGradient').attr('id', 'ocean-color').attr('cx', '35%').attr('cy', '25%').attr('r', '85%');
     gradient.append('stop').attr('offset', '0%').attr('stop-color', '#b3e6ee');
     gradient.append('stop').attr('offset', '100%').attr('stop-color', '#438fbc');
@@ -42,11 +46,49 @@ async function initializeGlobe() {
     svg.append('g').selectAll('path').data(world.features).join('path').attr('class', 'land').attr('id', 'land-outline');
     const boundaryByPlace = new Map();
     boundaries.features.forEach(feature => feature.properties.place_keys.forEach(key => boundaryByPlace.set(key, feature)));
+    const localBasemap = svg.append('g').attr('aria-hidden', 'true');
+    const contextLayer = svg.append('g').attr('class', 'neighbor-boundaries').attr('aria-hidden', 'true');
+    const contextLabels = svg.append('g').attr('class', 'neighbor-labels').attr('aria-hidden', 'true');
+    const regionCache = new Map();
+    let activeRegion = null;
+    let regionalShapes = new Map();
+    function loadRegion(boundary) {
+      const slug = boundary?.properties.region;
+      if (!slug || activeRegion === slug) return;
+      activeRegion = slug;
+      regionalShapes = new Map();
+      localBasemap.selectAll('*').remove();
+      contextLayer.selectAll('*').remove(); contextLabels.selectAll('*').remove();
+      if (!regionCache.has(slug)) regionCache.set(slug, fetch(`assets/maps/neighbors/${slug}.json?v=1`).then(r => {
+        if (!r.ok) throw new Error('Region unavailable'); return r.json();
+      }).catch(error => { regionCache.delete(slug); throw error; }));
+      regionCache.get(slug).then(raw => {
+        const data = topojson.feature(raw, raw.objects.regions);
+        if (activeRegion !== slug) return;
+        if (raw.objects.coast && raw.objects.coverage) {
+          localBasemap.append('path').datum(topojson.feature(raw, raw.objects.coverage)).attr('class', 'local-sea');
+          localBasemap.append('path').datum(topojson.feature(raw, raw.objects.coast)).attr('class', 'local-land');
+        }
+        data.features.forEach(feature => feature.properties.place_keys.forEach(key => {
+          if (!regionalShapes.has(key)) regionalShapes.set(key, {type: 'MultiPolygon', coordinates: []});
+          regionalShapes.get(key).coordinates.push(...(feature.geometry.type === 'Polygon' ? [feature.geometry.coordinates] : feature.geometry.coordinates));
+        }));
+        contextLayer.selectAll('path').data(data.features).join('path').attr('class', 'neighbor-boundary');
+        contextLabels.selectAll('text').data(data.features.filter(f => !f.properties.place_keys.length).map(f => ({name: f.properties.name, center: d3.geoCentroid(f)}))).join('text').text(d => d.name);
+        scheduleDraw();
+      }).catch(() => { if (activeRegion === slug) activeRegion = null; });
+    }
+    function loadNearestRegion() {
+      const center = projection.invert([320, 300]);
+      const nearest = pinPlaces.filter(p => p.status !== 'conference').reduce((best, place) => !best || d3.geoDistance(center, place.coordinates) < d3.geoDistance(center, best.coordinates) ? place : best, null);
+      if (nearest && d3.geoDistance(center, nearest.coordinates) < .15) loadRegion(boundaryByPlace.get(`${nearest.country}|${nearest.city}`));
+    }
     const areaFeatures = pinPlaces.filter(p => p.status !== 'conference').flatMap(place => {
       const boundary = boundaryByPlace.get(`${place.country}|${place.city}`);
       return boundary ? [{...boundary, place}] : [];
     });
     const areas = svg.append('g').attr('aria-hidden', 'true').selectAll('path').data(areaFeatures).join('path').attr('class', d => `visit-area area-${d.place.status}`);
+    contextLayer.raise(); contextLabels.raise();
 
     const routes = svg.append('g').attr('class', 'journey-routes').selectAll('path').data(drawableMoves).join('path')
       .attr('class', 'journey-route')
@@ -90,7 +132,7 @@ async function initializeGlobe() {
     function rotateFrame() {
       const now = performance.now();
       const rotation = projection.rotate();
-      projection.rotate([rotation[0] + Math.min(now - lastRotation, 100) * .003, rotation[1], rotation[2]]);
+      projection.rotate([rotation[0] + Math.min(now - lastRotation, 100) * .003 * Math.min(1, 274 / projection.scale()), rotation[1], rotation[2]]);
       lastRotation = now;
       scheduleDraw();
       rotationTimer = setTimeout(rotateFrame, 50);
@@ -126,8 +168,25 @@ async function initializeGlobe() {
     }
     function placeReached(p) { return p.events.some(event => event.status === 'visited' ? !timeState || timeState.visited.has(event.id) : ['visit', 'travel'].includes(event.status) ? !timeState || (event.month ? event.month <= timeState.month : event.year != null && event.year <= timeState.year) : toggle.checked); }
     function draw(projectionChanged) {
-      if (projectionChanged) geographicPaths.attr('d', path);
+      if (projectionChanged) { svg.select('#land-outline').datum(projection.scale() > 1000 && detailCoast ? detailCoast : world.features[0]); geographicPaths.attr('d', path); }
       const center = projection.invert([320, 300]);
+      const localView = projection.scale() > 1500;
+      localBasemap.attr('display', localView ? null : 'none');
+      contextLayer.attr('display', localView ? null : 'none');
+      contextLabels.attr('display', localView ? null : 'none');
+      if (projectionChanged && localView) {
+        localBasemap.selectAll('path').attr('d', path);
+        contextLayer.selectAll('path').attr('d', path);
+        areas.attr('d', d => path(regionalShapes.get(`${d.place.country}|${d.place.city}`) || d));
+        const occupied = [];
+        contextLabels.selectAll('text').each(function(d) {
+          const [x, y] = projection(d.center);
+          const width = Math.min(110, (d.name || '').length * 5);
+          const visible = x > 18 && x < 622 && y > 22 && y < 578 && d3.geoDistance(center, d.center) < Math.PI / 2 && !occupied.some(box => Math.abs(box.x-x) < (box.width+width)/2+8 && Math.abs(box.y-y) < 20);
+          if (visible) occupied.push({x, y, width});
+          d3.select(this).attr('x', x).attr('y', y).attr('display', visible ? null : 'none');
+        });
+      }
       routes.classed('active', d => d.move.id === selectedMove).attr('display', d => routeOptions.open && (!timeState || timeState.moveIds.has(d.move.id)) ? null : 'none');
       arrows.classed('active', m => m.id === selectedMove);
       arrows.each(function(m) {
@@ -160,7 +219,7 @@ async function initializeGlobe() {
       selectedMove = null;
       moveSelect.value = '';
       selected = p.id;
-      projection.rotate([-p.coordinates[0], -p.coordinates[1]]).scale(274);
+      if (projection.scale() <= 1500 || d3.geoDistance(projection.invert([320,300]), p.coordinates) > .15) projection.rotate([-p.coordinates[0], -p.coordinates[1]]).scale(274);
       syncSelection();
       detail.replaceChildren(); detail.hidden = false;
       const flag = p.country_code ? [...p.country_code].map(letter => String.fromCodePoint(127397 + letter.charCodeAt(0))).join('') + ' ' : '';
@@ -181,8 +240,10 @@ async function initializeGlobe() {
           const center = d3.geoCentroid(boundary);
           const bounds = d3.geoBounds(boundary);
           const radius = Math.max(...[bounds[0], bounds[1], [bounds[0][0],bounds[1][1]], [bounds[1][0],bounds[0][1]]].map(point => d3.geoDistance(center, point)));
-          projection.rotate([-center[0], -center[1]]).scale(Math.max(500, Math.min(40000, 170 / Math.max(radius, .004))));
-          pauseRotation(); scheduleDraw();
+          projection.rotate([-center[0], -center[1]]).scale(Math.max(500, Math.min(1000000, 210 / Math.max(radius, .00008))));
+          detail.hidden = true;
+          status.textContent = `${p.city} · ${boundary.properties.kind} boundary`;
+          loadDetailCoast(); loadRegion(boundary); pauseRotation(); scheduleDraw();
         });
         detail.append(button);
       }
@@ -273,19 +334,20 @@ async function initializeGlobe() {
     svg.call(d3.drag().on('start', pauseRotation).on('drag', event => {
       const rotation = projection.rotate(); const factor = 60 / projection.scale();
       projection.rotate([rotation[0] + event.dx * factor, Math.max(-85, Math.min(85, rotation[1] - event.dy * factor))]); scheduleDraw();
-    }));
-    function zoom(factor) { pauseRotation(); projection.scale(Math.max(180, Math.min(40000, projection.scale() * factor))); scheduleDraw(); }
+    }).on('end', () => { if (projection.scale() > 1500) loadNearestRegion(); }));
+    function zoom(factor) { pauseRotation(); if (projection.scale() * factor > 1000) loadDetailCoast(); projection.scale(Math.max(180, Math.min(1000000, projection.scale() * factor))); if (projection.scale() > 1500) loadNearestRegion(); scheduleDraw(); }
     svg.on('wheel', event => { event.preventDefault(); zoom(Math.exp(-event.deltaY * .001)); }, {passive: false});
     svg.on('keydown', event => {
       const rotation = projection.rotate(); let handled = true;
-      if (event.key === 'ArrowLeft') rotation[0] -= 10;
-      else if (event.key === 'ArrowRight') rotation[0] += 10;
-      else if (event.key === 'ArrowUp') rotation[1] = Math.min(85, rotation[1] + 10);
-      else if (event.key === 'ArrowDown') rotation[1] = Math.max(-85, rotation[1] - 10);
+      const step = Math.min(10, 2800 / projection.scale());
+      if (event.key === 'ArrowLeft') rotation[0] -= step;
+      else if (event.key === 'ArrowRight') rotation[0] += step;
+      else if (event.key === 'ArrowUp') rotation[1] = Math.min(85, rotation[1] + step);
+      else if (event.key === 'ArrowDown') rotation[1] = Math.max(-85, rotation[1] - step);
       else if (event.key === '+' || event.key === '=') zoom(1.15);
       else if (event.key === '-') zoom(1 / 1.15);
       else handled = false;
-      if (handled) { pauseRotation(); event.preventDefault(); projection.rotate(rotation); scheduleDraw(); }
+      if (handled) { pauseRotation(); event.preventDefault(); projection.rotate(rotation); if (projection.scale() > 1500) loadNearestRegion(); scheduleDraw(); }
     });
     document.querySelector('#zoom-in').addEventListener('click', () => zoom(1.15));
     document.querySelector('#zoom-out').addEventListener('click', () => zoom(1 / 1.15));
@@ -327,7 +389,7 @@ async function initializeGlobe() {
       selectedMove = null; moveSelect.value = '';
       let projectionChanged = false;
       if (stop?.id !== focusedStop && location?.coordinates) {
-        projection.rotate([-location.coordinates[0], -location.coordinates[1]]);
+        projection.rotate([-location.coordinates[0], -location.coordinates[1]]).scale(274);
         projectionChanged = true;
       }
       focusedStop = stop?.id;

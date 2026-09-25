@@ -20,7 +20,7 @@ def render_career(compact=False):
         return f'<rect class="period-bar{" present" if current else ""}" x="{left:.2f}" y="{y}" width="{right-left:.2f}" height="5" rx="2"><title>{escape(label)}</title></rect>'
     svg = [f'<svg class="career-chart career-chart-{suffix}" viewBox="0 0 {width} 170" role="img" aria-labelledby="career-chart-title-{suffix} career-chart-description-{suffix}" xmlns="http://www.w3.org/2000/svg">',
            f'<title id="career-chart-title-{suffix}">Experience and education, 2008 to present</title>',
-           f'<desc id="career-chart-description-{suffix}">The shared time scale is compressed after 2017, marked by a double slash. POSTECH B.S., February 2008; Ph.D., August 2008–August 2015. Microsoft Research Asia internship, September 2010–May 2011; Redmond internship, June–August 2011. Adobe internship, August–December 2015. Bagelcode, February–May 2016. Adobe Research, July 2016–present. Full details follow the chart.</desc>']
+           f'<desc id="career-chart-description-{suffix}">The shared time scale is compressed after 2017, marked by a small break. POSTECH B.S., February 2008; Ph.D., August 2008–August 2015. Microsoft Research Asia internship, September 2010–May 2011; Redmond internship, June–August 2011. Adobe internship, August–December 2015. Bagelcode, February–May 2016. Adobe Research, July 2016–present. Full details follow the chart.</desc>']
     for year in ((2008, 2016) if compact else (2008, 2012, 2016)):
         px = x(f'{year}-01-01')
         svg.append(f'<line class="career-grid" x1="{px:.2f}" y1="26" x2="{px:.2f}" y2="165"/><text class="career-tick" x="{px:.2f}" y="14">{year}</text>')
@@ -41,7 +41,7 @@ def render_career(compact=False):
     svg.append(period('2016-07-01',None,152,'Adobe Research · July 2016–present',True))
     svg.append(f'<text class="career-label current-label" x="{x("2016-07-01")+8:.2f}" y="142">{label("Adobe Research · 2016–present", "Adobe · 2016–now")}</text>')
     cut = x('2017-01-01')
-    svg.append(f'<text class="career-tick" x="{cut:.2f}" y="14">//<title>Time scale compressed after 2017</title></text>')
-    svg.append(f'<rect class="career-break" x="{cut-3:.2f}" y="150" width="12" height="9"/><text class="career-break-mark" x="{cut-2:.2f}" y="158">//<title>Time scale compressed after 2017</title></text>')
+    svg.append(f'<text class="career-tick" x="{cut:.2f}" y="14">⋯<title>Time scale compressed after 2017</title></text>')
+    svg.append(f'<rect class="career-break" x="{cut-3:.2f}" y="150" width="12" height="9"/><text class="career-break-mark" x="{cut-2:.2f}" y="158">⋯<title>Time scale compressed after 2017</title></text>')
     svg.append('</svg>')
     return ''.join(svg)

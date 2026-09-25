@@ -1,0 +1,535 @@
+[
+  {
+    "slug": "incheon",
+    "place_keys": [
+      "South Korea|Incheon"
+    ],
+    "bbox": [
+      36.5794,
+      123.8159,
+      38.325,
+      127.3504
+    ],
+    "query": "[out:json][timeout:35];(relation(id:2297419);relation[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(6)$\"](36.5794,123.8159,38.325,127.3504););out geom;",
+    "source": "https://overpass-api.de/api/interpreter"
+  },
+  {
+    "slug": "pohang",
+    "place_keys": [
+      "South Korea|Pohang"
+    ],
+    "bbox": [
+      35.6784,
+      128.7444,
+      36.4936,
+      129.8486
+    ],
+    "query": "[out:json][timeout:35];(relation(id:7740687);relation[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(6)$\"](35.6784,128.7444,36.4936,129.8486););out geom;",
+    "source": "https://overpass-api.de/api/interpreter"
+  },
+  {
+    "slug": "beijing",
+    "place_keys": [
+      "China|Beijing"
+    ],
+    "bbox": [
+      38.7363,
+      114.8832,
+      41.4936,
+      118.2708
+    ],
+    "query": "[out:json][timeout:35];(relation(id:912940);relation[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(6)$\"](38.7363,114.8832,41.4936,118.2708););out geom;",
+    "source": "https://overpass-api.de/api/interpreter"
+  },
+  {
+    "slug": "seattle",
+    "place_keys": [
+      "USA|Seattle / Redmond"
+    ],
+    "bbox": [
+      47.321,
+      -122.7563,
+      47.8942,
+      -121.9278
+    ],
+    "query": "[out:json][timeout:35];(relation(id:237385,237376);relation[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(8)$\"](47.321,-122.7563,47.8942,-121.9278););out geom;",
+    "source": "https://overpass-api.de/api/interpreter"
+  },
+  {
+    "slug": "san-jose",
+    "place_keys": [
+      "USA|San Jose"
+    ],
+    "bbox": [
+      36.9632,
+      -122.2976,
+      37.6291,
+      -121.3344
+    ],
+    "query": "[out:json][timeout:35];(relation(id:112143);relation[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(8)$\"](36.9632,-122.2976,37.6291,-121.3344););out geom;",
+    "source": "https://overpass-api.de/api/interpreter"
+  },
+  {
+    "slug": "seoul",
+    "place_keys": [
+      "South Korea|Seoul"
+    ],
+    "bbox": [
+      37.2685,
+      126.5121,
+      37.8615,
+      127.4361
+    ],
+    "query": "[out:json][timeout:35];(relation(id:2297418);relation[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(6)$\"](37.2685,126.5121,37.8615,127.4361););out geom;",
+    "source": "https://overpass-api.de/api/interpreter"
+  },
+  {
+    "slug": "maui",
+    "place_keys": [
+      "USA|Maui, Hawaii"
+    ],
+    "bbox": [
+      20.4144,
+      -156.9112,
+      21.1916,
+      -155.7651
+    ],
+    "query": "[out:json][timeout:35];(relation(id:3403431);relation[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(8)$\"](20.4144,-156.9112,21.1916,-155.7651););out geom;",
+    "source": "https://overpass-api.de/api/interpreter"
+  },
+  {
+    "slug": "glasgow-city",
+    "place_keys": [
+      "United Kingdom|Glasgow"
+    ],
+    "bbox": [
+      55.6213,
+      -4.7495,
+      56.0896,
+      -3.7154
+    ],
+    "query": "[out:json][timeout:35];(relation(id:1906767);relation[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(6)$\"](55.6213,-4.7495,56.0896,-3.7154););out geom;",
+    "source": "https://overpass-api.de/api/interpreter"
+  },
+  {
+    "slug": "hong-kong",
+    "place_keys": [
+      "China|Hong Kong"
+    ],
+    "bbox": [
+      21.9767,
+      113.6009,
+      22.7283,
+      114.7187
+    ],
+    "query": "[out:json][timeout:35];(relation(id:913110);relation[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(6)$\"](21.9767,113.6009,22.7283,114.7187););out geom;",
+    "source": "https://overpass-api.de/api/interpreter"
+  },
+  {
+    "slug": "barcelona",
+    "place_keys": [
+      "Spain|Barcelona"
+    ],
+    "bbox": [
+      41.157,
+      1.7859,
+      41.6279,
+      2.495
+    ],
+    "query": "[out:json][timeout:35];(relation(id:347950);relation[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(6|8)$\"](41.157,1.7859,41.6279,2.495););out geom;",
+    "source": "https://overpass-api.de/api/interpreter"
+  },
+  {
+    "slug": "long-beach",
+    "place_keys": [
+      "USA|Long Beach, CA"
+    ],
+    "bbox": [
+      33.5306,
+      -118.4896,
+      34.0456,
+      -117.8226
+    ],
+    "query": "[out:json][timeout:35];(relation(id:112100);relation[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(8)$\"](33.5306,-118.4896,34.0456,-117.8226););out geom;",
+    "source": "https://overpass-api.de/api/interpreter"
+  },
+  {
+    "slug": "washington",
+    "place_keys": [
+      "USA|Washington, DC"
+    ],
+    "bbox": [
+      38.6316,
+      -77.3768,
+      39.156,
+      -76.6524
+    ],
+    "query": "[out:json][timeout:35];(relation(id:5396194);relation[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(8)$\"](38.6316,-77.3768,39.156,-76.6524););out geom;",
+    "source": "https://overpass-api.de/api/interpreter"
+  },
+  {
+    "slug": "anchorage",
+    "place_keys": [
+      "USA|Anchorage, AK"
+    ],
+    "bbox": [
+      60.5603,
+      -150.871,
+      61.6567,
+      -148.012
+    ],
+    "query": "[out:json][timeout:35];(relation(id:2605259);relation[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(8)$\"](60.5603,-150.871,61.6567,-148.012););out geom;",
+    "source": "https://overpass.private.coffee/api/interpreter"
+  },
+  {
+    "slug": "boston",
+    "place_keys": [
+      "USA|Boston, MA"
+    ],
+    "bbox": [
+      42.0679,
+      -71.4617,
+      42.557,
+      -70.534
+    ],
+    "query": "[out:json][timeout:35];(relation(id:2315704);relation[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(8)$\"](42.0679,-71.4617,42.557,-70.534););out geom;",
+    "source": "https://overpass-api.de/api/interpreter"
+  },
+  {
+    "slug": "kota-kinabalu",
+    "place_keys": [
+      "Malaysia|Kota Kinabalu"
+    ],
+    "bbox": [
+      5.6986,
+      115.7905,
+      6.2991,
+      116.4843
+    ],
+    "query": "[out:json][timeout:35];(relation(id:15975929);relation[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(6|8)$\"](5.6986,115.7905,6.2991,116.4843););out geom;",
+    "source": "https://overpass-api.de/api/interpreter"
+  },
+  {
+    "slug": "reno",
+    "place_keys": [
+      "USA|Reno, NV"
+    ],
+    "bbox": [
+      39.2324,
+      -120.2617,
+      39.8834,
+      -119.4318
+    ],
+    "query": "[out:json][timeout:35];(relation(id:170120);relation[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(8)$\"](39.2324,-120.2617,39.8834,-119.4318););out geom;",
+    "source": "https://overpass-api.de/api/interpreter"
+  },
+  {
+    "slug": "new-york",
+    "place_keys": [
+      "USA|New York, NY"
+    ],
+    "bbox": [
+      40.3166,
+      -74.5226,
+      41.0776,
+      -73.4364
+    ],
+    "query": "[out:json][timeout:35];(relation(id:175905);relation[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(8)$\"](40.3166,-74.5226,41.0776,-73.4364););out geom;",
+    "source": "https://overpass-api.de/api/interpreter"
+  },
+  {
+    "slug": "mendocino-census",
+    "place_keys": [
+      "USA|Mendocino, CA"
+    ],
+    "bbox": [
+      39.1397,
+      -124.0758,
+      39.4833,
+      -123.5122
+    ],
+    "query": "[out:json][timeout:35];(relation[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(8)$\"](39.1397,-124.0758,39.4833,-123.5122););out geom;",
+    "source": "https://overpass-api.de/api/interpreter"
+  },
+  {
+    "slug": "tahoe",
+    "place_keys": [
+      "USA|Lake Tahoe"
+    ],
+    "bbox": [
+      38.7682,
+      -120.4216,
+      39.409,
+      -119.6684
+    ],
+    "query": "[out:json][timeout:35];(relation(id:1823287);relation[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(8)$\"](38.7682,-120.4216,39.409,-119.6684););out geom;",
+    "source": "https://overpass-api.de/api/interpreter"
+  },
+  {
+    "slug": "honolulu",
+    "place_keys": [
+      "USA|Honolulu, Hawaii"
+    ],
+    "bbox": [
+      21.0948,
+      -158.1651,
+      21.5622,
+      -157.4339
+    ],
+    "query": "[out:json][timeout:35];(relation(id:119231);relation[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(8)$\"](21.0948,-158.1651,21.5622,-157.4339););out geom;",
+    "source": "https://overpass-api.de/api/interpreter"
+  },
+  {
+    "slug": "kauai",
+    "place_keys": [
+      "USA|Kauai, Hawaii"
+    ],
+    "bbox": [
+      21.7082,
+      -160.0037,
+      22.3927,
+      -159.0765
+    ],
+    "query": "[out:json][timeout:35];(relation(id:3489753);relation[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(8)$\"](21.7082,-160.0037,22.3927,-159.0765););out geom;",
+    "source": "https://overpass-api.de/api/interpreter"
+  },
+  {
+    "slug": "las-vegas",
+    "place_keys": [
+      "USA|Las Vegas, NV"
+    ],
+    "bbox": [
+      35.9696,
+      -115.6546,
+      36.5615,
+      -114.814
+    ],
+    "query": "where=STATE='32'; outFields=GEOID,NAME,STATE; outSR=4326; geometryPrecision=5; maxAllowableOffset=0.0005",
+    "source": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Places_CouSub_ConCity_SubMCD/MapServer/4",
+    "data_file": "data/nevada-census-cities.json"
+  },
+  {
+    "slug": "girona",
+    "place_keys": [
+      "Spain|Girona"
+    ],
+    "bbox": [
+      41.7792,
+      2.514,
+      42.1897,
+      3.1673
+    ],
+    "query": "[out:json][timeout:35];(relation(id:343535);relation[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(6|8)$\"](41.7792,2.514,42.1897,3.1673););out geom;",
+    "source": "https://overpass-api.de/api/interpreter"
+  },
+  {
+    "slug": "los-cabos",
+    "place_keys": [
+      "Mexico|Los Cabos"
+    ],
+    "bbox": [
+      22.6877,
+      -110.3384,
+      23.8554,
+      -109.1955
+    ],
+    "query": "[out:json][timeout:35];(relation(id:5605984);relation[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(6|8)$\"](22.6877,-110.3384,23.8554,-109.1955););out geom;",
+    "source": "https://overpass-api.de/api/interpreter"
+  },
+  {
+    "slug": "hawaii-island",
+    "place_keys": [
+      "USA|Hawaii Island"
+    ],
+    "bbox": [
+      18.5984,
+      -156.3506,
+      20.5808,
+      -154.518
+    ],
+    "query": "[out:json][timeout:35];(relation(id:3403603);relation[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(8)$\"](18.5984,-156.3506,20.5808,-154.518););out geom;",
+    "source": "https://overpass-api.de/api/interpreter"
+  },
+  {
+    "slug": "anaheim",
+    "place_keys": [
+      "USA|Anaheim, CA"
+    ],
+    "bbox": [
+      33.6289,
+      -118.2581,
+      34.0391,
+      -117.4332
+    ],
+    "query": "[out:json][timeout:35];(relation(id:253985);relation[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(8)$\"](33.6289,-118.2581,34.0391,-117.4332););out geom;",
+    "source": "https://overpass-api.de/api/interpreter"
+  },
+  {
+    "slug": "sacramento",
+    "place_keys": [
+      "USA|Sacramento, CA"
+    ],
+    "bbox": [
+      38.2777,
+      -121.8159,
+      38.8455,
+      -121.107
+    ],
+    "query": "[out:json][timeout:35];(relation(id:6232940);relation[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(8)$\"](38.2777,-121.8159,38.8455,-121.107););out geom;",
+    "source": "https://overpass-api.de/api/interpreter"
+  },
+  {
+    "slug": "napa",
+    "place_keys": [
+      "USA|Napa, CA"
+    ],
+    "bbox": [
+      38.0675,
+      -122.6125,
+      38.5108,
+      -122.0001
+    ],
+    "query": "[out:json][timeout:35];(relation(id:111735);relation[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(8)$\"](38.0675,-122.6125,38.5108,-122.0001););out geom;",
+    "source": "https://overpass-api.de/api/interpreter"
+  },
+  {
+    "slug": "aspen",
+    "place_keys": [
+      "USA|Aspen, CO"
+    ],
+    "bbox": [
+      39.0171,
+      -107.1202,
+      39.3784,
+      -106.5437
+    ],
+    "query": "[out:json][timeout:35];(relation(id:113154);relation[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(8)$\"](39.0171,-107.1202,39.3784,-106.5437););out geom;",
+    "source": "https://overpass-api.de/api/interpreter"
+  },
+  {
+    "slug": "yosemite",
+    "place_keys": [
+      "USA|Yosemite National Park"
+    ],
+    "bbox": [
+      37.3321,
+      -120.1394,
+      38.3463,
+      -118.9463
+    ],
+    "query": "[out:json][timeout:35];(relation(id:1643367);relation[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(8)$\"](37.3321,-120.1394,38.3463,-118.9463););out geom;",
+    "source": "https://overpass-api.de/api/interpreter"
+  },
+  {
+    "slug": "maldives",
+    "place_keys": [
+      "Maldives|Maldives"
+    ],
+    "bbox": [
+      -2.7977,
+      71.984,
+      9.2008,
+      74.3415
+    ],
+    "query": "[out:json][timeout:35];(relation(id:536773);relation[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(8)$\"](-2.7977,71.984,9.2008,74.3415););out geom;",
+    "source": "https://overpass-api.de/api/interpreter"
+  },
+  {
+    "slug": "singapore",
+    "place_keys": [
+      "Singapore|Singapore"
+    ],
+    "bbox": [
+      0.9704,
+      103.3343,
+      1.6743,
+      104.8025
+    ],
+    "query": "[out:json][timeout:35];(relation(id:536780);relation[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(6|8)$\"](0.9704,103.3343,1.6743,104.8025););out geom;",
+    "source": "https://overpass-api.de/api/interpreter"
+  },
+  {
+    "slug": "shanghai",
+    "place_keys": [
+      "China|Shanghai"
+    ],
+    "bbox": [
+      30.3928,
+      120.3046,
+      32.1486,
+      123.7719
+    ],
+    "query": "[out:json][timeout:35];(relation(id:913067);relation[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(6)$\"](30.3928,120.3046,32.1486,123.7719););out geom;",
+    "source": "https://overpass-api.de/api/interpreter"
+  },
+  {
+    "slug": "taipei",
+    "place_keys": [
+      "Taiwan|Taipei"
+    ],
+    "bbox": [
+      24.8005,
+      121.2363,
+      25.3703,
+      121.8868
+    ],
+    "query": "[out:json][timeout:50];(relation(1293250);relation[\"boundary\"=\"administrative\"][\"admin_level\"=\"4\"](24.8005,121.2363,25.3703,121.8868);relation[\"boundary\"=\"administrative\"][\"admin_level\"=\"8\"](24.8005,121.2363,25.3703,121.8868););out geom;",
+    "source": "https://maps.mail.ru/osm/tools/overpass/api/interpreter"
+  },
+  {
+    "slug": "san-diego",
+    "place_keys": [
+      "USA|San Diego, CA"
+    ],
+    "bbox": [
+      32.3748,
+      -117.5478,
+      33.2742,
+      -116.6677
+    ],
+    "query": "[out:json][timeout:35];(relation(id:253832);relation[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(8)$\"](32.3748,-117.5478,33.2742,-116.6677););out geom;",
+    "source": "https://overpass-api.de/api/interpreter"
+  },
+  {
+    "slug": "qingdao",
+    "place_keys": [
+      "China|Qingdao"
+    ],
+    "bbox": [
+      35.0615,
+      119.0353,
+      37.5387,
+      122.0439
+    ],
+    "query": "[out:json][timeout:35];(relation(id:3469133);relation[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(6)$\"](35.0615,119.0353,37.5387,122.0439););out geom;",
+    "source": "https://overpass-api.de/api/interpreter"
+  },
+  {
+    "slug": "toronto",
+    "place_keys": [
+      "Canada|Toronto"
+    ],
+    "bbox": [
+      43.4196,
+      -79.916,
+      44.0154,
+      -78.8365
+    ],
+    "query": "[out:json][timeout:35];(relation(id:324211);relation[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(6|8)$\"](43.4196,-79.916,44.0154,-78.8365););out geom;",
+    "source": "https://overpass-api.de/api/interpreter"
+  },
+  {
+    "slug": "niagara",
+    "place_keys": [
+      "Canada|Niagara Falls"
+    ],
+    "bbox": [
+      42.7993,
+      -79.451,
+      43.3079,
+      -78.7259
+    ],
+    "query": "[out:json][timeout:35];(relation(id:2388057);relation[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(6|8)$\"](42.7993,-79.451,43.3079,-78.7259););out geom;",
+    "source": "https://overpass-api.de/api/interpreter"
+  }
+]
