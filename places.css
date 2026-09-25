@@ -129,7 +129,7 @@
 
 /* The same disclosure treatment as publication-year groups on About. */
 .country-places { padding: 0; }
-.country-places > summary { display: flex; align-items: center; gap: 10px; padding: 14px 0; font: 18px var(--serif); }
+.country-places > summary { display: flex; align-items: center; gap: 10px; padding: 12px 0; font: 500 13px/1.4 var(--sans, -apple-system, BlinkMacSystemFont, sans-serif); }
 .country-places > summary::before, .city-places > summary::before { content: none; }
 .country-places .count { font: 10px/1.5 -apple-system, BlinkMacSystemFont, sans-serif; color: var(--muted); background: #f3e7ef; padding: 2px 7px; border-radius: 20px; }
 .country-places .plus { margin-left: auto; }
@@ -151,3 +151,21 @@
 .residence-heading { justify-content: flex-end; margin: 4px 0 10px; }
 .country-places[open] > summary::before, .city-places[open] > summary::before { content: none; }
 #globe-status:not(.load-error) { position: absolute; width: 1px; height: 1px; min-height: 0; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+/* Vivid accents on a quiet neutral base. */
+.ocean { stroke: #629db7; }
+.land { fill: #e8e7df; stroke: #bfc9c3; }
+.visit-area { opacity: .9; stroke-width: .65; stroke-linejoin: round; }
+.area-visited { fill: #e53696; stroke: #b20c6f; }
+.area-visit { fill: #10b6b1; stroke: #008c8b; }
+.area-travel { fill: #ffb537; stroke: #d78a15; }
+.pin-body { fill: #dc1988; }
+.place-marker.visit .pin-body { fill: #039d9b; }
+.place-marker.travel .pin-body { fill: #eea222; }
+.boundary-zoom { color: var(--accent); background: #f6e5ef; border: 0; border-radius: 5px; padding: 6px 9px; font-size: 11px; margin-top: 7px; cursor: pointer; }
+
+.trip-route { fill: none; stroke: #eb9821; stroke-width: 1.7; stroke-dasharray: 4 3; opacity: .85; pointer-events: none; }
+.trip-arrow { fill: #d78309; pointer-events: none; }
+.trip-route-toggle { display: flex; align-items: center; gap: 6px; margin-top: 16px; font-size: 11px; color: var(--muted); }
+.trip-route-toggle input { accent-color: var(--accent); }
+.trip-route-toggle span { color: #929097; font-size: 10px; }

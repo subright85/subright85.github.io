@@ -58,7 +58,6 @@ function renderResidenceTimeline(data, selectPlace) {
       grid.append('line').attr('class', 'residence-grid').attr('x1', x).attr('x2', x).attr('y1', 24).attr('y2', height - 8);
       grid.append('text').attr('class', 'residence-tick').attr('x', x).attr('y', 13).text(year);
     }
-    if (compact) segments.filter(p => p.factor < 1).forEach(p => grid.append('text').attr('class', 'residence-break').attr('x', dateX(new Date((p.from + p.to) / 2))).attr('y', 24).text('//').append('title').text('Quiet period compressed'));
     grid.append('text').attr('class', 'residence-tick').attr('x', width - 36).attr('y', 13).attr('text-anchor', 'end').text('Now');
     layout.forEach(({country, entry, parent}, index) => {
       const y = index * 28 + 37;
@@ -99,8 +98,8 @@ function renderResidenceTimeline(data, selectPlace) {
   function scaleLabel() {
     scaleButton.textContent = compact ? 'Expand time' : 'Compact time';
     scaleButton.setAttribute('aria-pressed', String(compact));
-    scaleNote.textContent = compact ? 'Quiet periods compressed' : 'Linear time scale';
-    svg.attr('aria-label', `Residence by country. ${scaleNote.textContent}. Expand a country to show its cities.`);
+    scaleNote.textContent = ''; 
+    svg.attr('aria-label', `Residence by country. ${compact ? 'Compact time scale' : 'Linear time scale'}. Expand a country to show its cities.`);
   }
   function toggleScale() { compact = !compact; scaleLabel(); draw(); }
   scaleButton.addEventListener('click', toggleScale);

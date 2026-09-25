@@ -1,10 +1,11 @@
 async function initializeGlobe() {
   const status = document.querySelector('#globe-status');
   try {
-    const [world, savedPlaces, journey] = await Promise.all([
+    const [world, savedPlaces, journey, boundaries] = await Promise.all([
       fetch('assets/maps/land-natural.json?v=1').then(r => { if (!r.ok) throw new Error('Map unavailable'); return r.json(); }),
       fetch('places.json?v=5').then(r => { if (!r.ok) throw new Error('Places unavailable'); return r.json(); }),
-      fetch('journey.json?v=3').then(r => { if (!r.ok) throw new Error('Journey unavailable'); return r.json(); })
+      fetch('journey.json?v=3').then(r => { if (!r.ok) throw new Error('Journey unavailable'); return r.json(); }),
+      fetch('assets/maps/visited-boundaries.json?v=1').then(r => { if (!r.ok) throw new Error('Boundaries unavailable'); return r.json(); })
     ]);
     const {places: journeyPlaces, residence, moves} = prepareJourney(journey);
     const places = [...journeyPlaces, ...savedPlaces.filter(p => ['conference', 'visit', 'travel'].includes(p.status))];
@@ -22,6 +23,9 @@ async function initializeGlobe() {
     const routeOptions = document.querySelector('#route-options');
     const conferenceList = document.querySelector('#conference-list');
     const choiceButtons = new Map();
+    const tripRoutes = prepareTripRoutes(journey, savedPlaces);
+    const tripGeometry = new Map(tripRoutes.map(trip => { const interpolate = d3.geoInterpolate(...trip.coordinates); return [trip.id, {point: interpolate(.72), ahead: interpolate(.74)}]; }));
+    const tripToggle = document.querySelector('#show-trip-routes');
     const drawableMoves = moves.filter(move => move.coordinates);
     const routeGeometry = new Map(drawableMoves.map(move => {
       const interpolate = d3.geoInterpolate(...move.coordinates);
@@ -31,19 +35,27 @@ async function initializeGlobe() {
     const projection = d3.geoOrthographic().translate([320, 300]).scale(274).rotate([-180, -25]).clipAngle(90);
     const path = d3.geoPath(projection);
     const gradient = svg.append('defs').append('radialGradient').attr('id', 'ocean-color').attr('cx', '35%').attr('cy', '25%').attr('r', '85%');
-    gradient.append('stop').attr('offset', '0%').attr('stop-color', '#edf4f6');
-    gradient.append('stop').attr('offset', '100%').attr('stop-color', '#9abacb');
+    gradient.append('stop').attr('offset', '0%').attr('stop-color', '#b3e6ee');
+    gradient.append('stop').attr('offset', '100%').attr('stop-color', '#438fbc');
     svg.append('path').datum({type: 'Sphere'}).attr('class', 'ocean');
     svg.append('path').datum(d3.geoGraticule().step([15, 15])()).attr('class', 'graticule');
     svg.append('g').selectAll('path').data(world.features).join('path').attr('class', 'land').attr('id', 'land-outline');
-    svg.select('defs').append('clipPath').attr('id', 'visited-land-clip').append('use').attr('href', '#land-outline');
-    const areas = svg.append('g').attr('clip-path', 'url(#visited-land-clip)').attr('aria-hidden', 'true').selectAll('path').data(pinPlaces.filter(p => p.status !== 'conference').map(place => ({...d3.geoCircle().center(place.coordinates).radius(1.6).precision(30)(), place}))).join('path').attr('class', d => `visit-area area-${d.place.status}`);
+    const boundaryByPlace = new Map();
+    boundaries.features.forEach(feature => feature.properties.place_keys.forEach(key => boundaryByPlace.set(key, feature)));
+    const areaFeatures = pinPlaces.filter(p => p.status !== 'conference').flatMap(place => {
+      const boundary = boundaryByPlace.get(`${place.country}|${place.city}`);
+      return boundary ? [{...boundary, place}] : [];
+    });
+    const areas = svg.append('g').attr('aria-hidden', 'true').selectAll('path').data(areaFeatures).join('path').attr('class', d => `visit-area area-${d.place.status}`);
 
     const routes = svg.append('g').attr('class', 'journey-routes').selectAll('path').data(drawableMoves).join('path')
       .attr('class', 'journey-route')
       .datum(m => ({type: 'LineString', coordinates: m.coordinates, move: m}));
     routes.append('title').text(d => `${d.move.label} · ${d.move.date}`);
-    const geographicPaths = svg.selectAll('.ocean, .graticule, .land, .visit-area, .journey-route');
+    const travelPaths = svg.append('g').selectAll('path').data(tripRoutes).join('path').attr('class', 'trip-route').datum(trip => ({type: 'LineString', coordinates: trip.coordinates, trip}));
+    travelPaths.append('title').text(d => `${d.trip.label} · ${d.trip.month} · Illustrative route from home`);
+    const tripArrows = svg.append('g').attr('aria-hidden', 'true').selectAll('polygon').data(tripRoutes).join('polygon').attr('class', 'trip-arrow');
+    const geographicPaths = svg.selectAll('.ocean, .graticule, .land, .visit-area, .journey-route, .trip-route');
     const arrows = svg.append('g').attr('aria-hidden', 'true').selectAll('polygon').data(drawableMoves).join('polygon').attr('class', 'journey-arrow');
     const markers = svg.append('g').selectAll('g').data(pinPlaces).join('g')
       .attr('class', p => `place-marker ${p.status}`).attr('role', 'button')
@@ -126,6 +138,15 @@ async function initializeGlobe() {
         const dx = Math.cos(angle), dy = Math.sin(angle);
         d3.select(this).attr('display', visible ? null : 'none').attr('points', `${a[0]+dx*5},${a[1]+dy*5} ${a[0]-dx*4-dy*3},${a[1]-dy*4+dx*3} ${a[0]-dx*4+dy*3},${a[1]-dy*4-dx*3}`);
       });
+      const showTrip = trip => tripToggle.checked && (timeState ? trip.month === timeState.month : selected ? trip.place.city === placeById.get(selected)?.city && trip.place.country === placeById.get(selected)?.country : false);
+      travelPaths.attr('display', d => showTrip(d.trip) ? null : 'none');
+      tripArrows.each(function(trip) {
+        const {point, ahead} = tripGeometry.get(trip.id);
+        const visible = showTrip(trip) && d3.geoDistance(center, point) < Math.PI / 2 && d3.geoDistance(center, ahead) < Math.PI / 2;
+        const a = projection(point), b = projection(ahead), angle = Math.atan2(b[1]-a[1], b[0]-a[0]);
+        const dx = Math.cos(angle), dy = Math.sin(angle);
+        d3.select(this).attr('display', visible ? null : 'none').attr('points', `${a[0]+dx*6},${a[1]+dy*6} ${a[0]-dx*4-dy*3},${a[1]-dy*4+dx*3} ${a[0]-dx*4+dy*3},${a[1]-dy*4-dx*3}`);
+      });
       areas.attr('display', d => placeReached(d.place) ? null : 'none');
       markers.each(function(p) {
         const visible = placeReached(p) && d3.geoDistance(center, p.coordinates) < Math.PI / 2;
@@ -139,7 +160,7 @@ async function initializeGlobe() {
       selectedMove = null;
       moveSelect.value = '';
       selected = p.id;
-      projection.rotate([-p.coordinates[0], -p.coordinates[1]]);
+      projection.rotate([-p.coordinates[0], -p.coordinates[1]]).scale(274);
       syncSelection();
       detail.replaceChildren(); detail.hidden = false;
       const flag = p.country_code ? [...p.country_code].map(letter => String.fromCodePoint(127397 + letter.charCodeAt(0))).join('') + ' ' : '';
@@ -152,6 +173,19 @@ async function initializeGlobe() {
         detail.append(history);
       }
       if (p.summary_notes?.length) { const memo = document.createElement('p'); memo.textContent = p.summary_notes.join(' · '); detail.append(memo); }
+      const boundary = boundaryByPlace.get(`${p.country}|${p.city}`);
+      if (boundary) {
+        const button = document.createElement('button'); button.type = 'button'; button.className = 'boundary-zoom';
+        button.textContent = `View ${boundary.properties.kind.toLowerCase()} boundary`;
+        button.addEventListener('click', () => {
+          const center = d3.geoCentroid(boundary);
+          const bounds = d3.geoBounds(boundary);
+          const radius = Math.max(...[bounds[0], bounds[1], [bounds[0][0],bounds[1][1]], [bounds[1][0],bounds[0][1]]].map(point => d3.geoDistance(center, point)));
+          projection.rotate([-center[0], -center[1]]).scale(Math.max(500, Math.min(40000, 170 / Math.max(radius, .004))));
+          pauseRotation(); scheduleDraw();
+        });
+        detail.append(button);
+      }
       if (p.paper) {
         const paper = document.createElement('p'); paper.textContent = `${p.paper} · ${p.author_role} author`; detail.append(paper);
         for (const [label, href] of [['Venue source', p.venue_source], ['Paper', p.paper_source]]) {
@@ -184,6 +218,7 @@ async function initializeGlobe() {
       status.textContent = `${index + 1} / ${moves.length} · ${move.label} · ${move.date}${move.coordinates ? '' : ' · Add the missing city coordinates to draw this move.'}`;
       syncSelection(); scheduleDraw();
     }
+    tripToggle.addEventListener('change', () => scheduleDraw(false));
     routeOptions.addEventListener('toggle', () => scheduleDraw(false));
     moveSelect.addEventListener('change', () => showMove(moveIndexById.get(moveSelect.value)));
     document.querySelector('#previous-move').addEventListener('click', () => {
@@ -239,7 +274,7 @@ async function initializeGlobe() {
       const rotation = projection.rotate(); const factor = 60 / projection.scale();
       projection.rotate([rotation[0] + event.dx * factor, Math.max(-85, Math.min(85, rotation[1] - event.dy * factor))]); scheduleDraw();
     }));
-    function zoom(factor) { pauseRotation(); projection.scale(Math.max(180, Math.min(600, projection.scale() * factor))); scheduleDraw(); }
+    function zoom(factor) { pauseRotation(); projection.scale(Math.max(180, Math.min(40000, projection.scale() * factor))); scheduleDraw(); }
     svg.on('wheel', event => { event.preventDefault(); zoom(Math.exp(-event.deltaY * .001)); }, {passive: false});
     svg.on('keydown', event => {
       const rotation = projection.rotate(); let handled = true;

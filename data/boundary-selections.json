@@ -1,0 +1,579 @@
+[
+  {
+    "place_keys": [
+      "South Korea|Incheon"
+    ],
+    "kind": "City",
+    "sources": [
+      {
+        "cache": "incheon",
+        "index": 0,
+        "source": "OpenStreetMap",
+        "url": "https://www.openstreetmap.org/relation/2297419",
+        "osm_id": 2297419
+      }
+    ]
+  },
+  {
+    "place_keys": [
+      "South Korea|Pohang"
+    ],
+    "kind": "City",
+    "sources": [
+      {
+        "cache": "pohang",
+        "index": 0,
+        "source": "OpenStreetMap",
+        "url": "https://www.openstreetmap.org/relation/7740687",
+        "osm_id": 7740687
+      }
+    ]
+  },
+  {
+    "place_keys": [
+      "China|Beijing"
+    ],
+    "kind": "Municipality",
+    "sources": [
+      {
+        "cache": "beijing",
+        "index": 0,
+        "source": "OpenStreetMap",
+        "url": "https://www.openstreetmap.org/relation/912940",
+        "osm_id": 912940
+      }
+    ]
+  },
+  {
+    "place_keys": [
+      "USA|Seattle / Redmond"
+    ],
+    "kind": "Cities",
+    "sources": [
+      {
+        "cache": "seattle",
+        "index": 0,
+        "source": "OpenStreetMap",
+        "url": "https://www.openstreetmap.org/relation/237385",
+        "osm_id": 237385
+      },
+      {
+        "cache": "redmond",
+        "index": 0,
+        "source": "OpenStreetMap",
+        "url": "https://www.openstreetmap.org/relation/237376",
+        "osm_id": 237376
+      }
+    ]
+  },
+  {
+    "place_keys": [
+      "USA|San Jose"
+    ],
+    "kind": "City",
+    "sources": [
+      {
+        "cache": "san-jose",
+        "index": 0,
+        "source": "OpenStreetMap",
+        "url": "https://www.openstreetmap.org/relation/112143",
+        "osm_id": 112143
+      }
+    ]
+  },
+  {
+    "place_keys": [
+      "South Korea|Seoul"
+    ],
+    "kind": "City",
+    "sources": [
+      {
+        "cache": "seoul",
+        "index": 0,
+        "source": "OpenStreetMap",
+        "url": "https://www.openstreetmap.org/relation/2297418",
+        "osm_id": 2297418
+      }
+    ]
+  },
+  {
+    "place_keys": [
+      "USA|Maui, Hawaii"
+    ],
+    "kind": "Island",
+    "sources": [
+      {
+        "cache": "maui",
+        "index": 0,
+        "source": "OpenStreetMap",
+        "url": "https://www.openstreetmap.org/relation/3403431",
+        "osm_id": 3403431
+      }
+    ]
+  },
+  {
+    "place_keys": [
+      "United Kingdom|Glasgow"
+    ],
+    "kind": "Council area",
+    "sources": [
+      {
+        "cache": "glasgow-city",
+        "index": 0,
+        "source": "OpenStreetMap",
+        "url": "https://www.openstreetmap.org/relation/1906767",
+        "osm_id": 1906767
+      }
+    ]
+  },
+  {
+    "place_keys": [
+      "China|Hong Kong"
+    ],
+    "kind": "Region",
+    "sources": [
+      {
+        "cache": "hong-kong",
+        "index": 1,
+        "source": "OpenStreetMap",
+        "url": "https://www.openstreetmap.org/relation/913110",
+        "osm_id": 913110
+      }
+    ]
+  },
+  {
+    "place_keys": [
+      "Spain|Barcelona"
+    ],
+    "kind": "City",
+    "sources": [
+      {
+        "cache": "barcelona",
+        "index": 0,
+        "source": "OpenStreetMap",
+        "url": "https://www.openstreetmap.org/relation/347950",
+        "osm_id": 347950
+      }
+    ]
+  },
+  {
+    "place_keys": [
+      "USA|Long Beach, CA"
+    ],
+    "kind": "City",
+    "sources": [
+      {
+        "cache": "long-beach",
+        "index": 0,
+        "source": "OpenStreetMap",
+        "url": "https://www.openstreetmap.org/relation/112100",
+        "osm_id": 112100
+      }
+    ]
+  },
+  {
+    "place_keys": [
+      "USA|Washington, DC"
+    ],
+    "kind": "City",
+    "sources": [
+      {
+        "cache": "washington",
+        "index": 0,
+        "source": "OpenStreetMap",
+        "url": "https://www.openstreetmap.org/relation/5396194",
+        "osm_id": 5396194
+      }
+    ]
+  },
+  {
+    "place_keys": [
+      "USA|Anchorage, AK"
+    ],
+    "kind": "Municipality",
+    "sources": [
+      {
+        "cache": "anchorage",
+        "index": 0,
+        "source": "OpenStreetMap",
+        "url": "https://www.openstreetmap.org/relation/2605259",
+        "osm_id": 2605259
+      }
+    ]
+  },
+  {
+    "place_keys": [
+      "USA|Boston, MA"
+    ],
+    "kind": "City",
+    "sources": [
+      {
+        "cache": "boston",
+        "index": 0,
+        "source": "OpenStreetMap",
+        "url": "https://www.openstreetmap.org/relation/2315704",
+        "osm_id": 2315704
+      }
+    ]
+  },
+  {
+    "place_keys": [
+      "Malaysia|Kota Kinabalu"
+    ],
+    "kind": "District",
+    "sources": [
+      {
+        "cache": "kota-kinabalu",
+        "index": 1,
+        "source": "OpenStreetMap",
+        "url": "https://www.openstreetmap.org/relation/15975929",
+        "osm_id": 15975929
+      }
+    ]
+  },
+  {
+    "place_keys": [
+      "USA|Reno, NV"
+    ],
+    "kind": "City",
+    "sources": [
+      {
+        "cache": "reno",
+        "index": 0,
+        "source": "OpenStreetMap",
+        "url": "https://www.openstreetmap.org/relation/170120",
+        "osm_id": 170120
+      }
+    ]
+  },
+  {
+    "place_keys": [
+      "USA|New York, NY"
+    ],
+    "kind": "City",
+    "sources": [
+      {
+        "cache": "new-york",
+        "index": 0,
+        "source": "OpenStreetMap",
+        "url": "https://www.openstreetmap.org/relation/175905",
+        "osm_id": 175905
+      }
+    ]
+  },
+  {
+    "place_keys": [
+      "USA|Mendocino, CA"
+    ],
+    "kind": "Census place",
+    "sources": [
+      {
+        "cache": "mendocino-census",
+        "index": 0,
+        "source": "US Census Bureau",
+        "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Places_CouSub_ConCity_SubMCD/MapServer/5",
+        "geoid": "0646814"
+      }
+    ]
+  },
+  {
+    "place_keys": [
+      "USA|Lake Tahoe"
+    ],
+    "kind": "Lake",
+    "sources": [
+      {
+        "cache": "tahoe",
+        "index": 0,
+        "source": "OpenStreetMap",
+        "url": "https://www.openstreetmap.org/relation/1823287",
+        "osm_id": 1823287
+      }
+    ]
+  },
+  {
+    "place_keys": [
+      "USA|Honolulu, Hawaii"
+    ],
+    "kind": "City",
+    "sources": [
+      {
+        "cache": "honolulu",
+        "index": 0,
+        "source": "OpenStreetMap",
+        "url": "https://www.openstreetmap.org/relation/119231",
+        "osm_id": 119231
+      }
+    ]
+  },
+  {
+    "place_keys": [
+      "USA|Kauai, Hawaii"
+    ],
+    "kind": "Island",
+    "sources": [
+      {
+        "cache": "kauai",
+        "index": 0,
+        "source": "OpenStreetMap",
+        "url": "https://www.openstreetmap.org/relation/3489753",
+        "osm_id": 3489753
+      }
+    ]
+  },
+  {
+    "place_keys": [
+      "USA|Las Vegas, NV"
+    ],
+    "kind": "City",
+    "sources": [
+      {
+        "cache": "las-vegas",
+        "index": 0,
+        "source": "OpenStreetMap",
+        "url": "https://www.openstreetmap.org/relation/170117",
+        "osm_id": 170117
+      }
+    ]
+  },
+  {
+    "place_keys": [
+      "Spain|Girona"
+    ],
+    "kind": "City",
+    "sources": [
+      {
+        "cache": "girona",
+        "index": 0,
+        "source": "OpenStreetMap",
+        "url": "https://www.openstreetmap.org/relation/343535",
+        "osm_id": 343535
+      }
+    ]
+  },
+  {
+    "place_keys": [
+      "Mexico|Los Cabos"
+    ],
+    "kind": "Municipality",
+    "sources": [
+      {
+        "cache": "los-cabos",
+        "index": 0,
+        "source": "OpenStreetMap",
+        "url": "https://www.openstreetmap.org/relation/5605984",
+        "osm_id": 5605984
+      }
+    ]
+  },
+  {
+    "place_keys": [
+      "USA|Hawaii Island"
+    ],
+    "kind": "Island",
+    "sources": [
+      {
+        "cache": "hawaii-island",
+        "index": 0,
+        "source": "OpenStreetMap",
+        "url": "https://www.openstreetmap.org/relation/3403603",
+        "osm_id": 3403603
+      }
+    ]
+  },
+  {
+    "place_keys": [
+      "USA|Anaheim, CA"
+    ],
+    "kind": "City",
+    "sources": [
+      {
+        "cache": "anaheim",
+        "index": 0,
+        "source": "OpenStreetMap",
+        "url": "https://www.openstreetmap.org/relation/253985",
+        "osm_id": 253985
+      }
+    ]
+  },
+  {
+    "place_keys": [
+      "USA|Sacramento, CA"
+    ],
+    "kind": "City",
+    "sources": [
+      {
+        "cache": "sacramento",
+        "index": 0,
+        "source": "OpenStreetMap",
+        "url": "https://www.openstreetmap.org/relation/6232940",
+        "osm_id": 6232940
+      }
+    ]
+  },
+  {
+    "place_keys": [
+      "USA|Napa, CA"
+    ],
+    "kind": "City",
+    "sources": [
+      {
+        "cache": "napa",
+        "index": 1,
+        "source": "OpenStreetMap",
+        "url": "https://www.openstreetmap.org/relation/111735",
+        "osm_id": 111735
+      }
+    ]
+  },
+  {
+    "place_keys": [
+      "USA|Aspen, CO"
+    ],
+    "kind": "City",
+    "sources": [
+      {
+        "cache": "aspen",
+        "index": 0,
+        "source": "OpenStreetMap",
+        "url": "https://www.openstreetmap.org/relation/113154",
+        "osm_id": 113154
+      }
+    ]
+  },
+  {
+    "place_keys": [
+      "USA|Yosemite National Park"
+    ],
+    "kind": "Park",
+    "sources": [
+      {
+        "cache": "yosemite",
+        "index": 0,
+        "source": "OpenStreetMap",
+        "url": "https://www.openstreetmap.org/relation/1643367",
+        "osm_id": 1643367
+      }
+    ]
+  },
+  {
+    "place_keys": [
+      "Maldives|Maldives"
+    ],
+    "kind": "Country",
+    "sources": [
+      {
+        "cache": "maldives",
+        "index": 0,
+        "source": "OpenStreetMap",
+        "url": "https://www.openstreetmap.org/relation/536773",
+        "osm_id": 536773
+      }
+    ]
+  },
+  {
+    "place_keys": [
+      "Singapore|Singapore"
+    ],
+    "kind": "City-state",
+    "sources": [
+      {
+        "cache": "singapore",
+        "index": 0,
+        "source": "OpenStreetMap",
+        "url": "https://www.openstreetmap.org/relation/536780",
+        "osm_id": 536780
+      }
+    ]
+  },
+  {
+    "place_keys": [
+      "China|Shanghai"
+    ],
+    "kind": "Municipality",
+    "sources": [
+      {
+        "cache": "shanghai",
+        "index": 0,
+        "source": "OpenStreetMap",
+        "url": "https://www.openstreetmap.org/relation/913067",
+        "osm_id": 913067
+      }
+    ]
+  },
+  {
+    "place_keys": [
+      "Taiwan|Taipei"
+    ],
+    "kind": "City",
+    "sources": [
+      {
+        "cache": "taipei",
+        "index": 0,
+        "source": "OpenStreetMap",
+        "url": "https://www.openstreetmap.org/relation/1293250",
+        "osm_id": 1293250
+      }
+    ]
+  },
+  {
+    "place_keys": [
+      "USA|San Diego, CA"
+    ],
+    "kind": "City",
+    "sources": [
+      {
+        "cache": "san-diego",
+        "index": 0,
+        "source": "OpenStreetMap",
+        "url": "https://www.openstreetmap.org/relation/253832",
+        "osm_id": 253832
+      }
+    ]
+  },
+  {
+    "place_keys": [
+      "China|Qingdao"
+    ],
+    "kind": "City",
+    "sources": [
+      {
+        "cache": "qingdao",
+        "index": 0,
+        "source": "OpenStreetMap",
+        "url": "https://www.openstreetmap.org/relation/3469133",
+        "osm_id": 3469133
+      }
+    ]
+  },
+  {
+    "place_keys": [
+      "Canada|Toronto"
+    ],
+    "kind": "City",
+    "sources": [
+      {
+        "cache": "toronto",
+        "index": 0,
+        "source": "OpenStreetMap",
+        "url": "https://www.openstreetmap.org/relation/324211",
+        "osm_id": 324211
+      }
+    ]
+  },
+  {
+    "place_keys": [
+      "Canada|Niagara Falls"
+    ],
+    "kind": "City",
+    "sources": [
+      {
+        "cache": "niagara",
+        "index": 0,
+        "source": "OpenStreetMap",
+        "url": "https://www.openstreetmap.org/relation/2388057",
+        "osm_id": 2388057
+      }
+    ]
+  }
+]
