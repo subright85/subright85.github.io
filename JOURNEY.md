@@ -1,6 +1,6 @@
 # Owner-only journey
 
-The public Places page contains undated cities only, in `visited-places.json`. Its small lock icon opens `journey.html`, where a password decrypts the detailed timeline in browser memory. Do not add dates, personal notes, stay order, or travel routes to that file.
+The public Places page contains undated cities only, in `visited-places.json`. A keyboard Easter egg on the homepage and Places decrypts the detailed timeline and opens it in a modal. There is no visible entry button. `journey.html` still supports direct password entry. Do not add dates, personal notes, stay order, or travel routes to that file.
 
 Personal files live outside this repository at `~/Documents/Codex-private/subright-journey/`:
 
@@ -22,8 +22,8 @@ Removing files from the current site does not remove earlier Git commits, forks,
 
 ## Password-protected website
 
-After editing the private JSON files, run `node scripts/encrypt-journey.cjs` from the repository. It validates the journey, generates a random password if none exists, and writes only `journey.enc.json` for publication. Commit the encrypted file, never the source JSON or password. To change the password, edit the local `website-password.txt` to a new unique password of at least 16 characters, then encrypt and publish again.
+After editing the private JSON files, run `node scripts/encrypt-journey.cjs` from the repository. It validates the journey, generates a random password if none exists, and writes only `journey.enc.json` for publication. Commit the encrypted file, never the source JSON or password. To change the password, edit the local `website-password.txt` to a new unique password of at least 10 characters, then encrypt and publish again.
 
-Encryption uses AES-256-GCM with a fresh 96-bit IV and 128-bit salt, and PBKDF2-SHA256 with 600,000 iterations. Browser Web Crypto decrypts after password entry. Passwords and decrypted data are not stored in browser storage. Lock returns to the public map; reload requires the password again. This is client-side encrypted static content, not server-side account authentication. Anyone with the password can open it, and downloaded older ciphertext remains decryptable with its old password. Earlier plaintext Git history is unaffected.
+Encryption uses AES-256-GCM with a fresh 96-bit IV and 128-bit salt, and PBKDF2-SHA256 with 600,000 iterations. Browser Web Crypto decrypts after code/password entry. The Easter egg collects a rolling 10-character alphanumeric buffer outside input fields, resetting after five seconds idle or window blur. Change the buffer length in `easter-egg.js` if changing to a different-length code. It uses authenticated decryption to recognize the code, without publishing the code or a fast password hash. Passwords and decrypted data are not stored in browser storage. Escape or the close button destroys the modal and its decrypted frame; reload requires the code again. The direct standalone view has a Lock button returning to the public map. This is client-side encrypted static content, not server-side account authentication. Anyone with the password can open it, and downloaded older ciphertext remains decryptable with its old password. Earlier plaintext Git history is unaffected.
 
 `owner-globe.js` renders the full map using decrypted input; it contains no personal chronology. `journey.html` is an empty UI shell until unlocked. Test encryption and rejection of invalid passwords/tampered ciphertext with `node scripts/check-encrypted-journey.cjs`.

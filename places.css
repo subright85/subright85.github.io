@@ -194,3 +194,9 @@
 #unlock-message { min-height:22px; font-size:12px; color:var(--muted); margin:10px 0; }
 .unlock-panel > a { font-size:12px; color:var(--muted); }
 #owner-content[hidden], #unlock-panel[hidden], #lock-journey[hidden] { display:none; }
+
+.journey-embedded > .header, .journey-embedded footer, .journey-embedded > .skip { display:none; }
+.journey-embedded .places-page { padding-top:24px; }
+
+.journey-embedded #lock-journey { visibility:hidden; }
+#owner-heading:focus { outline:none; }

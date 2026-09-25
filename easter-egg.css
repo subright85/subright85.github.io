@@ -1,0 +1,7 @@
+.journey-secret { width:min(1150px, calc(100vw - 40px)); height:calc(100dvh - 48px); max-width:none; max-height:none; padding:0; border:1px solid #dedde0; border-radius:12px; background:#fafafa; box-shadow:0 24px 90px #0004; overflow:hidden; }
+.journey-secret::backdrop { background:#17181ddd; backdrop-filter:blur(5px); }
+.journey-secret iframe { display:block; width:100%; height:100%; border:0; }
+.journey-secret-close { position:absolute; top:10px; right:12px; width:32px; height:32px; border:0; border-radius:50%; background:#f0edef; color:#555; font:22px/1 sans-serif; cursor:pointer; z-index:2; }
+.journey-secret-close:focus-visible { outline:2px solid #bd1f45; outline-offset:2px; }
+.journey-secret-open { overflow:hidden; }
+@media (max-width:600px) { .journey-secret { width:100vw; height:100dvh; margin:0; border:0; border-radius:0; } }

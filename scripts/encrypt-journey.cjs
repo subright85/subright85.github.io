@@ -18,7 +18,7 @@ if (require.main === module) {
   const passwordFile = path.join(dir, 'website-password.txt');
   if (!fs.existsSync(passwordFile)) fs.writeFileSync(passwordFile, crypto.randomBytes(18).toString('base64url') + '\n', {mode: 0o600, flag: 'wx'});
   const password = fs.readFileSync(passwordFile, 'utf8').trim();
-  if (password.length < 16) throw new Error('Use a unique password with at least 16 characters.');
+  if (password.length < 10) throw new Error('Use a unique password with at least 10 characters.');
   const journey = JSON.parse(fs.readFileSync(path.join(dir, 'journey.json')));
   const places = JSON.parse(fs.readFileSync(path.join(dir, 'places.json')));
   prepareJourney(journey);
