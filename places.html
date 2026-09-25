@@ -4,39 +4,43 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Places · Sungchul Kim</title>
 <meta name="description" content="Places in Sungchul Kim's life and research.">
-<link rel="icon" href="assets/favicon.svg?v=3"><link rel="stylesheet" href="style.css?v=11"><link rel="stylesheet" href="places.css?v=11">
-<script src="assets/vendor/d3.v7.min.js" defer></script><script src="render-utils.js?v=1" defer></script><script src="journey.js?v=4" defer></script><script src="residence.js?v=8" defer></script><script src="places.js?v=11" defer></script>
+<link rel="icon" href="assets/favicon.svg?v=3"><link rel="stylesheet" href="style.css?v=11"><link rel="stylesheet" href="places.css?v=12">
+<script src="assets/vendor/d3.v7.min.js" defer></script><script src="render-utils.js?v=1" defer></script><script src="journey.js?v=5" defer></script><script src="residence.js?v=9" defer></script><script src="places.js?v=12" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<header class="header"><div class="nav-wrap"><div class="site-identity"><h1><a href="index.html?v=nav14">Sungchul Kim</a></h1><p>Senior Research Scientist · <a href="https://research.adobe.com/">Adobe Research</a></p></div><nav aria-label="Main navigation"><a href="index.html?v=nav14#about">About</a><a href="index.html?v=nav14#experience">Experience</a><a href="index.html?v=nav14#publications">Publications</a><a href="index.html?v=nav14#research">Research</a></nav><a class="places-shortcut" href="places.html?v=nav14" aria-label="Places and journey" title="Places and journey" aria-current="page"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18M5 6.5h14M5 17.5h14"/></svg></a></div></header>
+<header class="header"><div class="nav-wrap"><div class="site-identity"><h1><a href="index.html?v=nav16">Sungchul Kim</a></h1><p>Senior Research Scientist · <a href="https://research.adobe.com/">Adobe Research</a></p></div><nav aria-label="Main navigation"><a href="index.html?v=nav16#about">About</a><a href="index.html?v=nav16#experience">Experience</a><a href="index.html?v=nav16#publications">Publications</a><a href="index.html?v=nav16#research">Research</a></nav><a class="places-shortcut" href="places.html?v=nav16" aria-label="Places and journey" title="Places and journey" aria-current="page"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18M5 6.5h14M5 17.5h14"/></svg></a></div></header>
 <main id="main" class="page places-page">
 <h2>Places</h2><p class="places-intro">From Incheon to San Jose.</p>
 <section class="residence-section" aria-labelledby="residence-title">
 <div class="residence-heading"><h3 id="residence-title">Where I’ve lived</h3><button id="residence-scale" type="button" aria-pressed="false">Compact time</button></div>
 <p id="residence-earlier">Incheon · birth–age 19 → Pohang · age 19–Aug 2015</p>
 <div id="residence-chart"></div>
-<div class="residence-footer"><p id="residence-detail" role="status" aria-live="polite">Select a stay to explore the place.</p><span id="residence-scale-note">Linear time scale</span></div>
+<div class="residence-footer"><p id="residence-detail" role="status" aria-live="polite"></p><span id="residence-scale-note">Linear time scale</span></div>
 </section>
 <div class="journey-time">
-<label for="journey-time">Journey through time</label><output id="journey-date" for="journey-time">All years</output>
+<label for="journey-time">Explore by date</label><output id="journey-date" for="journey-time">All years</output>
 <input id="journey-time" type="range" min="0" max="1" value="1" step="1" aria-label="Journey month" disabled>
 <button id="all-years" type="button">All years</button>
 </div>
 <div class="places-layout">
 <section class="globe-panel" aria-label="Interactive globe">
 <svg id="globe" viewBox="0 0 640 600" tabindex="0" role="group" aria-label="Earth. Drag or use arrow keys to rotate; use plus and minus to zoom."><title>Places on Earth</title></svg>
+<div class="map-info"><button id="close-place" type="button" aria-label="Close place details">×</button><section id="place-detail" aria-live="polite" hidden></section></div>
 <div class="globe-controls"><span>Drag to rotate · Scroll to zoom</span><button id="zoom-out" type="button" aria-label="Zoom out">−</button><button id="zoom-in" type="button" aria-label="Zoom in">+</button><button id="rotate-globe" type="button" aria-pressed="true">Pause rotation</button><button id="reset-globe" type="button">Reset</button></div>
+<div class="residence-key"><span class="key-home">Lived</span><span class="key-conference">Conference</span><span class="key-travel">Trip</span></div>
+<details id="route-options"><summary>Moves between homes</summary>
 <div class="journey-controls"><label for="journey-move">Moves</label><button id="previous-move" type="button" aria-label="Previous move">←</button><select id="journey-move"><option value="">All moves</option></select><button id="next-move" type="button" aria-label="Next move">→</button></div>
+</details>
 <p id="globe-status" role="status" aria-live="polite"></p>
 </section>
 <aside class="places-sidebar">
-<h3>Home &amp; places</h3><div id="visited-list"><p>Incheon, South Korea · Born here</p><p>San Jose, USA · Current home</p></div>
-<h3 class="visits-title">Conference visits</h3><div id="visit-list"></div>
+<h3>Places</h3><div id="visited-list"><p>Incheon, South Korea · Born here</p><p>San Jose, USA · Current home</p></div>
+
+<details class="candidate-options"><summary>Other conference locations</summary>
 <label class="conference-toggle"><input id="show-conferences" type="checkbox"> Show conference locations</label>
 <p class="conference-note">From first- and last-author papers. Visits not yet confirmed.</p>
-<div id="conference-list" hidden></div>
-<section id="place-detail" aria-live="polite" hidden></section>
+<div id="conference-list" hidden></div></details>
 </aside></div>
-<footer><p>Map: Natural Earth · <a href="https://github.com/topojson/world-atlas">World Atlas</a></p><a href="index.html?v=nav14">Back to research ↑</a></footer>
+<footer><p>Map: Natural Earth · <a href="https://github.com/topojson/world-atlas">World Atlas</a></p><a href="index.html?v=nav16">Back to research ↑</a></footer>
 </main></body></html>

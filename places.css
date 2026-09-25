@@ -79,12 +79,50 @@
 .visits-title { margin-top: 25px !important; }
 .place-marker.visit .pin-body { fill: #157f8c; }
 
- .residence-visit { cursor: pointer; }
-.visit-hit { fill: transparent; }
-.visit-dot { fill: #258696; stroke: var(--bg); stroke-width: 2; }
-.visit-cikm .visit-dot { fill: #b34c8d; }
-.visit-icwsm .visit-dot, .visit-imcom .visit-dot { fill: #8873a5; }
-.residence-visit:hover .visit-dot, .residence-visit.active .visit-dot, .residence-visit:focus-visible .visit-dot { r: 6; stroke: #fff; filter: drop-shadow(0 1px 2px #30263035); }
-.residence-visit:focus-visible { outline: 1px solid var(--accent); outline-offset: 2px; }
-.visit-rail { stroke: #e8dce4; stroke-width: 1; }
-.residence-visit-heading { fill: var(--muted); font-size: 8px; letter-spacing: 1px; }
+/* Soft sea-glass palette and a place card anchored over the globe. */
+.ocean { stroke: #7aabb7; }
+.land { fill: #8ab999; stroke: #73a587; }
+.terrain-north { fill: #b5cca5; }
+.terrain-tropical { fill: #62a88d; }
+.terrain-sand { fill: #e4c89a; stroke: #c8b087; }
+.terrain-polar { fill: #f4f3e9; stroke: #d9e5df; }
+.graticule { stroke: #527e93; opacity: .12; }
+.place-marker.travel .pin-body { fill: #c78641; }
+.country-label { font-weight: 600; cursor: pointer; }
+.country-places { border-bottom: 1px solid var(--line); padding: 10px 0; }
+.country-places > summary { font-size: 12px; font-weight: 600; }
+.country-places > summary::before, .city-places > summary::before { content: '+ '; color: var(--accent); }
+.country-places[open] > summary::before, .city-places[open] > summary::before { content: '− '; }
+.city-places { margin: 10px 0 0 13px; }
+.city-places > summary { font-size: 12px; }
+.city-places .place-choice { font-size: 11px; padding: 8px 0; }
+.globe-panel { position: relative; }
+.map-info { display: none; position: absolute; top: 14px; left: 14px; width: min(275px, calc(100% - 28px)); padding: 15px 18px; background: #fffcf8f5; border: 1px solid #d7ded6; border-radius: 10px; box-shadow: 0 8px 25px #20394514; z-index: 1; }
+.map-info:has(#place-detail:not([hidden])) { display: block; }
+.map-info #place-detail { margin: 0; padding: 0; border: 0; }
+.map-info #place-detail h3 { padding-right: 14px; }
+#close-place { position: absolute; right: 7px; top: 5px; border: 0; background: none; color: var(--muted); font-size: 20px; cursor: pointer; }
+
+.place-history { padding-left: 16px; margin: 8px 0; font-size: 11px; color: var(--muted); }
+.map-info { max-height: 290px; overflow: auto; }
+.residence-key { display: flex; gap: 14px; font-size: 10px; color: var(--muted); margin: 2px 0 10px; }
+.residence-key span::before { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; margin-right: 5px; vertical-align: 1px; }
+.key-home::before { background: var(--accent); width: 13px !important; height: 3px !important; }
+.key-conference::before { background: #258696; }
+.key-travel::before { background: #bb874f; }
+
+/* Keep the first view quiet; secondary controls open when needed. */
+.residence-section { padding-bottom: 16px; }
+#residence-earlier { margin-bottom: 12px; font-size: 11px; }
+#residence-detail:empty { display: none; }
+.places-layout { gap: 26px; grid-template-columns: minmax(0, 1fr) 220px; }
+.places-sidebar { padding-top: 14px; }
+#route-options, .candidate-options { margin-top: 16px; font-size: 11px; color: var(--muted); }
+#route-options > summary::after, .candidate-options > summary::after { content: ' +'; }
+#route-options[open] > summary::after, .candidate-options[open] > summary::after { content: ' −'; }
+.candidate-options .conference-toggle { margin-top: 12px; font-size: 11px; }
+.residence-key { margin: 14px 0 0; }
+#globe-status:empty { display: none; }
+.globe-controls { gap: 5px; }
+.globe-controls button { border-radius: 6px; font-size: 11px; }
+@media (max-width: 800px) { .places-layout { grid-template-columns: 1fr; } .places-sidebar { margin-top: 20px; } }

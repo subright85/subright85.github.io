@@ -3,15 +3,23 @@ async function initializeGlobe() {
   try {
     const [world, savedPlaces, journey] = await Promise.all([
       fetch('assets/maps/land-game.json?v=2').then(r => { if (!r.ok) throw new Error('Map unavailable'); return r.json(); }),
-      fetch('places.json?v=3').then(r => { if (!r.ok) throw new Error('Places unavailable'); return r.json(); }),
+      fetch('places.json?v=4').then(r => { if (!r.ok) throw new Error('Places unavailable'); return r.json(); }),
       fetch('journey.json?v=2').then(r => { if (!r.ok) throw new Error('Journey unavailable'); return r.json(); })
     ]);
     const {places: journeyPlaces, residence, moves} = prepareJourney(journey);
-    const places = [...journeyPlaces, ...savedPlaces.filter(p => p.status === 'conference' || p.status === 'visit')];
+    const places = [...journeyPlaces, ...savedPlaces.filter(p => ['conference', 'visit', 'travel'].includes(p.status))];
+    const pinGroups = new Map();
+    places.forEach(place => {
+      const key = `${place.country}|${place.city}`;
+      if (!pinGroups.has(key)) pinGroups.set(key, {...place, events: []});
+      pinGroups.get(key).events.push(place);
+    });
+    const pinPlaces = [...pinGroups.values()];
     const placeById = new Map(places.map(place => [place.id, place]));
     const moveIndexById = new Map(moves.map((move, index) => [move.id, index]));
     const detail = document.querySelector('#place-detail');
     const moveSelect = document.querySelector('#journey-move');
+    const routeOptions = document.querySelector('#route-options');
     const conferenceList = document.querySelector('#conference-list');
     const choiceButtons = new Map();
     const drawableMoves = moves.filter(move => move.coordinates);
@@ -23,8 +31,8 @@ async function initializeGlobe() {
     const projection = d3.geoOrthographic().translate([320, 300]).scale(274).rotate([-180, -25]).clipAngle(90);
     const path = d3.geoPath(projection);
     const gradient = svg.append('defs').append('radialGradient').attr('id', 'ocean-color').attr('cx', '35%').attr('cy', '25%').attr('r', '85%');
-    gradient.append('stop').attr('offset', '0%').attr('stop-color', '#65cbd9');
-    gradient.append('stop').attr('offset', '100%').attr('stop-color', '#246da9');
+    gradient.append('stop').attr('offset', '0%').attr('stop-color', '#b9e3e5');
+    gradient.append('stop').attr('offset', '100%').attr('stop-color', '#588dab');
     svg.append('path').datum({type: 'Sphere'}).attr('class', 'ocean');
     svg.append('path').datum(d3.geoGraticule().step([15, 15])()).attr('class', 'graticule');
     svg.append('g').selectAll('path').data(world.features).join('path').attr('class', feature => `land terrain-${feature.properties.terrain}`);
@@ -34,7 +42,7 @@ async function initializeGlobe() {
     routes.append('title').text(d => `${d.move.label} · ${d.move.date}`);
     const geographicPaths = svg.selectAll('.ocean, .graticule, .land, .journey-route');
     const arrows = svg.append('g').attr('aria-hidden', 'true').selectAll('polygon').data(drawableMoves).join('polygon').attr('class', 'journey-arrow');
-    const markers = svg.append('g').selectAll('g').data(places).join('g')
+    const markers = svg.append('g').selectAll('g').data(pinPlaces).join('g')
       .attr('class', p => `place-marker ${p.status}`).attr('role', 'button')
       .attr('aria-label', p => `${p.city}, ${p.country}. ${p.note}${p.status === 'conference' ? '. Conference location; visit unconfirmed' : ''}`)
       .on('click', (event, p) => selectPlace(p)).on('keydown', (event, p) => {
@@ -104,21 +112,21 @@ async function initializeGlobe() {
     function draw(projectionChanged) {
       if (projectionChanged) geographicPaths.attr('d', path);
       const center = projection.invert([320, 300]);
-      routes.classed('active', d => d.move.id === selectedMove).attr('display', d => !timeState || timeState.moveIds.has(d.move.id) ? null : 'none');
+      routes.classed('active', d => d.move.id === selectedMove).attr('display', d => routeOptions.open && (!timeState || timeState.moveIds.has(d.move.id)) ? null : 'none');
       arrows.classed('active', m => m.id === selectedMove);
       arrows.each(function(m) {
         const {point, ahead} = routeGeometry.get(m.id);
-        const visible = (!timeState || timeState.moveIds.has(m.id)) && d3.geoDistance(center, point) < Math.PI / 2 && d3.geoDistance(center, ahead) < Math.PI / 2;
+        const visible = routeOptions.open && (!timeState || timeState.moveIds.has(m.id)) && d3.geoDistance(center, point) < Math.PI / 2 && d3.geoDistance(center, ahead) < Math.PI / 2;
         const a = projection(point), b = projection(ahead);
         const angle = Math.atan2(b[1] - a[1], b[0] - a[0]);
         const dx = Math.cos(angle), dy = Math.sin(angle);
         d3.select(this).attr('display', visible ? null : 'none').attr('points', `${a[0]+dx*5},${a[1]+dy*5} ${a[0]-dx*4-dy*3},${a[1]-dy*4+dx*3} ${a[0]-dx*4+dy*3},${a[1]-dy*4-dx*3}`);
       });
       markers.each(function(p) {
-        const visible = (p.status === 'visited' ? !timeState || timeState.visited.has(p.id) : p.status === 'visit' ? !timeState || p.year <= timeState.year : toggle.checked) && d3.geoDistance(center, p.coordinates) < Math.PI / 2;
+        const visible = p.events.some(event => event.status === 'visited' ? !timeState || timeState.visited.has(event.id) : ['visit', 'travel'].includes(event.status) ? !timeState || (event.month ? event.month <= timeState.month : event.year <= timeState.year) : toggle.checked) && d3.geoDistance(center, p.coordinates) < Math.PI / 2;
         const point = projection(p.coordinates);
-        d3.select(this).attr('transform', `translate(${point[0]},${point[1]})`).attr('display', visible ? null : 'none')
-          .attr('tabindex', visible ? 0 : -1).classed('selected', p.id === selected);
+        d3.select(this).attr('transform', `translate(${point[0]},${point[1]}) scale(.8)`).attr('display', visible ? null : 'none')
+          .attr('tabindex', visible ? 0 : -1).classed('selected', p.city === placeById.get(selected)?.city && p.country === placeById.get(selected)?.country);
       });
     }
     function selectPlace(p) {
@@ -132,6 +140,12 @@ async function initializeGlobe() {
       const flag = p.country_code ? [...p.country_code].map(letter => String.fromCodePoint(127397 + letter.charCodeAt(0))).join('') + ' ' : '';
       const title = document.createElement('h3'); title.textContent = `${flag}${p.city}, ${p.country}`; detail.append(title);
       const note = document.createElement('p'); note.textContent = p.note; detail.append(note);
+      const related = places.filter(other => other.id !== p.id && other.status !== 'conference' && other.country === p.country && other.city === p.city).sort((a,b) => (b.month || String(b.year || '')).localeCompare(a.month || String(a.year || '')));
+      if (related.length) {
+        const history = document.createElement('ul'); history.className = 'place-history';
+        related.forEach(other => { const item = document.createElement('li'); item.textContent = other.note; history.append(item); });
+        detail.append(history);
+      }
       (p.stays || []).forEach(stay => {
         const paragraph = document.createElement('p'); paragraph.textContent = stay; detail.append(paragraph);
       });
@@ -167,6 +181,7 @@ async function initializeGlobe() {
       status.textContent = `${index + 1} / ${moves.length} · ${move.label} · ${move.date}${move.coordinates ? '' : ' · Add the missing city coordinates to draw this move.'}`;
       syncSelection(); scheduleDraw();
     }
+    routeOptions.addEventListener('toggle', () => scheduleDraw(false));
     moveSelect.addEventListener('change', () => showMove(moveIndexById.get(moveSelect.value)));
     document.querySelector('#previous-move').addEventListener('click', () => {
       const index = moveIndexById.get(selectedMove) ?? -1; showMove(index <= 0 ? moves.length - 1 : index - 1);
@@ -174,16 +189,35 @@ async function initializeGlobe() {
     document.querySelector('#next-move').addEventListener('click', () => {
       const index = moveIndexById.get(selectedMove) ?? -1; showMove((index + 1) % moves.length);
     });
-    for (const [target, kind] of [['#visited-list', 'visited'], ['#visit-list', 'visit'], ['#conference-list', 'conference']]) {
-      const list = document.querySelector(target); list.replaceChildren();
-      places.filter(p => p.status === kind).sort((a, b) => kind === 'visit' ? b.year - a.year : 0).forEach(p => {
-        const button = document.createElement('button'); button.type = 'button'; button.className = 'place-choice'; button.dataset.id = p.id;
-        button.textContent = `${p.city}, ${p.country}`; button.setAttribute('aria-pressed', 'false');
-        const note = document.createElement('span'); note.textContent = p.note; button.append(note);
-        button.addEventListener('click', () => selectPlace(p)); list.append(button);
-        choiceButtons.set(p.id, button);
-      });
+    const countryList = document.querySelector('#visited-list'); countryList.replaceChildren();
+    const countryGroups = new Map();
+    places.filter(p => p.status !== 'conference').forEach(p => {
+      if (!countryGroups.has(p.country)) countryGroups.set(p.country, new Map());
+      const cities = countryGroups.get(p.country);
+      const name = p.city.replace(' / Redmond', '');
+      if (!cities.has(name)) cities.set(name, []);
+      cities.get(name).push(p);
+    });
+    function placeButton(place, label) {
+      const button = document.createElement('button'); button.type = 'button'; button.className = 'place-choice';
+      button.textContent = label; button.setAttribute('aria-pressed', 'false');
+      button.addEventListener('click', () => selectPlace(place)); choiceButtons.set(place.id, button);
+      return button;
     }
+    countryGroups.forEach((cities, country) => {
+      const countryDetails = document.createElement('details'); countryDetails.className = 'country-places';
+      const summary = document.createElement('summary'); summary.textContent = `${country} · ${cities.size}`; countryDetails.append(summary);
+      cities.forEach((entries, city) => {
+        const cityDetails = document.createElement('details'); cityDetails.className = 'city-places';
+        const label = document.createElement('summary'); label.textContent = city; cityDetails.append(label);
+        entries.sort((a,b) => (b.month || String(b.year || '')) .localeCompare(a.month || String(a.year || ''))).forEach(p => cityDetails.append(placeButton(p, p.note)));
+        countryDetails.append(cityDetails);
+      });
+      countryList.append(countryDetails);
+    });
+    conferenceList.replaceChildren();
+    places.filter(p => p.status === 'conference').forEach(p => conferenceList.append(placeButton(p, `${p.city} · ${p.note}`)));
+    document.querySelector('#close-place').addEventListener('click', () => { detail.hidden = true; });
     toggle.addEventListener('change', () => {
       conferenceList.hidden = !toggle.checked;
       if (!toggle.checked && placeById.get(selected)?.status === 'conference') {
@@ -214,7 +248,7 @@ async function initializeGlobe() {
     const timeline = renderResidenceTimeline(residence, id => {
       const place = placeById.get(id);
       if (place) selectPlace(place);
-    }, savedPlaces.filter(p => p.status === 'visit'));
+    });
     const now = new Date();
     timeSlider.min = residence.start_year * 12;
     timeSlider.max = now.getUTCFullYear() * 12 + now.getUTCMonth();
@@ -237,6 +271,7 @@ async function initializeGlobe() {
       const month = date.toISOString().slice(0, 7);
       timeState = journeyAtMonth(journey, month);
       timeState.year = date.getUTCFullYear();
+      timeState.month = month;
       const stop = timeState.active;
       const location = stop && journey.locations[stop.location];
       const label = `${monthFormatter.format(date)} · ${location ? location.city : 'Location unknown'}${stop?.approximate ? ' (approx.)' : ''}`;

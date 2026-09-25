@@ -19,7 +19,7 @@ Open http://localhost:8000. No Node packages or build service are required.
 - Search and Selected / All publications: `script.js`. Selected excludes Survey titles and papers where Sungchul Kim is sixth author or later; `scripts/build.py` derives rank from the citation author list.
 - Photos: `photos.json` lists carousel images, alt text, dimensions, and framing. Add photos to `assets/`, then rebuild. Arrows, dots, keyboard navigation, and swiping activate when two or more photos are listed. No autoplay.
 - Journey, residence timeline, and globe routes: edit `journey.json`. See `JOURNEY.md` for the field guide and a sample entry. The ordered stays drive all three automatically, including return visits. Validate with `node scripts/check-journey.cjs`. No rebuild required for journey edits.
-- Conference visits and candidates: `places.json` is separate from residence stops. `status: "visit"` records user-confirmed conference visits (city-level coordinates and a year); `status: "conference"` remains unconfirmed. Confirmed visits use teal globe pins and colored dots in conference-specific rows on the residence chart, and follow the time slider at year precision. Selecting a dot shows the country flag and place details. Year-only visits are positioned at mid-year with an explicit month-unknown tooltip; exact dates use their actual position.
+- Visits and trips: `places.json` stores `status: "visit"` for confirmed conference visits, `status: "travel"` for trips, and `status: "conference"` for unconfirmed candidates. Use `month: "YYYY-MM"` for month precision, or `year` for year-only visits. The map sidebar groups all places by country and city; the timeline shows residences only. Country flags, dates, and notes appear in the map overlay.
 - Paper illustrations: `paper-visuals.json` records source papers, concepts, and generation prompts. Six plain conceptual illustrations were made with built-in image generation, independently of the site colors.
 - Article images: `story-images.json` records original article and image URLs. Images are locally hosted and link back to the stories.
 
@@ -28,11 +28,11 @@ After editing the template or publication data, run `python3 scripts/build.py` a
 
 ## Map implementation
 
-The Places residence timeline starts with a linear scale. Compact time / Expand time changes the graph scale without hiding the chart. Compact mode compresses before 2010 and after 2017, with an explicit scale note.
+The Places chart shows residences only, grouped by country and expandable into cities. Quiet residence gaps longer than three years shrink to 1.5 years of display space, marked `//`; Expand time restores a linear scale. Travel and conference visits appear only on the map. Month-only visits follow the map slider by month, year-only visits by year, without inventing exact travel dates.
 
 The globe uses a small, precomputed tile map (`assets/maps/land-game.json`) generated from Natural Earth. Terrain colors are stylized. Regenerate it with `node scripts/build-game-map.cjs`; TopoJSON conversion runs only in that build script, not in visitors’ browsers.
 
-Globe updates are batched once per animation frame. Route interpolation and data formatting are cached, and the timeline retains its SVG elements when resized. The globe rotates slowly by default (20 updates per second), pausing during interaction, off-screen, or in a hidden tab. Reduced-motion preferences disable rotation by default. A monthly slider filters the journey and marks the linear residence timeline; All years restores the full journey.
+Globe updates are batched once per animation frame. Route interpolation and data formatting are cached, and timeline layout updates only on resize, country expansion, or scale changes; scrubbing moves just its date cursor. The globe rotates slowly by default (20 updates per second), pausing during interaction, off-screen, or in a hidden tab. Reduced-motion preferences disable rotation by default. A monthly slider filters the journey and marks the residence timeline in its current scale; All years restores the full journey.
 
 Checks: `node scripts/check-journey.cjs` and `node scripts/check-rendering.cjs`.
 

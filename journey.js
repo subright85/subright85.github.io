@@ -46,7 +46,7 @@ function prepareJourney(data) {
   const nextMonth = value => {
     const date = new Date(`${value}-01T00:00:00Z`); date.setUTCMonth(date.getUTCMonth() + 1); return date.toISOString().slice(0, 10);
   };
-  const rows = used.map(id => ({date_note: byLocation.get(id).filter(s => !s.arrived && !s.departed && !s.current).map(s => `${s.age_note || 'Dates unknown'} · years to add`).join(' / '), place_id: data.locations[id].coordinates ? id : null, label: data.locations[id].city.replace(' / Redmond', '').replace(' (city to add)', ''), periods: byLocation.get(id).filter(s => s.arrived || s.departed || s.current).map(s => ({
+  const rows = used.map(id => ({country: data.locations[id].country, date_note: byLocation.get(id).filter(s => !s.arrived && !s.departed && !s.current).map(s => `${s.age_note || 'Dates unknown'} · years to add`).join(' / '), place_id: data.locations[id].coordinates ? id : null, label: data.locations[id].city.replace(' / Redmond', '').replace(' (city to add)', ''), periods: byLocation.get(id).filter(s => s.arrived || s.departed || s.current).map(s => ({
     start: s.arrived ? `${s.arrived}-01` : null, end: s.departed ? nextMonth(s.departed) : null,
     current: !!s.current, approximate: !!s.approximate, description: descriptions.get(s.id), end_unknown: !s.departed && !s.current
   }))})).filter(r => r.periods.length || r.date_note);

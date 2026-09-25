@@ -101,12 +101,14 @@
       22.3193
     ],
     "year": 2009,
-    "note": "CIKM 2009",
+    "note": "CIKM 2009 · Aug 2009 (reported visit month)",
     "status": "visit",
     "confirmed": true,
     "coordinate_precision": "city",
     "source": "user",
-    "country_code": "CN"
+    "country_code": "CN",
+    "month": "2009-08",
+    "date_note": "Reported month retained; conference dates need reconciliation."
   },
   {
     "id": "barcelona-kdd-2024",
@@ -204,5 +206,483 @@
     "coordinate_precision": "city",
     "source": "user",
     "country_code": "MY"
+  },
+  {
+    "id": "reno-trip-2018-04",
+    "city": "Reno, NV",
+    "country": "USA",
+    "country_code": "US",
+    "coordinates": [
+      -119.8138,
+      39.5296
+    ],
+    "year": 2018,
+    "month": "2018-04",
+    "note": "Apr 2018",
+    "status": "travel",
+    "confirmed": true,
+    "coordinate_precision": "approximate locality",
+    "source": "user"
+  },
+  {
+    "id": "new-york-trip-2022-08",
+    "city": "New York, NY",
+    "country": "USA",
+    "country_code": "US",
+    "coordinates": [
+      -74.006,
+      40.7128
+    ],
+    "year": 2022,
+    "month": "2022-08",
+    "note": "Aug 2022",
+    "status": "travel",
+    "confirmed": true,
+    "coordinate_precision": "approximate locality",
+    "source": "user"
+  },
+  {
+    "id": "washington-trip-2022-08",
+    "city": "Washington, DC",
+    "country": "USA",
+    "country_code": "US",
+    "coordinates": [
+      -77.0369,
+      38.9072
+    ],
+    "year": 2022,
+    "month": "2022-08",
+    "note": "Aug 2022",
+    "status": "travel",
+    "confirmed": true,
+    "coordinate_precision": "approximate locality",
+    "source": "user"
+  },
+  {
+    "id": "mendocino-trip-2018-05",
+    "city": "Mendocino, CA",
+    "country": "USA",
+    "country_code": "US",
+    "coordinates": [
+      -123.7995,
+      39.3077
+    ],
+    "year": 2018,
+    "month": "2018-05",
+    "note": "May 2018",
+    "status": "travel",
+    "confirmed": true,
+    "coordinate_precision": "approximate locality",
+    "source": "user"
+  },
+  {
+    "id": "tahoe-trip-2026-02",
+    "city": "Lake Tahoe",
+    "country": "USA",
+    "country_code": "US",
+    "coordinates": [
+      -120.0324,
+      39.0968
+    ],
+    "year": 2026,
+    "month": "2026-02",
+    "note": "Feb 2026",
+    "status": "travel",
+    "confirmed": true,
+    "coordinate_precision": "approximate locality",
+    "source": "user"
+  },
+  {
+    "id": "tahoe-trip-2018-04",
+    "city": "Lake Tahoe",
+    "country": "USA",
+    "country_code": "US",
+    "coordinates": [
+      -120.0324,
+      39.0968
+    ],
+    "year": 2018,
+    "month": "2018-04",
+    "note": "Apr 2018",
+    "status": "travel",
+    "confirmed": true,
+    "coordinate_precision": "approximate locality",
+    "source": "user"
+  },
+  {
+    "id": "honolulu-trip-2025-06",
+    "city": "Honolulu, Hawaii",
+    "country": "USA",
+    "country_code": "US",
+    "coordinates": [
+      -157.8583,
+      21.3069
+    ],
+    "year": 2025,
+    "month": "2025-06",
+    "note": "Jun 2025",
+    "status": "travel",
+    "confirmed": true,
+    "coordinate_precision": "approximate locality",
+    "source": "user"
+  },
+  {
+    "id": "honolulu-trip-2024-05",
+    "city": "Honolulu, Hawaii",
+    "country": "USA",
+    "country_code": "US",
+    "coordinates": [
+      -157.8583,
+      21.3069
+    ],
+    "year": 2024,
+    "month": "2024-05",
+    "note": "May 2024",
+    "status": "travel",
+    "confirmed": true,
+    "coordinate_precision": "approximate locality",
+    "source": "user"
+  },
+  {
+    "id": "kauai-trip-2019-12",
+    "city": "Kauai, Hawaii",
+    "country": "USA",
+    "country_code": "US",
+    "coordinates": [
+      -159.5,
+      22.05
+    ],
+    "year": 2019,
+    "month": "2019-12",
+    "note": "Dec 2019",
+    "status": "travel",
+    "confirmed": true,
+    "coordinate_precision": "approximate locality",
+    "source": "user"
+  },
+  {
+    "id": "las-vegas-trip-2017-07",
+    "city": "Las Vegas, NV",
+    "country": "USA",
+    "country_code": "US",
+    "coordinates": [
+      -115.1398,
+      36.1699
+    ],
+    "year": 2017,
+    "month": "2017-07",
+    "note": "Jul 2017",
+    "status": "travel",
+    "confirmed": true,
+    "coordinate_precision": "approximate locality",
+    "source": "user"
+  },
+  {
+    "id": "las-vegas-trip-2019-07",
+    "city": "Las Vegas, NV",
+    "country": "USA",
+    "country_code": "US",
+    "coordinates": [
+      -115.1398,
+      36.1699
+    ],
+    "year": 2019,
+    "month": "2019-07",
+    "note": "Jul 2019",
+    "status": "travel",
+    "confirmed": true,
+    "coordinate_precision": "approximate locality",
+    "source": "user"
+  },
+  {
+    "id": "maui-trip-2025-12",
+    "city": "Maui, Hawaii",
+    "country": "USA",
+    "country_code": "US",
+    "coordinates": [
+      -156.3319,
+      20.7984
+    ],
+    "year": 2025,
+    "month": "2025-12",
+    "note": "Dec 2025",
+    "status": "travel",
+    "confirmed": true,
+    "coordinate_precision": "approximate locality",
+    "source": "user"
+  },
+  {
+    "id": "barcelona-trip-2024-08",
+    "city": "Barcelona",
+    "country": "Spain",
+    "country_code": "ES",
+    "coordinates": [
+      2.1734,
+      41.3851
+    ],
+    "year": 2024,
+    "month": "2024-08",
+    "note": "Aug 2024",
+    "status": "travel",
+    "confirmed": true,
+    "coordinate_precision": "approximate locality",
+    "source": "user"
+  },
+  {
+    "id": "girona-trip-2024-08",
+    "city": "Girona",
+    "country": "Spain",
+    "country_code": "ES",
+    "coordinates": [
+      2.8214,
+      41.9794
+    ],
+    "year": 2024,
+    "month": "2024-08",
+    "note": "Aug 2024",
+    "status": "travel",
+    "confirmed": true,
+    "coordinate_precision": "approximate locality",
+    "source": "user"
+  },
+  {
+    "id": "los-cabos-trip-2022-12",
+    "city": "Los Cabos",
+    "country": "Mexico",
+    "country_code": "MX",
+    "coordinates": [
+      -109.7,
+      23.0
+    ],
+    "year": 2022,
+    "month": "2022-12",
+    "note": "Dec 2022",
+    "status": "travel",
+    "confirmed": true,
+    "coordinate_precision": "approximate locality",
+    "source": "user"
+  },
+  {
+    "id": "big-island-trip-2018-12",
+    "city": "Hawaii Island",
+    "country": "USA",
+    "country_code": "US",
+    "coordinates": [
+      -155.5,
+      19.6
+    ],
+    "year": 2018,
+    "month": "2018-12",
+    "note": "Dec 2018",
+    "status": "travel",
+    "confirmed": true,
+    "coordinate_precision": "approximate locality",
+    "source": "user"
+  },
+  {
+    "id": "anaheim-trip-2025-01",
+    "city": "Anaheim, CA",
+    "country": "USA",
+    "country_code": "US",
+    "coordinates": [
+      -117.9145,
+      33.8366
+    ],
+    "year": 2025,
+    "month": "2025-01",
+    "note": "Jan 2025",
+    "status": "travel",
+    "confirmed": true,
+    "coordinate_precision": "approximate locality",
+    "source": "user"
+  },
+  {
+    "id": "sacramento-trip-2025-03",
+    "city": "Sacramento, CA",
+    "country": "USA",
+    "country_code": "US",
+    "coordinates": [
+      -121.4944,
+      38.5816
+    ],
+    "year": 2025,
+    "month": "2025-03",
+    "note": "Mar 2025",
+    "status": "travel",
+    "confirmed": true,
+    "coordinate_precision": "approximate locality",
+    "source": "user"
+  },
+  {
+    "id": "napa-trip-2023-07",
+    "city": "Napa, CA",
+    "country": "USA",
+    "country_code": "US",
+    "coordinates": [
+      -122.2869,
+      38.2975
+    ],
+    "year": 2023,
+    "month": "2023-07",
+    "note": "Jul 2023",
+    "status": "travel",
+    "confirmed": true,
+    "coordinate_precision": "approximate locality",
+    "source": "user"
+  },
+  {
+    "id": "aspen-trip-2020-03",
+    "city": "Aspen, CO",
+    "country": "USA",
+    "country_code": "US",
+    "coordinates": [
+      -106.8175,
+      39.1911
+    ],
+    "year": 2020,
+    "month": "2020-03",
+    "note": "Mar 2020",
+    "status": "travel",
+    "confirmed": true,
+    "coordinate_precision": "approximate locality",
+    "source": "user"
+  },
+  {
+    "id": "yosemite-trip-2025-05",
+    "city": "Yosemite National Park",
+    "country": "USA",
+    "country_code": "US",
+    "coordinates": [
+      -119.5383,
+      37.8651
+    ],
+    "year": 2025,
+    "month": "2025-05",
+    "note": "May 2025",
+    "status": "travel",
+    "confirmed": true,
+    "coordinate_precision": "approximate locality",
+    "source": "user"
+  },
+  {
+    "id": "yosemite-trip-2017-11",
+    "city": "Yosemite National Park",
+    "country": "USA",
+    "country_code": "US",
+    "coordinates": [
+      -119.5383,
+      37.8651
+    ],
+    "year": 2017,
+    "month": "2017-11",
+    "note": "Nov 2017",
+    "status": "travel",
+    "confirmed": true,
+    "coordinate_precision": "approximate locality",
+    "source": "user"
+  },
+  {
+    "id": "maldives-trip-2016-05",
+    "city": "Maldives",
+    "country": "Maldives",
+    "country_code": "MV",
+    "coordinates": [
+      73.22,
+      3.2
+    ],
+    "year": 2016,
+    "month": "2016-05",
+    "note": "May 2016",
+    "status": "travel",
+    "confirmed": true,
+    "coordinate_precision": "approximate locality",
+    "source": "user"
+  },
+  {
+    "id": "singapore-trip-2016-05",
+    "city": "Singapore",
+    "country": "Singapore",
+    "country_code": "SG",
+    "coordinates": [
+      103.8198,
+      1.3521
+    ],
+    "year": 2016,
+    "month": "2016-05",
+    "note": "May 2016",
+    "status": "travel",
+    "confirmed": true,
+    "coordinate_precision": "approximate locality",
+    "source": "user"
+  },
+  {
+    "id": "shanghai-trip-2014-11",
+    "city": "Shanghai",
+    "country": "China",
+    "country_code": "CN",
+    "coordinates": [
+      121.4737,
+      31.2304
+    ],
+    "year": 2014,
+    "month": "2014-11",
+    "note": "Nov 2014",
+    "status": "travel",
+    "confirmed": true,
+    "coordinate_precision": "approximate locality",
+    "source": "user"
+  },
+  {
+    "id": "taipei-trip-2013-07",
+    "city": "Taipei",
+    "country": "Taiwan",
+    "country_code": "TW",
+    "coordinates": [
+      121.5654,
+      25.033
+    ],
+    "year": 2013,
+    "month": "2013-07",
+    "note": "Jul 2013 · Conference to identify",
+    "status": "travel",
+    "confirmed": true,
+    "coordinate_precision": "approximate locality",
+    "source": "user"
+  },
+  {
+    "id": "san-diego-trip-2023-08",
+    "city": "San Diego, CA",
+    "country": "USA",
+    "country_code": "US",
+    "coordinates": [
+      -117.1611,
+      32.7157
+    ],
+    "year": 2023,
+    "month": "2023-08",
+    "note": "Aug 2023",
+    "status": "travel",
+    "confirmed": true,
+    "coordinate_precision": "approximate locality",
+    "source": "user"
+  },
+  {
+    "id": "beijing-visit-2019-11",
+    "city": "Beijing",
+    "country": "China",
+    "country_code": "CN",
+    "coordinates": [
+      116.4074,
+      39.9042
+    ],
+    "year": 2019,
+    "month": "2019-11",
+    "note": "Nov 2019 · likely CIKM 2019 (conference match unconfirmed)",
+    "status": "visit",
+    "confirmed": true,
+    "coordinate_precision": "city",
+    "source": "user",
+    "venue_source": "https://cikm2019.net/",
+    "conference_inferred": true
   }
 ]
