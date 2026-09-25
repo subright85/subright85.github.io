@@ -173,8 +173,8 @@
 /* Local context is loaded only when the user zooms in. */
 .neighbor-boundary { fill: none; stroke: #aeb5b6; stroke-width: .7; stroke-linejoin: round; pointer-events: none; }
 .neighbor-labels text { fill: #788183; stroke: #fafaf8; stroke-width: 2.4; paint-order: stroke fill; text-anchor: middle; font: 9px -apple-system, BlinkMacSystemFont, sans-serif; pointer-events: none; }
-.local-sea { fill: #8bbfd0; pointer-events: none; }
-.local-land { fill: #e8e7df; stroke: #bfc9c3; stroke-width: .45; pointer-events: none; }
+.local-sea { fill: url(#ocean-color); pointer-events: none; }
+.local-land { fill: #e8e7df; stroke: none; pointer-events: none; }
 
 /* National borders stay visible in the globe overview. */
 .country-boundaries { fill: none; stroke: #718489; stroke-width: .65; stroke-opacity: .85; stroke-linejoin: round; pointer-events: none; }

@@ -25,7 +25,7 @@ async function initializeGlobe() {
     function loadDetailCoast() {
       if (!detailCoastRequest) detailCoastRequest = fetch('assets/maps/land-detail.json?v=1').then(r => { if (!r.ok) throw new Error(); return r.json(); }).then(data => { detailCoast = data.features[0]; scheduleDraw(); }).catch(() => { detailCoastRequest = null; });
     }
-    const gradient = svg.append('defs').append('radialGradient').attr('id', 'ocean-color').attr('cx', '35%').attr('cy', '25%').attr('r', '85%');
+    const gradient = svg.append('defs').append('radialGradient').attr('id', 'ocean-color').attr('gradientUnits', 'userSpaceOnUse').attr('cx', 224).attr('cy', 150).attr('r', 544);
     gradient.append('stop').attr('offset', '0%').attr('stop-color', '#b3e6ee');
     gradient.append('stop').attr('offset', '100%').attr('stop-color', '#438fbc');
     svg.append('path').datum({type: 'Sphere'}).attr('class', 'ocean');
