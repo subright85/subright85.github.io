@@ -23,10 +23,13 @@ function openSummary(wrapper) {
   const width = Math.min(410, viewportWidth - 32);
   tip.style.width = `${width}px`;
   tip.style.left = `${Math.max(16, Math.min(rect.right - width, viewportWidth - width - 16))}px`;
-  const height = tip.getBoundingClientRect().height;
   const headerBottom = document.querySelector('.header').getBoundingClientRect().bottom;
+  const safeTop = Math.max(16, headerBottom + 12);
+  tip.style.maxHeight = `${Math.max(40, window.innerHeight - safeTop - 16)}px`;
+  const height = tip.getBoundingClientRect().height;
   const above = rect.top - height - 12;
-  tip.style.top = `${above > headerBottom + 8 ? above : Math.min(rect.bottom + 10, window.innerHeight - height - 12)}px`;
+  const below = Math.min(rect.bottom + 12, window.innerHeight - height - 16);
+  tip.style.top = `${above >= safeTop ? above : Math.max(safeTop, below)}px`;
 }
 document.querySelectorAll('.paper-explanation').forEach(wrapper => {
   const button = wrapper.querySelector('button');

@@ -47,10 +47,15 @@ h2, .experience-heading h2 { font-size: 20px; letter-spacing: -.5px; font-weight
 .paper-link { border-color: #e7b9c2; font-size: 10px; margin-top: 5px; }
 .paper-heading { display: flex; align-items: baseline; gap: 6px; }
 .paper-explanation { flex-shrink: 0; }
-.summary-trigger { display: inline-flex; vertical-align: -3px; align-items: center; justify-content: center; width: 25px; height: 25px; padding: 3px; border: 0; border-radius: 50%; background: transparent; color: #999aa4; cursor: help; }
-.summary-trigger:hover, .summary-trigger[aria-expanded="true"] { background: var(--accent-soft); color: var(--accent); }
+.summary-trigger { display: inline-flex; vertical-align: -3px; align-items: center; justify-content: center; width: 25px; height: 25px; padding: 3px; border: 1px solid transparent; border-radius: 8px; background: transparent; color: #94949e; cursor: help; transition: background .16s, color .16s, border-color .16s; }
+.summary-trigger:hover, .summary-trigger[aria-expanded="true"] { background: var(--accent-soft); border-color: #eed3dc; color: var(--accent); }
 .summary-trigger:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-.paper-tooltip { position: fixed; z-index: 10; display: block; padding: 16px 18px; border: 1px solid #dcdde2; border-top: 2px solid var(--accent); border-radius: 5px; box-shadow: 0 8px 30px #1718231a; background: #fff; color: #444650; font: 12px/1.8 var(--sans); max-height: calc(100dvh - 32px); overflow: auto; }
+.paper-tooltip { position: fixed; z-index: 10; display: block; padding: 0; border: 1px solid #e7dce2; border-radius: 13px; box-shadow: 0 16px 42px #2d17251c, 0 3px 9px #2d17250a; background: #fff; color: #46424b; font: 13px/1.75 var(--sans); font-weight: 400; letter-spacing: 0; max-height: calc(100dvh - 32px); overflow: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: #d8c6cf transparent; }
+.tooltip-heading { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 12px 18px 11px; border-bottom: 1px solid #f0e7ed; background: linear-gradient(110deg, #fcf4f8, #fff 85%); }
+.tooltip-label { display: flex; align-items: center; gap: 8px; color: #993658; font-size: 10px; line-height: 1.5; font-weight: 650; letter-spacing: .5px; }
+.tooltip-label::before { content: ''; width: 4px; height: 12px; background: #bf4776; border-radius: 3px; }
+.tooltip-year { font-size: 10px; line-height: 1.5; font-variant-numeric: tabular-nums; color: #9a8993; }
+.tooltip-body { display: block; padding: 14px 18px 17px; }
 .feature { background: #fff; border: 1px solid var(--line); border-radius: 4px; }
 .feature:hover { background: #fff; border-color: #d7a3ad; transform: none; }
 .feature .story-image { border-radius: 2px; }
@@ -59,7 +64,15 @@ h2, .experience-heading h2 { font-size: 20px; letter-spacing: -.5px; font-weight
 footer { color: var(--muted); }
 /* The map stays naturally colored; only the interface shares the site accent. */
 .residence-heading button, .boundary-zoom { background: var(--soft); border: 1px solid var(--line); border-radius: 3px; }
-.map-info { background: #fffffff5; border-color: #dddfe5; border-radius: 5px; }
+.map-info { padding: 19px 20px 18px; background: #fffffff7; border: 1px solid #e7dce2; border-radius: 13px; box-shadow: 0 14px 36px #26313c1f, 0 2px 6px #26313c0a; scrollbar-width: thin; }
+.map-info #place-detail h3 { font-size: 15px; font-weight: 650; letter-spacing: -.25px; line-height: 1.45; padding-right: 19px; margin: 0 0 9px; color: #302a32; }
+.map-info #place-detail p { font-size: 12px; line-height: 1.7; color: #72636f; margin: 7px 0; }
+.map-info .place-history { padding-left: 15px; font-size: 11px; line-height: 1.75; }
+.map-info .place-history li + li { margin-top: 5px; }
+.map-info .boundary-zoom { display: block; width: 100%; margin-top: 14px; padding: 9px 11px; background: #faf2f6; border: 1px solid #ecdbe4; border-radius: 7px; text-align: left; color: #a2345d; font-size: 11px; transition: background .15s; }
+.map-info .boundary-zoom:hover { background: #f4e5ed; }
+#close-place { top: 9px; right: 9px; display: grid; place-items: center; width: 25px; height: 25px; padding: 0; border-radius: 50%; font: 18px/1 var(--sans); color: #93858e; }
+#close-place:hover { color: #a2345d; background: #f8edf3; }
 .globe-controls button { background: #fff; border-radius: 3px; }
 .country-places > summary { font-size: 12px; }
 .residence-bar { fill: #b98f9b; }

@@ -33,7 +33,7 @@ for year, entries in groups.items():
         if not links and review.get('source_url'):
             links = f'<a class="paper-link" href="{escape(review["source_url"], quote=True)}">Source ↗</a>'
         tooltip_id = f'{paper["id"]}-summary'
-        explanation = f'<span class="paper-explanation"><button class="summary-trigger" type="button" aria-label="Summary: {escape(title, quote=True)}" aria-describedby="{tooltip_id}" aria-expanded="false"><svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><circle cx="10" cy="10" r="7.5"/><path d="M10 9v5M10 5.8v1"/></svg></button><span class="paper-tooltip" role="tooltip" id="{tooltip_id}" hidden>{escape(review["summary"])}</span></span>'
+        explanation = f'<span class="paper-explanation"><button class="summary-trigger" type="button" aria-label="Summary: {escape(title, quote=True)}" aria-describedby="{tooltip_id}" aria-expanded="false"><svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><circle cx="10" cy="10" r="7.5"/><path d="M10 9v5M10 5.8v1"/></svg></button><span class="paper-tooltip" role="tooltip" id="{tooltip_id}" hidden><span class="tooltip-heading"><span class="tooltip-label">Summary</span><span class="tooltip-year">{escape(str(paper["year"]))}</span></span><span class="tooltip-body">{escape(review["summary"])}</span></span></span>'
         source_year = escape(paper['year'])
         year_label = f'{source_year} · ' if year == 'Older' and paper['year'].isdigit() else ''
         thumbnail = ''
