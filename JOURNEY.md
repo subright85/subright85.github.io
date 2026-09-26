@@ -1,6 +1,6 @@
 # Owner-only journey
 
-The public Places page contains undated cities only, in `visited-places.json`. A keyboard Easter egg on the homepage and Places decrypts the detailed timeline and opens it in a modal. There is no visible entry button. `journey.html` still supports direct password entry. Do not add dates, personal notes, stay order, or travel routes to that file.
+The public Places page uses `visited-places.json`: cities plus curated conference/travel visit dates. A keyboard Easter egg on the homepage and Places decrypts the detailed timeline and opens it in a modal. There is no visible entry button. `journey.html` still supports direct password entry. Do not add residence periods, personal notes, stay order, or travel routes to that file. Public visit records accept only `date` (year or year-month), `kind`, `conference`, `venue`, and `unconfirmed`.
 
 Personal files live outside this repository at `~/Documents/Codex-private/subright-journey/`:
 

@@ -3,10 +3,13 @@ async function initializeGlobe() {
   try {
     const [world, places, boundaries, countryBorders] = await Promise.all([
       fetch('assets/maps/land-natural.json?v=1').then(r => { if (!r.ok) throw new Error('Map unavailable'); return r.json(); }),
-      fetch('visited-places.json?v=1').then(r => { if (!r.ok) throw new Error('Places unavailable'); return r.json(); }),
+      fetch('visited-places.json?v=2').then(r => { if (!r.ok) throw new Error('Places unavailable'); return r.json(); }),
       fetch('assets/maps/visited-boundaries.json?v=2').then(r => { if (!r.ok) throw new Error('Boundaries unavailable'); return r.json(); }),
       fetch('assets/maps/country-borders.json?v=1').then(r => { if (!r.ok) throw new Error('Borders unavailable'); return r.json(); })
     ]);
+    const visitMonth = new Intl.DateTimeFormat('en-US', {month: 'short', year: 'numeric', timeZone: 'UTC'});
+    const visitDate = date => date.length === 4 ? date : visitMonth.format(new Date(`${date}-01T00:00:00Z`));
+    const visitLabel = visit => visit.conference || (visit.kind === 'trip' ? 'Travel' : 'Visit');
     const placeCategory = p => ({visited: 'Lived', visit: 'Conference', travel: 'Trip'}[p.status] || '');
     const pinGroups = new Map();
     places.forEach(place => {
@@ -192,6 +195,19 @@ async function initializeGlobe() {
       const flag = p.country_code ? [...p.country_code].map(letter => String.fromCodePoint(127397 + letter.charCodeAt(0))).join('') + ' ' : '';
       const title = document.createElement('h3'); title.textContent = `${flag}${p.city}, ${p.country}`; detail.append(title);
       const note = document.createElement('p'); note.textContent = placeCategory(p); detail.append(note);
+      if (p.visits?.length) {
+        const list = document.createElement('ul'); list.className = 'map-visits'; list.setAttribute('aria-label', 'Visits');
+        p.visits.forEach(visit => {
+          const row = document.createElement('li'); row.className = `map-visit ${visit.kind}`;
+          const when = document.createElement('time'); when.dateTime = visit.date; when.textContent = visitDate(visit.date);
+          const text = document.createElement('span'); text.className = 'map-visit-copy';
+          const label = document.createElement('strong'); label.textContent = visitLabel(visit); text.append(label);
+          if (visit.unconfirmed) { const uncertain = document.createElement('span'); uncertain.className = 'visit-context'; uncertain.textContent = 'Conference unconfirmed'; text.append(uncertain); }
+          if (visit.venue) { const venue = document.createElement('span'); venue.className = 'visit-context'; venue.textContent = visit.venue; text.append(venue); }
+          row.append(when, text); list.append(row);
+        });
+        detail.append(list);
+      }
       const boundary = boundaryByPlace.get(`${p.country}|${p.city}`);
       if (boundary) {
         const button = document.createElement('button'); button.type = 'button'; button.className = 'boundary-zoom';

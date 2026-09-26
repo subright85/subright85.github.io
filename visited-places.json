@@ -8,7 +8,13 @@
       -79.0849,
       43.0896
     ],
-    "status": "travel"
+    "status": "travel",
+    "visits": [
+      {
+        "date": "2010-10",
+        "kind": "trip"
+      }
+    ]
   },
   {
     "id": "place-bfc0692a2f",
@@ -19,7 +25,14 @@
       -79.3832,
       43.6532
     ],
-    "status": "visit"
+    "status": "visit",
+    "visits": [
+      {
+        "date": "2010-10",
+        "kind": "conference",
+        "conference": "CIKM"
+      }
+    ]
   },
   {
     "id": "place-e6f83f779e",
@@ -29,7 +42,15 @@
       116.4074,
       39.9042
     ],
-    "status": "visited"
+    "status": "visited",
+    "visits": [
+      {
+        "date": "2019-11",
+        "kind": "conference",
+        "conference": "CIKM",
+        "unconfirmed": true
+      }
+    ]
   },
   {
     "id": "place-4bd6a4b268",
@@ -40,7 +61,14 @@
       114.1694,
       22.3193
     ],
-    "status": "visit"
+    "status": "visit",
+    "visits": [
+      {
+        "date": "2009-08",
+        "kind": "conference",
+        "conference": "CIKM"
+      }
+    ]
   },
   {
     "id": "place-b0d443c893",
@@ -51,7 +79,13 @@
       120.3826,
       36.0671
     ],
-    "status": "travel"
+    "status": "travel",
+    "visits": [
+      {
+        "date": "2010",
+        "kind": "trip"
+      }
+    ]
   },
   {
     "id": "place-240e4590a6",
@@ -62,7 +96,17 @@
       121.4737,
       31.2304
     ],
-    "status": "travel"
+    "status": "travel",
+    "visits": [
+      {
+        "date": "2014-11",
+        "kind": "trip"
+      },
+      {
+        "date": "2010",
+        "kind": "trip"
+      }
+    ]
   },
   {
     "id": "place-bf42d05461",
@@ -73,7 +117,15 @@
       116.0735,
       5.9804
     ],
-    "status": "visit"
+    "status": "visit",
+    "visits": [
+      {
+        "date": "2013",
+        "kind": "conference",
+        "conference": "ACM ICUIMC (IMCOM)",
+        "venue": "Shangri-La’s Rasa Ria Resort"
+      }
+    ]
   },
   {
     "id": "place-1f1f164d1a",
@@ -84,7 +136,13 @@
       73.22,
       3.2
     ],
-    "status": "travel"
+    "status": "travel",
+    "visits": [
+      {
+        "date": "2016-05",
+        "kind": "trip"
+      }
+    ]
   },
   {
     "id": "place-a22592fb4f",
@@ -95,7 +153,13 @@
       -109.7,
       23
     ],
-    "status": "travel"
+    "status": "travel",
+    "visits": [
+      {
+        "date": "2022-12",
+        "kind": "trip"
+      }
+    ]
   },
   {
     "id": "place-15113e592c",
@@ -106,7 +170,13 @@
       103.8198,
       1.3521
     ],
-    "status": "travel"
+    "status": "travel",
+    "visits": [
+      {
+        "date": "2016-05",
+        "kind": "trip"
+      }
+    ]
   },
   {
     "id": "place-afb8ac64e4",
@@ -137,7 +207,15 @@
       126.978,
       37.5665
     ],
-    "status": "visit"
+    "status": "visit",
+    "visits": [
+      {
+        "date": "2025",
+        "kind": "conference",
+        "conference": "CIKM",
+        "venue": "Coex"
+      }
+    ]
   },
   {
     "id": "place-a5b05de724",
@@ -148,7 +226,18 @@
       2.1734,
       41.3851
     ],
-    "status": "visit"
+    "status": "visit",
+    "visits": [
+      {
+        "date": "2024-08",
+        "kind": "trip"
+      },
+      {
+        "date": "2024",
+        "kind": "conference",
+        "conference": "KDD"
+      }
+    ]
   },
   {
     "id": "place-ff5145bc51",
@@ -159,7 +248,13 @@
       2.8214,
       41.9794
     ],
-    "status": "travel"
+    "status": "travel",
+    "visits": [
+      {
+        "date": "2024-08",
+        "kind": "trip"
+      }
+    ]
   },
   {
     "id": "place-9770186294",
@@ -170,7 +265,13 @@
       121.5654,
       25.033
     ],
-    "status": "travel"
+    "status": "travel",
+    "visits": [
+      {
+        "date": "2013-07",
+        "kind": "visit"
+      }
+    ]
   },
   {
     "id": "place-6006320b08",
@@ -181,7 +282,14 @@
       -4.2518,
       55.8642
     ],
-    "status": "visit"
+    "status": "visit",
+    "visits": [
+      {
+        "date": "2011",
+        "kind": "conference",
+        "conference": "CIKM"
+      }
+    ]
   },
   {
     "id": "place-12e4c4d5e2",
@@ -192,7 +300,13 @@
       -117.9145,
       33.8366
     ],
-    "status": "travel"
+    "status": "travel",
+    "visits": [
+      {
+        "date": "2025-01",
+        "kind": "trip"
+      }
+    ]
   },
   {
     "id": "place-a893e442cd",
@@ -203,7 +317,14 @@
       -149.9003,
       61.2181
     ],
-    "status": "visit"
+    "status": "visit",
+    "visits": [
+      {
+        "date": "2019",
+        "kind": "conference",
+        "conference": "KDD"
+      }
+    ]
   },
   {
     "id": "place-a9abbac3fb",
@@ -214,7 +335,13 @@
       -106.8175,
       39.1911
     ],
-    "status": "travel"
+    "status": "travel",
+    "visits": [
+      {
+        "date": "2020-03",
+        "kind": "trip"
+      }
+    ]
   },
   {
     "id": "place-bd7353e2b4",
@@ -225,7 +352,14 @@
       -71.0589,
       42.3601
     ],
-    "status": "visit"
+    "status": "visit",
+    "visits": [
+      {
+        "date": "2013-07",
+        "kind": "conference",
+        "conference": "ICWSM"
+      }
+    ]
   },
   {
     "id": "place-1542d45514",
@@ -236,7 +370,13 @@
       -155.5,
       19.6
     ],
-    "status": "travel"
+    "status": "travel",
+    "visits": [
+      {
+        "date": "2018-12",
+        "kind": "trip"
+      }
+    ]
   },
   {
     "id": "place-8979f4cc14",
@@ -247,7 +387,17 @@
       -157.8583,
       21.3069
     ],
-    "status": "travel"
+    "status": "travel",
+    "visits": [
+      {
+        "date": "2025-06",
+        "kind": "trip"
+      },
+      {
+        "date": "2024-05",
+        "kind": "trip"
+      }
+    ]
   },
   {
     "id": "place-492655c1ce",
@@ -258,7 +408,13 @@
       -159.5,
       22.05
     ],
-    "status": "travel"
+    "status": "travel",
+    "visits": [
+      {
+        "date": "2019-12",
+        "kind": "trip"
+      }
+    ]
   },
   {
     "id": "place-0fad5eedc2",
@@ -269,7 +425,17 @@
       -120.0324,
       39.0968
     ],
-    "status": "travel"
+    "status": "travel",
+    "visits": [
+      {
+        "date": "2026-02",
+        "kind": "trip"
+      },
+      {
+        "date": "2018-04",
+        "kind": "trip"
+      }
+    ]
   },
   {
     "id": "place-f2dcd7722c",
@@ -280,7 +446,17 @@
       -115.1398,
       36.1699
     ],
-    "status": "travel"
+    "status": "travel",
+    "visits": [
+      {
+        "date": "2019-07",
+        "kind": "trip"
+      },
+      {
+        "date": "2017-07",
+        "kind": "trip"
+      }
+    ]
   },
   {
     "id": "place-560b3f8055",
@@ -291,7 +467,14 @@
       -118.1937,
       33.7701
     ],
-    "status": "visit"
+    "status": "visit",
+    "visits": [
+      {
+        "date": "2023",
+        "kind": "conference",
+        "conference": "KDD"
+      }
+    ]
   },
   {
     "id": "place-7f716b95dd",
@@ -302,7 +485,19 @@
       -156.68,
       20.88
     ],
-    "status": "visit"
+    "status": "visit",
+    "visits": [
+      {
+        "date": "2025-12",
+        "kind": "trip"
+      },
+      {
+        "date": "2012",
+        "kind": "conference",
+        "conference": "CIKM",
+        "venue": "Sheraton Maui Resort & Spa"
+      }
+    ]
   },
   {
     "id": "place-45a369b845",
@@ -313,7 +508,13 @@
       -123.7995,
       39.3077
     ],
-    "status": "travel"
+    "status": "travel",
+    "visits": [
+      {
+        "date": "2018-05",
+        "kind": "trip"
+      }
+    ]
   },
   {
     "id": "place-199b45d449",
@@ -324,7 +525,13 @@
       -122.2869,
       38.2975
     ],
-    "status": "travel"
+    "status": "travel",
+    "visits": [
+      {
+        "date": "2023-07",
+        "kind": "trip"
+      }
+    ]
   },
   {
     "id": "place-965c801ed7",
@@ -335,7 +542,13 @@
       -74.006,
       40.7128
     ],
-    "status": "travel"
+    "status": "travel",
+    "visits": [
+      {
+        "date": "2022-08",
+        "kind": "trip"
+      }
+    ]
   },
   {
     "id": "place-acf408a4db",
@@ -346,7 +559,13 @@
       -119.8138,
       39.5296
     ],
-    "status": "travel"
+    "status": "travel",
+    "visits": [
+      {
+        "date": "2018-04",
+        "kind": "trip"
+      }
+    ]
   },
   {
     "id": "place-1f7a9ad83a",
@@ -357,7 +576,13 @@
       -121.4944,
       38.5816
     ],
-    "status": "travel"
+    "status": "travel",
+    "visits": [
+      {
+        "date": "2025-03",
+        "kind": "trip"
+      }
+    ]
   },
   {
     "id": "place-1b73146c7b",
@@ -368,7 +593,13 @@
       -117.1611,
       32.7157
     ],
-    "status": "travel"
+    "status": "travel",
+    "visits": [
+      {
+        "date": "2023-08",
+        "kind": "trip"
+      }
+    ]
   },
   {
     "id": "place-ac57a063a6",
@@ -399,7 +630,19 @@
       -77.0369,
       38.9072
     ],
-    "status": "visit"
+    "status": "visit",
+    "visits": [
+      {
+        "date": "2022-08",
+        "kind": "trip"
+      },
+      {
+        "date": "2022",
+        "kind": "conference",
+        "conference": "KDD",
+        "venue": "Walter E. Washington Convention Center"
+      }
+    ]
   },
   {
     "id": "place-e9e63a91d7",
@@ -410,6 +653,16 @@
       -119.5383,
       37.8651
     ],
-    "status": "travel"
+    "status": "travel",
+    "visits": [
+      {
+        "date": "2025-05",
+        "kind": "trip"
+      },
+      {
+        "date": "2017-11",
+        "kind": "trip"
+      }
+    ]
   }
 ]
