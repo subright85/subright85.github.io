@@ -31,6 +31,18 @@ async function initializeGlobe() {
     const gradient = svg.append('defs').append('radialGradient').attr('id', 'ocean-color').attr('gradientUnits', 'userSpaceOnUse').attr('cx', 224).attr('cy', 150).attr('r', 544);
     gradient.append('stop').attr('offset', '0%').attr('stop-color', '#b3e6ee');
     gradient.append('stop').attr('offset', '100%').attr('stop-color', '#438fbc');
+    // A small, crisp tile palette gives the geographic globe a pixel-art texture
+    // while keeping its real boundaries and interactive markers as SVG paths.
+    const defs = svg.select('defs');
+    const pixelPattern = (id, base, tiles) => {
+      const pattern = defs.append('pattern').attr('id', id).attr('patternUnits', 'userSpaceOnUse')
+        .attr('width', 64).attr('height', 64).attr('shape-rendering', 'crispEdges');
+      pattern.append('rect').attr('width', 64).attr('height', 64).attr('fill', base);
+      tiles.forEach(([x, y, w, h, color]) => pattern.append('rect')
+        .attr('x', x).attr('y', y).attr('width', w).attr('height', h).attr('fill', color));
+    };
+    pixelPattern('pixel-ocean', '#4baed2', [[0,0,16,8,'#67c9df'],[32,8,16,8,'#3c9ac8'],[16,24,16,8,'#65c4dc'],[48,32,16,8,'#368dc0'],[0,48,16,8,'#3998c5'],[32,56,16,8,'#73cde0']]);
+    pixelPattern('pixel-land', '#72bf81', [[0,0,16,16,'#92d18c'],[32,0,16,8,'#e4ca79'],[16,16,16,16,'#60aa77'],[48,24,16,16,'#a9d486'],[0,40,16,16,'#d1ca80'],[32,48,16,16,'#5cad7c']]);
     svg.append('path').datum({type: 'Sphere'}).attr('class', 'ocean');
     svg.append('path').datum(d3.geoGraticule().step([15, 15])()).attr('class', 'graticule');
     svg.append('g').selectAll('path').data(world.features).join('path').attr('class', 'land').attr('id', 'land-outline');

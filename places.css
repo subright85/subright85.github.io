@@ -210,3 +210,9 @@
 .map-visit.conference strong { color:var(--accent); }
 .map-visit .visit-context { color:var(--muted); font-size:10px; line-height:1.55; }
 .map-info:has(.map-visits) { width:min(315px, calc(100% - 28px)); max-height:min(390px, 65dvh); }
+
+/* Pixel-tile colors retain the map's interactive geographic paths. */
+#globe .ocean, #globe .local-sea { fill: url(#pixel-ocean); stroke: #287ca6; }
+#globe .land, #globe .local-land { fill: url(#pixel-land); stroke: #509a72; }
+#globe .graticule { opacity: .12; stroke: #185e8a; }
+#globe .country-boundaries { stroke: #397b68; stroke-opacity: .7; }
