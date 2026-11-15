@@ -2,6 +2,54 @@
   "instructions": "Edit summary and review_notes; set owner_approved when checked. Match by stable id in publications.json. Run python3 scripts/build.py after edits. Summaries are explanatory overviews, not peer reviews or independently reproduced result checks.",
   "papers": [
     {
+      "id": "pub-fe8de16f1974",
+      "title": "Can We Break LLMs Out of Self-Loops? Fine-Grained Reasoning Control with Activation Steering",
+      "year": "2027",
+      "summary": "SOPHIA detects when a language model repeatedly returns to the same reasoning state. It then steers the model’s internal activations during inference to help it leave the loop.",
+      "source_url": "https://arxiv.org/abs/2607.18100",
+      "review_basis": "abstract",
+      "review_status": "draft_for_owner_review",
+      "reviewed_on": "2026-11-14",
+      "owner_approved": false,
+      "review_notes": ""
+    },
+    {
+      "id": "pub-ad7f85363364",
+      "title": "Reasoning-Based Personalized Generation for Sparse Users",
+      "year": "2026",
+      "summary": "GraSPer predicts likely user–item interactions and generates supporting context for them. It combines that context with a user’s limited real history to generate more personalized text.",
+      "source_url": "https://aclanthology.org/2026.aacl-long.219/",
+      "review_basis": "abstract",
+      "review_status": "draft_for_owner_review",
+      "reviewed_on": "2026-11-14",
+      "owner_approved": false,
+      "review_notes": ""
+    },
+    {
+      "id": "pub-91734d0f3e2a",
+      "title": "Personalized Image Generation with Reasoning and Reflection",
+      "year": "2026",
+      "summary": "PEARL uses signals from a person’s reviews, posts, and images to guide a frozen image generator. It reasons about the user’s preferences and revisits the generated result. The paper also introduces a benchmark for personalized scenes and creative images.",
+      "source_url": "https://arxiv.org/abs/2610.00737",
+      "review_basis": "abstract",
+      "review_status": "draft_for_owner_review",
+      "reviewed_on": "2026-11-14",
+      "owner_approved": false,
+      "review_notes": ""
+    },
+    {
+      "id": "pub-03c573ea3c45",
+      "title": "MOCHA: Multi-Objective Chebyshev Annealing for Agent Skill Optimization",
+      "year": "2026",
+      "summary": "MOCHA optimizes written skills for language model agents under competing goals such as accuracy and context cost. It searches for skill variants that offer different trade-offs between those goals.",
+      "source_url": "https://arxiv.org/abs/2605.19330v2",
+      "review_basis": "abstract",
+      "review_status": "draft_for_owner_review",
+      "reviewed_on": "2026-11-14",
+      "owner_approved": false,
+      "review_notes": ""
+    },
+    {
       "id": "pub-0dbf34d862a6",
       "title": "Rethinking Failure Attribution in Multi-Agent Systems: A Multi-Perspective Benchmark and Evaluation",
       "year": "2026",
@@ -19,18 +67,6 @@
       "year": "2026",
       "summary": "A chart edit must preserve the meaning of its data, not just look convincing. FigEdit tests changes to scientific charts and shows why image-editing models and pixel-based scores can miss structurally incorrect results.",
       "source_url": "https://arxiv.org/html/2512.00752v1",
-      "review_basis": "abstract",
-      "review_status": "draft_for_owner_review",
-      "reviewed_on": "2026-09-24",
-      "owner_approved": false,
-      "review_notes": ""
-    },
-    {
-      "id": "pub-ad7f85363364",
-      "title": "Reasoning-Based Personalized Generation for Users with Sparse Data",
-      "year": "2026",
-      "summary": "How can an AI personalize text for someone with very little history? GraSPeR predicts likely user–item connections, generates supporting synthetic context, and combines it with real history to guide personalized responses.",
-      "source_url": "https://arxiv.org/html/2602.21219v1",
       "review_basis": "abstract",
       "review_status": "draft_for_owner_review",
       "reviewed_on": "2026-09-24",
@@ -70,6 +106,18 @@
       "review_basis": "abstract",
       "review_status": "draft_for_owner_review",
       "reviewed_on": "2026-09-24",
+      "owner_approved": false,
+      "review_notes": ""
+    },
+    {
+      "id": "pub-5bb93da0b073",
+      "title": "Do Large Multimodal Models Solve Caption Generation for Scientific Figures? Lessons Learned from SciCap Challenge 2023",
+      "year": "2026",
+      "summary": "This analysis of the SciCap Challenge compares captions for scientific figures. Professional editors preferred GPT-4V captions to the other entries and the original captions, and the authors examine whether those preferences indicate that the task is solved.",
+      "source_url": "https://aclanthology.org/2026.tacl-1.12/",
+      "review_basis": "abstract",
+      "review_status": "draft_for_owner_review",
+      "reviewed_on": "2026-11-14",
       "owner_approved": false,
       "review_notes": ""
     },

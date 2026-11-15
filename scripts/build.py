@@ -16,10 +16,12 @@ for paper in papers:
     group = paper['year'] if paper['year'] in recent_years else 'Older'
     groups[group].append(paper)
 blocks = []
+opened_selected_group = False
 for year, entries in groups.items():
     if not entries:
         continue
     items = []
+    has_selected = False
     for paper in entries:
         citation = paper['citation']
         title = paper['title']
@@ -28,6 +30,7 @@ for year, entries in groups.items():
         author_prefix = re.split(r'Sungch[u]?l\s+Kim', rest, maxsplit=1)[0]
         author_rank = author_prefix.count(',') + 1
         selected = not re.search(r'\bsurvey\b', title, re.I) and author_rank <= 5
+        has_selected = has_selected or selected
         rest = re.sub(r'Sungchul\s+Kim', '<strong>Sungchul Kim</strong>', escape(rest))
         links = ''.join(f'<a class="paper-link" href="{escape(link["url"], quote=True)}">Read paper ↗</a>' for link in paper['links'])
         if not links and review.get('source_url'):
@@ -40,12 +43,15 @@ for year, entries in groups.items():
         if paper.get('image'):
             thumbnail = f'<a class="paper-thumbnail" href="{escape(paper["links"][0]["url"], quote=True)}" aria-label="Read {escape(title, quote=True)}"><img src="{escape(paper["image"], quote=True)}" alt="{escape(paper["image_alt"], quote=True)}" width="1536" height="1024" loading="lazy"></a>'
         items.append(f'<li id="{paper["id"]}" class="paper{" paper-illustrated" if thumbnail else ""}" data-year="{source_year}" data-selected="{str(selected).lower()}">{thumbnail}<div class="paper-copy"><div class="paper-heading"><h3>{escape(title)}</h3>{explanation}</div><p>{year_label}{rest}</p>{links}</div></li>')
-    opened = ' open' if year == recent_years[0] else ''
-    blocks.append(f'<details class="year-group" data-year="{escape(year)}"{opened}><summary>{escape(year)} <span class="count">{len(entries)} papers</span><span class="plus" aria-hidden="true">+</span></summary><ol class="papers">{"".join(items)}</ol></details>')
+    opened = ' open' if year == recent_years[0] or (has_selected and not opened_selected_group) else ''
+    opened_selected_group = opened_selected_group or has_selected
+    count_label = f'{len(entries)} paper' if len(entries) == 1 else f'{len(entries)} papers'
+    blocks.append(f'<details class="year-group" data-year="{escape(year)}"{opened}><summary>{escape(year)} <span class="count">{count_label}</span><span class="plus" aria-hidden="true">+</span></summary><ol class="papers">{"".join(items)}</ol></details>')
 template = (ROOT / 'index.template.html').read_text()
 photos = json.loads((ROOT / 'photos.json').read_text())
 slides = ''.join(f'<div class="photo-slide" role="group" aria-roledescription="slide" aria-label="{i+1} of {len(photos)}"{" hidden" if i else ""}><img class="profile-photo" src="{escape(p["src"], quote=True)}" alt="{escape(p["alt"], quote=True)}" style="object-position:{escape(p.get("position", "center"), quote=True)}" width="{p["width"]}" height="{p["height"]}"{ " loading=\"lazy\"" if i else ""}></div>' for i, p in enumerate(photos))
 template = template.replace('{{PHOTO_SLIDES}}', slides)
+template = template.replace('{{PUBLICATION_COUNT}}', str(len(papers)))
 (ROOT / 'index.html').write_text(template.replace('{{PUBLICATIONS}}', '\n'.join(blocks)).replace('{{CAREER_TIMELINE}}', render_career() + render_career(compact=True)))
 print(f'Built index.html with {len(papers)} publications.')
 

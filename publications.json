@@ -1,5 +1,55 @@
 [
   {
+    "year": "2027",
+    "id": "pub-fe8de16f1974",
+    "citation": "Can We Break LLMs Out of Self-Loops? Fine-Grained Reasoning Control with Activation Steering, Sheldon Yu, Tong Yu, Xunyi Jiang, Rohan Surana, Gagan Mundada, Ayush Urs, Sungchul Kim, Lina Yao, Julian McAuley, Junda Wu, EACL’27 Findings",
+    "links": [
+      {
+        "url": "https://arxiv.org/abs/2607.18100"
+      }
+    ],
+    "title": "Can We Break LLMs Out of Self-Loops? Fine-Grained Reasoning Control with Activation Steering",
+    "citation_title": "Can We Break LLMs Out of Self-Loops? Fine-Grained Reasoning Control with Activation Steering"
+  },
+  {
+    "year": "2026",
+    "citation": "Reasoning-Based Personalized Generation for Sparse Users, Bo Ni, Branislav Kveton, Samyadeep Basu, Subhojyoti Mukherjee, Leyao Wang, Franck Dernoncourt, Sungchul Kim, Seunghyun Yoon, Zichao Wang, Ruiyi Zhang, Puneet Mathur, Jihyung Kil, Jiuxiang Gu, Nedim Lipka, Yu Wang, Ryan A. Rossi, Tyler Derr, IJCNLP–AACL’26 (Long Paper)",
+    "links": [
+      {
+        "url": "https://aclanthology.org/2026.aacl-long.219/"
+      }
+    ],
+    "image": "assets/papers/grasper.png",
+    "image_alt": "GraSPeR predicts missing user-item links, synthesizes aligned reviews, then generates personalized text from real and augmented history.",
+    "id": "pub-ad7f85363364",
+    "title": "Reasoning-Based Personalized Generation for Sparse Users",
+    "citation_title": "Reasoning-Based Personalized Generation for Sparse Users"
+  },
+  {
+    "year": "2026",
+    "id": "pub-91734d0f3e2a",
+    "citation": "Personalized Image Generation with Reasoning and Reflection, Bo Ni, Ngoc N. Tran, Qinwen Ge, Franck Dernoncourt, Seunghyun Yoon, Samyadeep Basu, Sungchul Kim, Puneet Mathur, Nedim Lipka, Tong Yu, Yu Wang, Ryan A. Rossi, Tyler Derr, arXiv preprint (2026)",
+    "links": [
+      {
+        "url": "https://arxiv.org/abs/2610.00737"
+      }
+    ],
+    "title": "Personalized Image Generation with Reasoning and Reflection",
+    "citation_title": "Personalized Image Generation with Reasoning and Reflection"
+  },
+  {
+    "year": "2026",
+    "id": "pub-03c573ea3c45",
+    "citation": "MOCHA: Multi-Objective Chebyshev Annealing for Agent Skill Optimization, Md Mehrab Tanjim, Jayakumar Subramanian, Branislav Kveton, Xiang Chen, Subhojyoti Mukherjee, Anlan Zhang, Sungchul Kim, Sunav Choudhury, Somdeb Sarkhel, arXiv preprint (2026)",
+    "links": [
+      {
+        "url": "https://arxiv.org/abs/2605.19330v2"
+      }
+    ],
+    "title": "MOCHA: Multi-Objective Chebyshev Annealing for Agent Skill Optimization",
+    "citation_title": "MOCHA: Multi-Objective Chebyshev Annealing for Agent Skill Optimization"
+  },
+  {
     "year": "2026",
     "citation": "Rethinking Failure Attribution in Multi-Agent Systems: A Multi-Perspective Benchmark and Evaluation, Yeonjun In, Mehrab Tanjim, Jayakumar Subramanian, Sungchul Kim , Uttaran Bhattacharya, Wonjoong Kim, Sangwu Park, Somdeb Sarkhel, Chanyoung Park, ICML'26 FAGEN (poster)",
     "links": [
@@ -26,20 +76,6 @@
     "id": "pub-ac571d66ec56",
     "title": "Charts Are Not Images: On the Challenges of Scientific Chart Editing",
     "citation_title": "Charts Are Not Images: On the Challenges of Scientific Chart Editing"
-  },
-  {
-    "year": "2026",
-    "citation": "Reasoning-Based Personalized Generation for Users with Sparse Data, Bo Ni, Branislav Kveton, Samyadeep Basu, Subhojyoti Mukherjee, Leyao Wang, Franck Dernoncourt, Sungchul Kim , Seunghyun Yoon, Zichao Wang, Ruiyi Zhang, Puneet Mathur, Jihyung Kil, Jiuxiang Gu, Nedim Lipka, Yu Wang, Ryan A. Rossi, Tyler Derr, ICLR'26",
-    "links": [
-      {
-        "url": "https://arxiv.org/html/2602.21219v1"
-      }
-    ],
-    "image": "assets/papers/grasper.png",
-    "image_alt": "GraSPeR predicts missing user-item links, synthesizes aligned reviews, then generates personalized text from real and augmented history.",
-    "id": "pub-ad7f85363364",
-    "title": "Reasoning-Based Personalized Generation for Users with Sparse Data",
-    "citation_title": "Reasoning-Based Personalized Generation for Users with Sparse Data"
   },
   {
     "year": "2026",
@@ -82,6 +118,18 @@
     "id": "pub-705abf4a1095",
     "title": "VipAct: Visual-Perception Enhancement via Specialized VLM Agent Collaboration and Tool-use",
     "citation_title": "VipAct: Visual-Perception Enhancement via Specialized VLM Agent Collaboration and Tool-use"
+  },
+  {
+    "year": "2026",
+    "id": "pub-5bb93da0b073",
+    "citation": "Do Large Multimodal Models Solve Caption Generation for Scientific Figures? Lessons Learned from SciCap Challenge 2023, Ting-Yao Hsu, Yi-Li Hsu, Shaurya Rohatgi, Chieh-Yang Huang, Ho Yin Sam Ng, Ryan Rossi, Sungchul Kim, Tong Yu, Lun-Wei Ku, Clyde Lee Giles, Ting-Hao Huang, TACL’26",
+    "links": [
+      {
+        "url": "https://aclanthology.org/2026.tacl-1.12/"
+      }
+    ],
+    "title": "Do Large Multimodal Models Solve Caption Generation for Scientific Figures? Lessons Learned from SciCap Challenge 2023",
+    "citation_title": "Do Large Multimodal Models Solve Caption Generation for Scientific Figures? Lessons Learned from SciCap Challenge 2023"
   },
   {
     "year": "2025",

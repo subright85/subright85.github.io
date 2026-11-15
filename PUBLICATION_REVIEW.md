@@ -4,7 +4,45 @@ Edit `publication-summaries.json`, then run `python3 scripts/build.py` to regene
 
 These are short explanatory overviews based on available abstracts or paper excerpts, not full-text peer reviews. All remain drafts for the owner to check. Source gaps and related-version matches are explicitly noted below.
 
+## 2027
+
+### Can We Break LLMs Out of Self-Loops? Fine-Grained Reasoning Control with Activation Steering
+
+SOPHIA detects when a language model repeatedly returns to the same reasoning state. It then steers the model’s internal activations during inference to help it leave the loop.
+
+- ID: `pub-fe8de16f1974`
+- Source: https://arxiv.org/abs/2607.18100
+- Basis: `abstract` · Status: `draft_for_owner_review`
+- [ ] Owner approved
+
 ## 2026
+
+### Reasoning-Based Personalized Generation for Sparse Users
+
+GraSPer predicts likely user–item interactions and generates supporting context for them. It combines that context with a user’s limited real history to generate more personalized text.
+
+- ID: `pub-ad7f85363364`
+- Source: https://aclanthology.org/2026.aacl-long.219/
+- Basis: `abstract` · Status: `draft_for_owner_review`
+- [ ] Owner approved
+
+### Personalized Image Generation with Reasoning and Reflection
+
+PEARL uses signals from a person’s reviews, posts, and images to guide a frozen image generator. It reasons about the user’s preferences and revisits the generated result. The paper also introduces a benchmark for personalized scenes and creative images.
+
+- ID: `pub-91734d0f3e2a`
+- Source: https://arxiv.org/abs/2610.00737
+- Basis: `abstract` · Status: `draft_for_owner_review`
+- [ ] Owner approved
+
+### MOCHA: Multi-Objective Chebyshev Annealing for Agent Skill Optimization
+
+MOCHA optimizes written skills for language model agents under competing goals such as accuracy and context cost. It searches for skill variants that offer different trade-offs between those goals.
+
+- ID: `pub-03c573ea3c45`
+- Source: https://arxiv.org/abs/2605.19330v2
+- Basis: `abstract` · Status: `draft_for_owner_review`
+- [ ] Owner approved
 
 ### Rethinking Failure Attribution in Multi-Agent Systems: A Multi-Perspective Benchmark and Evaluation
 
@@ -21,15 +59,6 @@ A chart edit must preserve the meaning of its data, not just look convincing. Fi
 
 - ID: `pub-ac571d66ec56`
 - Source: https://arxiv.org/html/2512.00752v1
-- Basis: `abstract` · Status: `draft_for_owner_review`
-- [ ] Owner approved
-
-### Reasoning-Based Personalized Generation for Users with Sparse Data
-
-How can an AI personalize text for someone with very little history? GraSPeR predicts likely user–item connections, generates supporting synthetic context, and combines it with real history to guide personalized responses.
-
-- ID: `pub-ad7f85363364`
-- Source: https://arxiv.org/html/2602.21219v1
 - Basis: `abstract` · Status: `draft_for_owner_review`
 - [ ] Owner approved
 
@@ -57,6 +86,15 @@ VipAct helps a vision-language model inspect details it might otherwise miss. A 
 
 - ID: `pub-705abf4a1095`
 - Source: https://ojs.aaai.org/index.php/AAAI/article/view/40976
+- Basis: `abstract` · Status: `draft_for_owner_review`
+- [ ] Owner approved
+
+### Do Large Multimodal Models Solve Caption Generation for Scientific Figures? Lessons Learned from SciCap Challenge 2023
+
+This analysis of the SciCap Challenge compares captions for scientific figures. Professional editors preferred GPT-4V captions to the other entries and the original captions, and the authors examine whether those preferences indicate that the task is solved.
+
+- ID: `pub-5bb93da0b073`
+- Source: https://aclanthology.org/2026.tacl-1.12/
 - Basis: `abstract` · Status: `draft_for_owner_review`
 - [ ] Owner approved
 
