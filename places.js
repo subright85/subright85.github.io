@@ -95,7 +95,7 @@ async function initializeGlobe() {
 
     const geographicPaths = svg.selectAll('.ocean, .graticule, .land, .visit-area, .country-boundaries');
     const countryDecorations = createCountryDecorations(svg, projection, countryTopology, pinPlaces, selectPlace);
-    const markers = svg.append('g').selectAll('g').data(pinPlaces).join('g')
+    const markers = svg.append('g').attr('display', 'none').attr('aria-hidden', 'true').selectAll('g').data(pinPlaces).join('g')
       .attr('class', p => `place-marker ${p.status}`).attr('role', 'button')
       .attr('aria-label', p => `${p.city}, ${p.country}. ${placeCategory(p)}${p.status === 'conference' ? '. Conference location; visit unconfirmed' : ''}`)
       .on('click', (event, p) => selectPlace(p)).on('keydown', (event, p) => {

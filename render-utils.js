@@ -205,13 +205,13 @@ function createCountryDecorations(svg, projection, topology, places, selectPlace
       d.active = reached(d.place);
       const [x, y] = projection(d.coordinates);
       const distance = d3.geoDistance(center, d.coordinates);
-      // Scale with the globe (sublinearly so neighboring cities separate on zoom).
-      const size = (.73 + .12 * Math.cos(distance)) * Math.pow(projection.scale() / 274, .55);
+      // Keep city art legible at street zoom without letting it grow off the viewport.
+      const size = Math.min(1.25, (.73 + .12 * Math.cos(distance)) * Math.pow(projection.scale() / 274, .35));
       const artworkWidth = 78 * (d.bounds[2] - d.bounds[0]) * size;
       const artworkHeight = 78 * (d.bounds[3] - d.bounds[1]) * size;
       const box = {x: x - artworkWidth / 2 - 2, y: y - artworkHeight - 2, width: artworkWidth + 4, height: artworkHeight + 4};
       d.previewBox = box;
-      const visible = d.active && projection.scale() <= 1500 && box.x > 4 && box.x + box.width < 636 && box.y > 4 && box.y + box.height < 596 &&
+      const visible = d.active && box.x < 640 && box.x + box.width > 0 && box.y < 600 && box.y + box.height > 0 &&
         distance < 1.4 && !occupied.some(b => box.x < b.x + b.width && box.x + box.width > b.x && box.y < b.y + b.height && box.y + box.height > b.y);
       if (visible) occupied.push(box);
       if (!visible && hovered === d) hideTooltip();

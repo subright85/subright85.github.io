@@ -245,3 +245,6 @@
 .souvenir-tooltip strong { font-size:14px; }
 .souvenir-caption { color:#637571; margin-bottom:6px; }
 .souvenir-tooltip small { margin-top:7px; color:#637571; }
+
+/* City illustrations are the map targets; suppress the former pin layer. */
+#globe .place-marker { display: none; }

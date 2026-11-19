@@ -114,7 +114,7 @@ async function initializeOwnerGlobe(payload) {
     const geographicPaths = svg.selectAll('.ocean, .graticule, .land, .visit-area, .journey-route, .trip-route, .country-boundaries');
     const arrows = svg.append('g').attr('aria-hidden', 'true').selectAll('polygon').data(drawableMoves).join('polygon').attr('class', 'journey-arrow');
     const countryDecorations = createCountryDecorations(svg, projection, countryTopology, pinPlaces, selectPlace);
-    const markers = svg.append('g').selectAll('g').data(pinPlaces).join('g')
+    const markers = svg.append('g').attr('display', 'none').attr('aria-hidden', 'true').selectAll('g').data(pinPlaces).join('g')
       .attr('class', p => `place-marker ${p.status}`).attr('role', 'button')
       .attr('aria-label', p => `${p.city}, ${p.country}. ${p.note}${p.status === 'conference' ? '. Conference location; visit unconfirmed' : ''}`)
       .on('click', (event, p) => selectPlace(p)).on('keydown', (event, p) => {
