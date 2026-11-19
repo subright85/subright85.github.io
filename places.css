@@ -211,7 +211,7 @@
 .map-visit .visit-context { color:var(--muted); font-size:10px; line-height:1.55; }
 .map-info:has(.map-visits) { width:min(315px, calc(100% - 28px)); max-height:min(390px, 65dvh); }
 
-/* Pixelate the geographic surface, not a repeating screen-space pattern. */
+/* One consistent pixel grid for the globe surface; detailed maps stay vector sharp. */
 #globe .ocean, #globe .local-sea { fill: #65b8d1; stroke: #3986a5; }
 #globe .land, #globe .local-land { fill: #93bf91; stroke: #699871; }
 #globe.pixel-overview .ocean,
@@ -219,7 +219,7 @@
 #globe.pixel-overview .graticule,
 #globe.pixel-overview .country-boundaries { visibility: hidden; }
 .pixel-globe { pointer-events: none; }
-.pixel-globe canvas { display: block; width: 640px; height: 600px; image-rendering: auto; }
+.pixel-globe canvas { display: block; width: 640px; height: 600px; image-rendering: pixelated; }
 #globe .graticule { opacity: .12; stroke: #185e8a; }
 #globe .country-boundaries { stroke: #397b68; stroke-opacity: .7; }
 #globe .land, #globe .local-land { fill: #b9b9b9; stroke: #888; }
@@ -227,7 +227,8 @@
 .country-colors { pointer-events: none; }
 .country-souvenir { cursor: pointer; }
 .country-souvenir image { image-rendering: auto; }
-.country-souvenir:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.country-souvenir:focus-visible { outline: none; }
+.country-souvenir:focus-visible > ellipse { stroke: var(--accent); stroke-width: 2; }
 .country-souvenir:hover image { filter: drop-shadow(0 2px 2px #345b6255); }
 .map-world-key { color: var(--muted); font-size: 11px; margin: 8px 0 12px; }
 
@@ -236,3 +237,11 @@
 /* City illustrations complement the interactive place pins at every zoom. */
 #globe.pixel-overview .visited-areas { visibility: hidden; }
 .pixel-globe { filter: drop-shadow(0 10px 16px #1b345426); }
+
+/* Shared hover/focus preview for geographically anchored city art. */
+.souvenir-tooltip { position:absolute; z-index:5; width:max-content; max-width:min(260px, calc(100% - 16px)); padding:12px 15px; border:1px solid #536e70; border-radius:6px; background:#f6f5eaff; color:#263f45; box-shadow:0 4px 0 #24434e25, 0 8px 24px #24434e18; pointer-events:none; font-size:12px; line-height:1.55; }
+.souvenir-tooltip[hidden] { display:none; }
+.souvenir-tooltip strong, .souvenir-tooltip span, .souvenir-tooltip small { display:block; }
+.souvenir-tooltip strong { font-size:14px; }
+.souvenir-caption { color:#637571; margin-bottom:6px; }
+.souvenir-tooltip small { margin-top:7px; color:#637571; }

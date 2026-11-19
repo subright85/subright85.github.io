@@ -19,17 +19,22 @@ function createFrameScheduler(render, requestFrame = callback => requestAnimatio
 }
 if (typeof module !== 'undefined') module.exports = {createFrameScheduler};
 
-// High-resolution illustrated surface; geographic layers and hit targets remain aligned.
+// Render geography on a single logical pixel grid, then enlarge without smoothing.
+// No screen-space texture: coastlines, shelves and country fills share the rotation.
 function createPixelGlobe(svg, projection) {
-  const factor = .5, width = 1280, height = 1200;
+  const factor = 2, width = 320, height = 300;
   const surface = svg.append('foreignObject').attr('class', 'pixel-globe')
     .attr('width', 640).attr('height', 600).attr('aria-hidden', 'true');
   const canvas = surface.append('xhtml:canvas').attr('width', width).attr('height', height).node();
-  const context = canvas.getContext('2d');
+  const context = canvas.getContext('2d', {willReadFrequently: true});
   const surfaceProjection = d3.geoOrthographic().clipAngle(90).clipExtent([[0, 0], [width, height]]);
   const surfacePath = d3.geoPath(surfaceProjection, context);
   function paint(geometry, color) {
     context.beginPath(); surfacePath(geometry); context.fillStyle = color; context.fill();
+  }
+  function coast(land, color, width) {
+    context.beginPath(); surfacePath(land);
+    context.strokeStyle = color; context.lineWidth = width; context.lineJoin = 'round'; context.stroke();
   }
   return {
     visible(show) { surface.attr('display', show ? null : 'none'); },
@@ -38,35 +43,44 @@ function createPixelGlobe(svg, projection) {
       const radius = projection.scale() / factor;
       surfaceProjection.translate([tx, ty]).scale(radius).rotate(projection.rotate());
       context.clearRect(0, 0, width, height);
-      const ocean = context.createRadialGradient(tx - radius * .35, ty - radius * .4, radius * .05, tx, ty, radius * 1.15);
-      ocean.addColorStop(0, '#c4f4e9'); ocean.addColorStop(.42, '#7ad5d3');
-      ocean.addColorStop(.76, '#50b5cd'); ocean.addColorStop(1, '#477fac');
-      paint({type: 'Sphere'}, ocean);
-      // A fine coastal rim gives land the raised edge of an illustrated globe.
       context.save();
-      context.beginPath(); surfacePath(land);
-      context.lineJoin = 'round'; context.strokeStyle = '#ddfaf1'; context.lineWidth = 3;
-      context.stroke();
-      const neutral = context.createLinearGradient(0, ty - radius, 0, ty + radius);
-      neutral.addColorStop(0, '#e1e1e1'); neutral.addColorStop(1, '#bcbcbc');
-      paint(land, neutral);
-      // Clip country fills to the same coastline to prevent mismatched edges.
+      context.beginPath(); surfacePath({type: 'Sphere'}); context.clip();
+      paint({type: 'Sphere'}, '#367f98');
+      // Two shallow-water bands trace the actual coastline, including during rotation.
+      coast(land, '#459da9', 7);
+      coast(land, '#75b9b2', 3.5);
+      coast(land, '#d0d8b9', 1.5);
+      paint(land, '#a4b4ac');
+      context.save();
       context.beginPath(); surfacePath(land); context.clip();
       visitedCountries.forEach(country => {
-        const color = d3.color(country.properties.souvenirColor || '#a4d68c');
-        const fill = context.createLinearGradient(0, ty - radius, 0, ty + radius);
-        fill.addColorStop(0, color.brighter(.45).formatHex());
-        fill.addColorStop(.6, color.formatHex());
-        fill.addColorStop(1, color.darker(.3).formatHex());
-        paint(country, fill);
+        paint(country, country.properties.souvenirColor || '#91b86e');
       });
+      // A one-pixel coastal bevel gives land weight without adding a grid or noise.
+      coast(land, '#e1dec0', 1);
       context.restore();
-      context.save(); context.globalCompositeOperation = 'source-atop';
-      const shade = context.createRadialGradient(tx - radius * .24, ty - radius * .3, radius * .2, tx, ty, radius);
-      shade.addColorStop(0, '#fff9e61c'); shade.addColorStop(.65, '#233e6100');
-      shade.addColorStop(.9, '#28476720'); shade.addColorStop(1, '#1e3d6a65');
-      context.fillStyle = shade; context.fillRect(0, 0, width, height);
       context.restore();
+      const frame = context.getImageData(0, 0, width, height);
+      const pixels = frame.data;
+      for (let y = 0; y < height; y++) {
+        for (let x = 0; x < width; x++) {
+          const i = (y * width + x) * 4;
+          if (!pixels[i + 3]) continue;
+          const nx = (x + .5 - tx) / radius, ny = (y + .5 - ty) / radius;
+          const r2 = nx * nx + ny * ny;
+          if (r2 > 1 || pixels[i + 3] < 96) { pixels[i + 3] = 0; continue; }
+          const nz = Math.sqrt(1 - r2);
+          // Restricted, hue-shifted light ramps: broad tones, no random pixel mottling.
+          const light = Math.max(0, -.32 * nx - .42 * ny + .85 * nz);
+          const band = Math.min(5, Math.floor(light * 6));
+          const gain = [.69, .77, .85, .93, 1, 1.05][band];
+          pixels[i] = Math.round(pixels[i] * gain);
+          pixels[i + 1] = Math.round(pixels[i + 1] * gain);
+          pixels[i + 2] = Math.round(pixels[i + 2] * gain + (1 - gain) * 24);
+          pixels[i + 3] = 255;
+        }
+      }
+      context.putImageData(frame, 0, 0);
     }
   };
 }
@@ -74,7 +88,7 @@ function createPixelGlobe(svg, projection) {
 // Generated city illustrations are anchored geographically, never nudged to avoid overlap.
 function createCountryDecorations(svg, projection, topology, places, selectPlace) {
   const aliases = {USA: 'United States of America'};
-  const palette = {Canada: '#eda68f', USA: '#efcd82', 'South Korea': '#f0a8bb', China: '#acd48d',
+  const palette = {Canada: '#d9987d', USA: '#daba72', 'South Korea': '#d68f9e', China: '#91b86e',
     Malaysia: '#c7afe5', Maldives: '#edb995', Mexico: '#eeb674', Singapore: '#efa2a0',
     Spain: '#e4b0cf', Taiwan: '#f4d17d', 'United Kingdom': '#b7b5e5'};
   const cityArt = {
@@ -132,11 +146,44 @@ function createCountryDecorations(svg, projection, topology, places, selectPlace
   const layer = svg.append('g').attr('class', 'country-colors').attr('aria-hidden', 'true').attr('mask', 'url(#visible-land)');
   const colors = layer.selectAll('path').data(groups.filter(d => d.country)).join('path')
     .attr('fill', d => d.country.properties.souvenirColor);
+  const tooltip = d3.select(svg.node().parentNode).append('div')
+    .attr('class', 'souvenir-tooltip').attr('id', 'souvenir-tooltip').attr('role', 'tooltip').attr('hidden', true);
+  let hovered = null;
+  function hideTooltip() { hovered = null; tooltip.attr('hidden', true); }
+  function showTooltip(node, d) {
+    if (!d.active) return;
+    if (hovered !== d) {
+    hovered = d;
+    tooltip.selectAll('*').remove();
+    tooltip.append('strong').text(`${d.place.city}, ${d.place.country}`);
+    tooltip.append('span').attr('class', 'souvenir-caption').text(`${d.label} illustration`);
+    const visits = (d.place.events || [d.place]).flatMap(p => p.visits || []);
+    const lines = [...new Set(visits.map(v => `${v.date || ''} · ${v.conference || (v.kind === 'trip' ? 'Travel' : 'Visit')}${v.unconfirmed ? ' (unconfirmed)' : ''}`))];
+    lines.slice(0, 3).forEach(line => tooltip.append('span').text(line));
+    if (lines.length > 3) tooltip.append('span').text(`+${lines.length - 3} more visits`);
+    if (!lines.length) tooltip.append('span').text({visited: 'Lived here', visit: 'Conference visit', travel: 'Travel'}[d.place.status] || 'Visited');
+    tooltip.append('small').text('Click to view details');
+    tooltip.attr('hidden', null);
+    }
+    const panel = svg.node().parentNode.getBoundingClientRect();
+    const globe = svg.node().getBoundingClientRect();
+    const scale = globe.width / 640;
+    const bounds = d.previewBox;
+    const anchor = {x: globe.x + bounds.x * scale, top: globe.y + bounds.y * scale, width: bounds.width * scale, bottom: globe.y + (bounds.y + bounds.height) * scale};
+    const box = tooltip.node().getBoundingClientRect();
+    const left = Math.max(8, Math.min(panel.width - box.width - 8, anchor.x + anchor.width / 2 - panel.x - box.width / 2));
+    const above = anchor.top - panel.top - box.height - 12;
+    tooltip.style('left', `${left}px`).style('top', `${above >= 8 ? above : anchor.bottom - panel.top + 12}px`);
+  }
   const badges = svg.append('g').attr('class', 'country-souvenirs').selectAll('g').data(cityGroups).join('g')
     .attr('class', 'country-souvenir').attr('role', 'button')
     .attr('aria-label', d => `${d.place.city}, ${d.place.country}: ${d.label}`)
-    .on('click', (event, d) => { event.stopPropagation(); if (d.active) selectPlace(d.place); })
+    .attr('aria-describedby', 'souvenir-tooltip')
+    .on('mouseenter focus', function(event, d) { showTooltip(this, d); })
+    .on('mouseleave blur', hideTooltip)
+    .on('click', (event, d) => { hideTooltip(); event.stopPropagation(); if (d.active) selectPlace(d.place); })
     .on('keydown', (event, d) => {
+      if (event.key === 'Escape') { hideTooltip(); event.stopPropagation(); }
       if ((event.key === 'Enter' || event.key === ' ') && d.active) { event.preventDefault(); event.stopPropagation(); selectPlace(d.place); }
     });
   badges.append('title').text(d => `${d.place.city} · ${d.label} illustration · View visit details`);
@@ -163,11 +210,14 @@ function createCountryDecorations(svg, projection, topology, places, selectPlace
       const artworkWidth = 78 * (d.bounds[2] - d.bounds[0]) * size;
       const artworkHeight = 78 * (d.bounds[3] - d.bounds[1]) * size;
       const box = {x: x - artworkWidth / 2 - 2, y: y - artworkHeight - 2, width: artworkWidth + 4, height: artworkHeight + 4};
+      d.previewBox = box;
       const visible = d.active && projection.scale() <= 1500 && box.x > 4 && box.x + box.width < 636 && box.y > 4 && box.y + box.height < 596 &&
         distance < 1.4 && !occupied.some(b => box.x < b.x + b.width && box.x + box.width > b.x && box.y < b.y + b.height && box.y + box.height > b.y);
       if (visible) occupied.push(box);
+      if (!visible && hovered === d) hideTooltip();
       d3.select(this).attr('transform', `translate(${x},${y}) scale(${size})`)
         .attr('display', visible ? null : 'none').attr('tabindex', visible ? 0 : -1);
+      if (visible && hovered === d) showTooltip(this, d);
     });
     return groups.filter(d => d.active && d.country).map(d => d.country);
   }};

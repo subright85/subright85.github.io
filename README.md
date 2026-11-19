@@ -52,6 +52,8 @@ The charcoal header, white content, and restrained red accents reference the vis
 
 ### Illustrated globe
 
-The overview uses a high-resolution shaded canvas without internal border strokes. Unvisited land stays gray; confirmed visited countries use coordinated pastel colors. The shared renderer in `render-utils.js` keeps the original simple generated stickers and adds matching city stickers for all 38 public places. The atlases are `assets/globe-souvenirs.png` (4 by 3), `assets/globe-city-stickers-us.png` and `assets/globe-city-stickers-world.png` (both 4 by 4).
+The overview uses a 320 × 300 logical pixel canvas, enlarged with nearest-neighbor sampling. Six restrained lighting tones and coastline-following shallow-water bands replace screen-space patterns. Unvisited land stays gray; confirmed visited countries use coordinated pastel colors. The shared renderer in `render-utils.js` keeps the original simple generated stickers and adds matching city stickers for all 38 public places. The atlases are `assets/globe-souvenirs.png` (4 by 3), `assets/globe-city-stickers-us.png` and `assets/globe-city-stickers-world.png` (both 4 by 4).
 
 Landmark artwork is anchored at landmark coordinates; generic souvenirs use the visited city's coordinates. Illustrations do not claim that the specific landmark was visited. Transparent padding is measured so each illustration's bottom center sits on its geographic anchor. The artwork scales with globe zoom, while overlap checks progressively reveal neighboring cities. Interactive place pins remain visible. Detailed map boundaries return at local zoom, and the private timeline only colors countries reached at the selected date.
+
+City illustrations show a hover and keyboard-focus preview with the city, illustration label, and recorded visits; clicking opens the full place details. Escape dismisses the preview.
