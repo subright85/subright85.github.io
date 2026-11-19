@@ -6,8 +6,8 @@
 <script src="theme.js?v=1"></script>
 <title>Places · Sungchul Kim</title>
 <meta name="description" content="Places in Sungchul Kim's life and research.">
-<link rel="icon" href="assets/favicon.svg?v=4"><link rel="stylesheet" href="style.css?v=12"><link rel="stylesheet" href="places.css?v=21">
-<script src="assets/vendor/d3.v7.min.js" defer></script><script src="assets/vendor/topojson-client.min.js" defer></script><script src="render-utils.js?v=1" defer></script><script src="places.js?v=20" defer></script>
+<link rel="icon" href="assets/favicon.svg?v=4"><link rel="stylesheet" href="style.css?v=12"><link rel="stylesheet" href="places.css?v=26">
+<script src="assets/vendor/d3.v7.min.js" defer></script><script src="assets/vendor/topojson-client.min.js" defer></script><script src="render-utils.js?v=7" defer></script><script src="places.js?v=24" defer></script>
 <link rel="stylesheet" href="theme.css?v=3">
 <link rel="stylesheet" href="easter-egg.css?v=2"><script src="journey-crypto.js?v=1" defer></script><script src="easter-egg.js?v=1" defer></script>
 </head>
@@ -20,6 +20,7 @@
 <section class="globe-panel" aria-label="Interactive globe">
 <svg id="globe" viewBox="0 0 640 600" tabindex="0" role="group" aria-label="Earth. Drag or use arrow keys to rotate; use plus and minus to zoom."><title>Places on Earth</title></svg>
 <div class="map-info"><button id="close-place" type="button" aria-label="Close place details">×</button><section id="place-detail" aria-live="polite" hidden></section></div>
+<p class="map-world-key">Gray · Not yet visited &nbsp; Colors · Visited &nbsp; City illustrations · Zoom to discover</p>
 <div class="globe-controls"><span>Drag to rotate · Scroll to zoom</span><button id="zoom-out" type="button" aria-label="Zoom out">−</button><button id="zoom-in" type="button" aria-label="Zoom in">+</button><button id="rotate-globe" type="button" aria-pressed="true">Pause rotation</button><button id="reset-globe" type="button">Reset</button></div>
 <div class="residence-key"><span class="key-home">Lived</span><span class="key-conference">Conference</span><span class="key-travel">Trip</span></div>
 <p id="globe-status" role="status" aria-live="polite"></p>

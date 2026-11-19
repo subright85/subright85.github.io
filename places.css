@@ -211,8 +211,28 @@
 .map-visit .visit-context { color:var(--muted); font-size:10px; line-height:1.55; }
 .map-info:has(.map-visits) { width:min(315px, calc(100% - 28px)); max-height:min(390px, 65dvh); }
 
-/* Pixel-tile colors retain the map's interactive geographic paths. */
-#globe .ocean, #globe .local-sea { fill: url(#pixel-ocean); stroke: #287ca6; }
-#globe .land, #globe .local-land { fill: url(#pixel-land); stroke: #509a72; }
+/* Pixelate the geographic surface, not a repeating screen-space pattern. */
+#globe .ocean, #globe .local-sea { fill: #65b8d1; stroke: #3986a5; }
+#globe .land, #globe .local-land { fill: #93bf91; stroke: #699871; }
+#globe.pixel-overview .ocean,
+#globe.pixel-overview .land,
+#globe.pixel-overview .graticule,
+#globe.pixel-overview .country-boundaries { visibility: hidden; }
+.pixel-globe { pointer-events: none; }
+.pixel-globe canvas { display: block; width: 640px; height: 600px; image-rendering: auto; }
 #globe .graticule { opacity: .12; stroke: #185e8a; }
 #globe .country-boundaries { stroke: #397b68; stroke-opacity: .7; }
+#globe .land, #globe .local-land { fill: #b9b9b9; stroke: #888; }
+#globe.pixel-overview .country-colors { visibility: hidden; }
+.country-colors { pointer-events: none; }
+.country-souvenir { cursor: pointer; }
+.country-souvenir image { image-rendering: auto; }
+.country-souvenir:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.country-souvenir:hover image { filter: drop-shadow(0 2px 2px #345b6255); }
+.map-world-key { color: var(--muted); font-size: 11px; margin: 8px 0 12px; }
+
+#globe.pixel-overview .visited-areas { opacity: .45; }
+
+/* City illustrations complement the interactive place pins at every zoom. */
+#globe.pixel-overview .visited-areas { visibility: hidden; }
+.pixel-globe { filter: drop-shadow(0 10px 16px #1b345426); }

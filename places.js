@@ -1,11 +1,12 @@
 async function initializeGlobe() {
   const status = document.querySelector('#globe-status');
   try {
-    const [world, places, boundaries, countryBorders] = await Promise.all([
+    const [world, places, boundaries, countryBorders, countryTopology] = await Promise.all([
       fetch('assets/maps/land-natural.json?v=1').then(r => { if (!r.ok) throw new Error('Map unavailable'); return r.json(); }),
       fetch('visited-places.json?v=2').then(r => { if (!r.ok) throw new Error('Places unavailable'); return r.json(); }),
       fetch('assets/maps/visited-boundaries.json?v=2').then(r => { if (!r.ok) throw new Error('Boundaries unavailable'); return r.json(); }),
-      fetch('assets/maps/country-borders.json?v=1').then(r => { if (!r.ok) throw new Error('Borders unavailable'); return r.json(); })
+      fetch('assets/maps/country-borders.json?v=1').then(r => { if (!r.ok) throw new Error('Borders unavailable'); return r.json(); }),
+      fetch('assets/maps/countries-110m.json').then(r => { if (!r.ok) throw new Error('Countries unavailable'); return r.json(); })
     ]);
     const visitMonth = new Intl.DateTimeFormat('en-US', {month: 'short', year: 'numeric', timeZone: 'UTC'});
     const visitDate = date => date.length === 4 ? date : visitMonth.format(new Date(`${date}-01T00:00:00Z`));
@@ -22,7 +23,7 @@ async function initializeGlobe() {
     const detail = document.querySelector('#place-detail');
     const choiceButtons = new Map();
     const svg = d3.select('#globe');
-    const projection = d3.geoOrthographic().translate([320, 300]).scale(274).rotate([-180, -25]).clipAngle(90).clipExtent([[0, 0], [640, 600]]);
+    const projection = d3.geoOrthographic().translate([320, 300]).scale(274).rotate([-120, -20]).clipAngle(90).clipExtent([[0, 0], [640, 600]]);
     const path = d3.geoPath(projection);
     let detailCoast = null, detailCoastRequest = null;
     function loadDetailCoast() {
@@ -31,18 +32,7 @@ async function initializeGlobe() {
     const gradient = svg.append('defs').append('radialGradient').attr('id', 'ocean-color').attr('gradientUnits', 'userSpaceOnUse').attr('cx', 224).attr('cy', 150).attr('r', 544);
     gradient.append('stop').attr('offset', '0%').attr('stop-color', '#b3e6ee');
     gradient.append('stop').attr('offset', '100%').attr('stop-color', '#438fbc');
-    // A small, crisp tile palette gives the geographic globe a pixel-art texture
-    // while keeping its real boundaries and interactive markers as SVG paths.
-    const defs = svg.select('defs');
-    const pixelPattern = (id, base, tiles) => {
-      const pattern = defs.append('pattern').attr('id', id).attr('patternUnits', 'userSpaceOnUse')
-        .attr('width', 64).attr('height', 64).attr('shape-rendering', 'crispEdges');
-      pattern.append('rect').attr('width', 64).attr('height', 64).attr('fill', base);
-      tiles.forEach(([x, y, w, h, color]) => pattern.append('rect')
-        .attr('x', x).attr('y', y).attr('width', w).attr('height', h).attr('fill', color));
-    };
-    pixelPattern('pixel-ocean', '#4baed2', [[0,0,16,8,'#67c9df'],[32,8,16,8,'#3c9ac8'],[16,24,16,8,'#65c4dc'],[48,32,16,8,'#368dc0'],[0,48,16,8,'#3998c5'],[32,56,16,8,'#73cde0']]);
-    pixelPattern('pixel-land', '#72bf81', [[0,0,16,16,'#92d18c'],[32,0,16,8,'#e4ca79'],[16,16,16,16,'#60aa77'],[48,24,16,16,'#a9d486'],[0,40,16,16,'#d1ca80'],[32,48,16,16,'#5cad7c']]);
+    const pixelGlobe = createPixelGlobe(svg, projection);
     svg.append('path').datum({type: 'Sphere'}).attr('class', 'ocean');
     svg.append('path').datum(d3.geoGraticule().step([15, 15])()).attr('class', 'graticule');
     svg.append('g').selectAll('path').data(world.features).join('path').attr('class', 'land').attr('id', 'land-outline');
@@ -104,6 +94,7 @@ async function initializeGlobe() {
     const countryLines = svg.append('path').datum(countryBorders).attr('class', 'country-boundaries').attr('mask', 'url(#visible-land)').attr('aria-hidden', 'true');
 
     const geographicPaths = svg.selectAll('.ocean, .graticule, .land, .visit-area, .country-boundaries');
+    const countryDecorations = createCountryDecorations(svg, projection, countryTopology, pinPlaces, selectPlace);
     const markers = svg.append('g').selectAll('g').data(pinPlaces).join('g')
       .attr('class', p => `place-marker ${p.status}`).attr('role', 'button')
       .attr('aria-label', p => `${p.city}, ${p.country}. ${placeCategory(p)}${p.status === 'conference' ? '. Conference location; visit unconfirmed' : ''}`)
@@ -160,7 +151,7 @@ async function initializeGlobe() {
     }
     function resetView() {
       rotating = !reducedMotion.matches; updateRotation();
-      projection.rotate([-180, -25]).scale(274);
+      projection.rotate([-120, -20]).scale(274);
       selected = null;
       detail.hidden = true; status.textContent = '';
       syncSelection(); scheduleDraw();
@@ -169,6 +160,11 @@ async function initializeGlobe() {
       if (projectionChanged) { svg.select('#land-outline').datum(projection.scale() > 1000 && detailCoast ? detailCoast : world.features[0]); geographicPaths.attr('d', path); }
       const center = projection.invert([320, 300]);
       const localView = projection.scale() > 1500;
+      const pixelView = projection.scale() <= 1000;
+      svg.classed('pixel-overview', pixelView);
+      pixelGlobe.visible(pixelView);
+      const visitedCountries = countryDecorations.draw(p => p.events.some(event => event.status !== 'conference'), selected);
+      if (pixelView) pixelGlobe.draw(world, countryBorders, visitedCountries);
       countryLines.attr('display', localView ? 'none' : null);
       if (projectionChanged) {
         maskBase.datum(projection.scale() > 1000 && detailCoast ? detailCoast : world.features[0]).attr('d', path);
