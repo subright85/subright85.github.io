@@ -261,7 +261,7 @@
   },
   {
     "year": "2025",
-    "citation": "Probabilistic Hypergraph Recurrent Neural Networks for Time-series Forecasting, Hongjie Chen, Ryan A. Rossi, Sungchl Kim , Kanak Mahadik, Hoda Eldardiry, KDD’25",
+    "citation": "Probabilistic Hypergraph Recurrent Neural Networks for Time-series Forecasting, Hongjie Chen, Ryan A. Rossi, Sungchul Kim , Kanak Mahadik, Hoda Eldardiry, KDD’25",
     "links": [],
     "id": "pub-489c6625ef19",
     "title": "Probabilistic Hypergraph Recurrent Neural Networks for Time-series Forecasting",
@@ -458,7 +458,7 @@
   },
   {
     "year": "2022",
-    "citation": "Bundle MCR: Towards Conversational Bundle Recommendation, Zhankui He, Handong Zhao, Tong Y, Sungchul Kim , Fan Du, Julian McAuley, RecSys 2022",
+    "citation": "Bundle MCR: Towards Conversational Bundle Recommendation, Zhankui He, Handong Zhao, Tong Yu, Sungchul Kim , Fan Du, Julian McAuley, RecSys 2022",
     "links": [],
     "id": "pub-d941f1815c54",
     "title": "Bundle MCR: Towards Conversational Bundle Recommendation",
@@ -783,7 +783,7 @@
   },
   {
     "year": "Older",
-    "citation": "Predicting Online Purchase Conversion for Retargeting, Jinyoung Yeo, Sungchul Kim , Eunyee Koh, Seung-won Hwnag, and Nedim Lipka, WSDM, 2017",
+    "citation": "Predicting Online Purchase Conversion for Retargeting, Jinyoung Yeo, Sungchul Kim , Eunyee Koh, Seung-won Hwang, and Nedim Lipka, WSDM, 2017",
     "links": [],
     "id": "pub-7c7f6ae22b9e",
     "title": "Predicting Online Purchase Conversion for Retargeting",
@@ -855,7 +855,7 @@
   },
   {
     "year": "Older",
-    "citation": "Advertiser-Centric Approach to Understand User Click Behavior in Sponsored Search, Sungchul Kim , Hwanjo Yu, Tao Qi, Tie-Yan Liu, Information Science (SCI), 2014",
+    "citation": "Advertiser-Centric Approach to Understand User Click Behavior in Sponsored Search, Sungchul Kim , Hwanjo Yu, Tao Qin, Tie-Yan Liu, Information Science (SCI), 2014",
     "links": [],
     "id": "pub-e3c466445938",
     "title": "Advertiser-Centric Approach to Understand User Click Behavior in Sponsored Search",
@@ -919,7 +919,7 @@
   },
   {
     "year": "Older",
-    "citation": "Advertiser-Centric Approach to Understand User Click Behavior in Sponsored Search, Sungchul Kim , Hwanjo Yu, Tao Qi, Tie-Yan Liu, CIKM, 2011",
+    "citation": "Advertiser-Centric Approach to Understand User Click Behavior in Sponsored Search, Sungchul Kim , Hwanjo Yu, Tao Qin, Tie-Yan Liu, CIKM, 2011",
     "links": [],
     "id": "pub-2f7da23ae55d",
     "title": "Advertiser-Centric Approach to Understand User Click Behavior in Sponsored Search",
