@@ -49,7 +49,7 @@ for year, entries in groups.items():
     blocks.append(f'<details class="year-group" data-year="{escape(year)}"{opened}><summary>{escape(year)} <span class="count">{count_label}</span><span class="plus" aria-hidden="true">+</span></summary><ol class="papers">{"".join(items)}</ol></details>')
 template = (ROOT / 'index.template.html').read_text()
 photos = json.loads((ROOT / 'photos.json').read_text())
-slides = ''.join(f'<div class="photo-slide" role="group" aria-roledescription="slide" aria-label="{i+1} of {len(photos)}"{" hidden" if i else ""}><img class="profile-photo" src="{escape(p["src"], quote=True)}" alt="{escape(p["alt"], quote=True)}" style="object-position:{escape(p.get("position", "center"), quote=True)}" width="{p["width"]}" height="{p["height"]}"{ " loading=\"lazy\"" if i else ""}></div>' for i, p in enumerate(photos))
+slides = ''.join(f'<div class="photo-slide" role="group" aria-roledescription="slide" aria-label="{i+1} of {len(photos)}"{" hidden" if i else ""}><img class="profile-photo" src="{escape(p["src"], quote=True)}" alt="{escape(p["alt"], quote=True)}" style="object-position:{escape(p.get("position", "center"), quote=True)}" width="{p["width"]}" height="{p["height"]}"{ " loading=\"lazy\"" if i else ""}><span class="slide-credit">{escape(p.get("caption", ""))}</span></div>' for i, p in enumerate(photos))
 template = template.replace('{{PHOTO_SLIDES}}', slides)
 template = template.replace('{{PUBLICATION_COUNT}}', str(len(papers)))
 (ROOT / 'index.html').write_text(template.replace('{{PUBLICATIONS}}', '\n'.join(blocks)).replace('{{CAREER_TIMELINE}}', render_career() + render_career(compact=True)))

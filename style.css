@@ -187,3 +187,36 @@ nav a:nth-child(3), nav a:nth-child(4) { display: block; }
 .publication-scope button { border: 0; border-radius: 5px; background: transparent; color: var(--muted); font-size: 12px; padding: 6px 11px; cursor: pointer; }
 .publication-scope button[aria-pressed="true"] { color: var(--accent); background: #f0e0eb; }
 .publication-scope button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.slide-credit { display:block; font-size:11px; line-height:1.45; color:var(--muted); margin-top:9px; }
+.profile .photo-slides { min-width:0; }
+.profile .photo-controls { margin-top:1px; }
+@media (prefers-reduced-motion:no-preference) {
+  .photo-slide:not([hidden]) .profile-photo { animation:photo-arrival .28s ease-out; }
+}
+@keyframes photo-arrival { from { opacity:.5; } to { opacity:1; } }
+
+/* Fade the artwork into the existing header, above and behind the controls. */
+.motion-strip {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: min(34vw, 320px);
+  height: min(74%, 46px);
+  pointer-events: none;
+  opacity: .65;
+  mask-image: radial-gradient(ellipse at 100% 0%, black 12%, transparent 74%);
+}
+.motion-strip + .nav-wrap { position: relative; }
+@media (max-width: 600px) {
+  .motion-strip { width: 112px; height: 32px; }
+}
+
+.motion-strip.contour-landscape {
+  width: min(72%, 1050px);
+  height: 100%;
+  mask-image: linear-gradient(90deg, transparent, #0005 26%, #0009 62%, black);
+}
+@media (max-width: 600px) {
+  .motion-strip.contour-landscape { width: 60%; opacity: .48; }
+}

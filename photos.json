@@ -1,9 +1,34 @@
 [
   {
-    "src": "assets/profile.png",
-    "alt": "Sungchul Kim with his child",
-    "position": "32% center",
-    "width": 1107,
-    "height": 659
+    "src": "assets/photos/waterfront.webp",
+    "alt": "Sungchul and his son on a boat with a rainbow over the waterfront",
+    "position": "center",
+    "width": 1000,
+    "height": 750,
+    "caption": "On the water"
+  },
+  {
+    "src": "assets/photos/race-day.webp",
+    "alt": "Sungchul and his son holding a race medal",
+    "position": "50% 20%",
+    "width": 750,
+    "height": 1000,
+    "caption": "Race day"
+  },
+  {
+    "src": "assets/photos/model-trains.webp",
+    "alt": "Sungchul and his son looking at a model railway",
+    "position": "center",
+    "width": 1000,
+    "height": 750,
+    "caption": "Model trains"
+  },
+  {
+    "src": "assets/photos/forest.webp",
+    "alt": "Sungchul and his son sitting together among the trees",
+    "position": "50% 42%",
+    "width": 750,
+    "height": 1000,
+    "caption": "In the woods"
   }
 ]
