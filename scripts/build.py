@@ -9,42 +9,45 @@ papers = json.loads((ROOT / 'publications.json').read_text())
 reviews = json.loads((ROOT / 'publication-summaries.json').read_text())['papers']
 review_by_id = {review['id']: review for review in reviews}
 assert len(review_by_id) == len(papers), 'Every paper must have one review'
-latest_year = max(int(p['year']) for p in papers if p['year'].isdigit())
-recent_years = [str(latest_year - offset) for offset in range(3)]
-groups = {year: [] for year in [*recent_years, 'Older']}
+def publication_priority(paper):
+    if re.search(r'\bsurvey\b', paper['title'], re.I):
+        return 2
+    citation = paper['citation'][len(paper['citation_title']):].lstrip(' ,.')
+    author = re.search(r'\bSungchu?l\s+Kim\b', citation, re.I)
+    if author:
+        preceding = re.split(r',|\band\b', citation[:author.start()])
+        if sum(bool(name.strip()) for name in preceding) < 5:
+            return 0
+    return 1
+
+
+groups = {}
 for paper in papers:
-    group = paper['year'] if paper['year'] in recent_years else 'Older'
-    groups[group].append(paper)
+    year = paper['year']
+    if year == 'Older':
+        year = re.search(r'(20\d{2})(?:\.\d{1,2})?$', paper['citation']).group(1)
+    groups.setdefault(year, []).append(paper)
+years = sorted(groups, reverse=True)
 blocks = []
-opened_selected_group = False
-for year, entries in groups.items():
-    if not entries:
-        continue
+for year in years:
+    entries = sorted(groups[year], key=publication_priority)
     items = []
-    has_selected = False
     for paper in entries:
         citation = paper['citation']
         title = paper['title']
         rest = citation[len(paper['citation_title']):].lstrip(' ,.')
         review = review_by_id[paper['id']]
-        author_prefix = re.split(r'Sungch[u]?l\s+Kim', rest, maxsplit=1)[0]
-        author_rank = author_prefix.count(',') + 1
-        selected = not re.search(r'\bsurvey\b', title, re.I) and author_rank <= 5
-        has_selected = has_selected or selected
         rest = re.sub(r'Sungchul\s+Kim', '<strong>Sungchul Kim</strong>', escape(rest))
         links = ''.join(f'<a class="paper-link" href="{escape(link["url"], quote=True)}">Read paper ↗</a>' for link in paper['links'])
         if not links and review.get('source_url'):
             links = f'<a class="paper-link" href="{escape(review["source_url"], quote=True)}">Source ↗</a>'
         tooltip_id = f'{paper["id"]}-summary'
-        explanation = f'<span class="paper-explanation"><button class="summary-trigger" type="button" aria-label="Summary: {escape(title, quote=True)}" aria-describedby="{tooltip_id}" aria-expanded="false"><svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><circle cx="10" cy="10" r="7.5"/><path d="M10 9v5M10 5.8v1"/></svg></button><span class="paper-tooltip" role="tooltip" id="{tooltip_id}" hidden><span class="tooltip-heading"><span class="tooltip-label">Summary</span><span class="tooltip-year">{escape(str(paper["year"]))}</span></span><span class="tooltip-body">{escape(review["summary"])}</span></span></span>'
-        source_year = escape(paper['year'])
-        year_label = f'{source_year} · ' if year == 'Older' and paper['year'].isdigit() else ''
+        explanation = f'<span class="paper-explanation"><button class="summary-trigger" type="button" aria-label="Summary: {escape(title, quote=True)}" aria-describedby="{tooltip_id}" aria-expanded="false"><svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><circle cx="10" cy="10" r="7.5"/><path d="M10 9v5M10 5.8v1"/></svg></button><span class="paper-tooltip" role="tooltip" id="{tooltip_id}" hidden><span class="tooltip-heading"><span class="tooltip-label">Summary</span><span class="tooltip-year">{year}</span></span><span class="tooltip-body">{escape(review["summary"])}</span></span></span>'
         thumbnail = ''
         if paper.get('image'):
             thumbnail = f'<a class="paper-thumbnail" href="{escape(paper["links"][0]["url"], quote=True)}" aria-label="Read {escape(title, quote=True)}"><img src="{escape(paper["image"], quote=True)}" alt="{escape(paper["image_alt"], quote=True)}" width="1536" height="1024" loading="lazy"></a>'
-        items.append(f'<li id="{paper["id"]}" class="paper{" paper-illustrated" if thumbnail else ""}" data-year="{source_year}" data-selected="{str(selected).lower()}">{thumbnail}<div class="paper-copy"><div class="paper-heading"><h3>{escape(title)}</h3>{explanation}</div><p>{year_label}{rest}</p>{links}</div></li>')
-    opened = ' open' if year == recent_years[0] or (has_selected and not opened_selected_group) else ''
-    opened_selected_group = opened_selected_group or has_selected
+        items.append(f'<li id="{paper["id"]}" class="paper{" paper-illustrated" if thumbnail else ""}" data-year="{year}">{thumbnail}<div class="paper-copy"><div class="paper-heading"><h3>{escape(title)}</h3>{explanation}</div><p>{rest}</p>{links}</div></li>')
+    opened = ' open' if year in years[:3] else ''
     count_label = f'{len(entries)} paper' if len(entries) == 1 else f'{len(entries)} papers'
     blocks.append(f'<details class="year-group" data-year="{escape(year)}"{opened}><summary>{escape(year)} <span class="count">{count_label}</span><span class="plus" aria-hidden="true">+</span></summary><ol class="papers">{"".join(items)}</ol></details>')
 template = (ROOT / 'index.template.html').read_text()

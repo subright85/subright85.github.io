@@ -58,9 +58,6 @@ const empty = document.querySelector('#no-results');
 let previousState = null;
 toolbar.hidden = false;
 document.querySelector('#year').textContent = new Date().getFullYear();
-let publicationScope = 'selected';
-const scopeControls = document.querySelector('.publication-scope');
-scopeControls.hidden = false;
 function filterPublications() {
   closeSummary();
   const query = search.value.toLocaleLowerCase().trim();
@@ -69,8 +66,7 @@ function filterPublications() {
   groups.forEach((group, index) => {
     let found = 0;
     group.querySelectorAll('.paper').forEach(paper => {
-      const inScope = publicationScope === 'all' || paper.dataset.selected === 'true';
-      const match = inScope && (!query || `${group.dataset.year} ${paper.dataset.year || ''} ${paper.textContent}`.toLocaleLowerCase().includes(query));
+      const match = !query || `${group.dataset.year} ${paper.dataset.year || ''} ${paper.textContent}`.toLocaleLowerCase().includes(query);
       paper.hidden = !match;
       if (match) found++;
     });
@@ -85,12 +81,7 @@ function filterPublications() {
   empty.hidden = matches !== 0;
 }
 search.addEventListener('input', filterPublications);
-scopeControls.querySelectorAll('button').forEach(button => button.addEventListener('click', () => {
-  publicationScope = button.dataset.scope;
-  scopeControls.querySelectorAll('button').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
-  document.querySelector('#publications h2').textContent = publicationScope === 'selected' ? 'Selected publications' : 'Publications';
-  filterPublications();
-}));
+
 filterPublications();
 
 // Track the section nearest the sticky header at every viewport shape.
